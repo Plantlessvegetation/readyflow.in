@@ -1,0 +1,603 @@
+/* General Body Styles */
+body {
+    font-family: 'Open Sans', sans-serif; /* Applied globally */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Main Background Gradient (Dark Theme) */
+    background: linear-gradient(135deg, #1A1A2E, #0F0F1A); /* Deep Black/Navy Gradient */
+    color: #E0E0E0; /* Primary Text (Light Gray) */
+    line-height: 1.6;
+    min-height: 100vh; /* Ensure body takes full height for gradient */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styles for the content wrapper and animations */
+#page-content-wrapper {
+    transition: transform 0.6s ease-out, filter 0.6s ease-out; /* Smooth transitions for animations */
+}
+
+/* Animation for content blurring and scaling out */
+#page-content-wrapper.animate-out {
+    filter: blur(5px);
+    transform: scale(0.95); /* Slightly scale down */
+    opacity: 0.7; /* Make it a bit transparent */
+}
+
+/* Optional: Animation for content scaling/fading in (after scroll) */
+#page-content-wrapper.animate-in {
+    animation: fadeInScaleUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInScaleUp {
+    from {
+        filter: blur(5px);
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+    to {
+        filter: blur(0);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* Header and Navigation (Glassmorphism Effect) */
+header {
+    background-color: rgba(26, 26, 46, 0.7); /* Slightly transparent version of your deepest navy (#1A1A2E) */
+    backdrop-filter: blur(10px); /* The magic behind the frosted glass effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari compatibility */
+    border-bottom: 1px solid rgba(68, 68, 85, 0.5); /* Subtle, slightly transparent border */
+    color: #E0E0E0; /* Light text for header */
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4); /* Darker shadow for dark theme */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo a {
+    font-family: 'Montserrat', sans-serif; /* Applying Montserrat to logo */
+    color: #E0E0E0; /* Light text for logo */
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 900; /* Black weight for extra impact */
+    text-shadow: 0 0 5px rgba(0,0,0,0.2); /* Subtle shadow for text to stand out */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    font-family: 'Open Sans', sans-serif; /* Open Sans for navigation links */
+    color: #E0E0E0; /* Light text for nav links */
+    text-decoration: none;
+    font-weight: 400; /* Regular weight */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    text-shadow: 0 0 5px rgba(0,0,0,0.2); /* Subtle shadow for text to stand out */
+}
+
+nav ul li a:hover {
+    color: #00CBA7; /* Accent Color (Vibrant Teal) for hover */
+    text-shadow: 0 0 10px rgba(0, 203, 167, 0.6); /* Subtle glow on hover */
+}
+
+/* Optional: Button inside navigation */
+nav .button {
+    background-color: #00CBA7; /* Accent Color (Vibrant Teal) */
+    color: #1A1A2E; /* Dark text on vibrant button for contrast */
+    padding: 8px 15px; /* Slightly smaller button for nav */
+    font-size: 0.95rem;
+    font-weight: 700; /* Bold weight for buttons */
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 203, 167, 0.3);
+}
+
+nav .button:hover {
+    background-color: #00A382; /* Slightly darker teal for hover */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 203, 167, 0.5);
+}
+
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #1A1A2E, #0F0F1A);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+    padding: 50px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    color: #E0E0E0;
+    font-weight: 900;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.hero-content p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.3rem;
+    color: #A0A0A0;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.button {
+    display: inline-block;
+    background-color: #00CBA7;
+    color: #1A1A2E;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0, 203, 167, 0.4);
+}
+
+.button:hover {
+    background-color: #00A382;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 203, 167, 0.6);
+}
+
+.spline-container {
+    width: 100%;
+    height: 500px;
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+spline-viewer {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Spline Overlay Button Styles - Adjusted for exact overlap and consistent styling */
+.spline-overlay-button {
+    position: absolute;
+    bottom: 15px; /* Fine-tuned based on common Spline watermark position */
+    right: 15px;  /* Fine-tuned */
+    width: 160px; /* Increased width to cover icon and text more precisely */
+    height: 35px; /* Increased height */
+    
+    background-color: #00CBA7; /* Matched "View My Work" button color */
+    color: #1A1A2E; /* Dark text for contrast on accent color */
+    border: none;
+    border-radius: 5px;
+    
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    opacity: 1; /* Fully opaque to hide watermark completely */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    z-index: 10; /* Ensure it's above the spline viewer */
+    
+    box-shadow: 0 4px 10px rgba(0, 203, 167, 0.4); /* Similar glow effect as other buttons */
+    padding: 0;
+}
+
+.spline-overlay-button:hover {
+    background-color: #00A382;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 203, 167, 0.6);
+}
+
+/* Section Styling */
+section {
+    padding: 60px 0;
+    text-align: center;
+    background-color: #1A1A2E; /* Default section background */
+}
+
+section:nth-of-type(even) {
+    background-color: #0F0F1A; /* Darker background for even sections */
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #E0E0E0;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #00CBA7;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Merged About and Skills Section Styles */
+.about-skills-section {
+    padding: 60px 0;
+    background-color: #0F0F1A;
+}
+
+.about-skills-section .container {
+    display: flex;
+    flex-direction: column; /* Default to column for mobile */
+    gap: 50px; /* Space between content blocks */
+}
+
+/* Profile Photo Styles - Placed below main heading */
+.profile-photo-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 30px auto 50px; /* Centered, and added more bottom margin for separation */
+    border: 3px solid #00CBA7;
+    box-shadow: 0 0 15px rgba(0, 203, 167, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+}
+
+.profile-photo-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 203, 167, 0.7);
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* New wrapper for About and Skills content side-by-side on desktop */
+.about-skills-grid-wrapper {
+    display: flex;
+    flex-direction: column; /* Default to column for mobile */
+    gap: 50px; /* Space between columns on mobile */
+}
+
+.about-skills-section h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    color: #E0E0E0;
+    margin-bottom: 25px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    position: relative;
+    display: inline-block;
+    text-align: center; /* Default center for mobile */
+}
+
+.about-skills-section h3::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: #00CBA7;
+    margin: 10px auto 0; /* Default center for mobile */
+    border-radius: 1.5px;
+}
+
+.about-content p {
+    font-family: 'Open Sans', sans-serif;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    font-size: 1.1rem;
+    color: #A0A0A0;
+    text-align: center; /* Default center for mobile */
+}
+
+/* Skills List within merged section */
+.skills-content .skills-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Default center for mobile */
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.skills-content .skills-list li {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #28283D;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    color: #00CBA7;
+    font-weight: 600;
+    border: 1px solid #444455;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.skills-content .skills-list li:hover {
+    background-color: #00CBA7;
+    color: #1A1A2E;
+}
+
+
+/* Portfolio Section */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.portfolio-item {
+    background-color: #28283D;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #444455;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(0, 203, 167, 0.2);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid #444455;
+}
+
+.portfolio-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    margin: 15px 15px 10px;
+    color: #E0E0E0;
+}
+
+.portfolio-item p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: #A0A0A0;
+    padding: 0 15px 15px;
+}
+
+.portfolio-item .button {
+    margin: 0 15px 15px;
+}
+
+/* Contact Section */
+.contact-form {
+    max-width: 600px;
+    margin: 30px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #444455;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #28283D;
+    color: #E0E0E0;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #A0A0A0;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form button {
+    width: auto;
+    align-self: flex-start;
+}
+
+.social-links {
+    margin-top: 30px;
+}
+
+.social-links a {
+    font-family: 'Open Sans', sans-serif;
+    display: inline-block;
+    margin: 0 15px;
+    color: #00CBA7;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #00A382;
+}
+
+/* Footer */
+footer {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #0F0F1A;
+    color: #A0A0A0;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+    border-top: 1px solid #444455;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .hero-section {
+        flex-direction: row;
+        text-align: left;
+        justify-content: space-between;
+        padding: 0;
+    }
+
+    .hero-content {
+        padding-left: 50px;
+        flex: 1;
+        max-width: 50%;
+    }
+
+    .hero-content h1 {
+        font-size: 4.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.5rem;
+    }
+
+    .spline-container {
+        position: relative;
+        width: 50%;
+        height: 100vh;
+        margin-top: 0;
+    }
+
+    /* Merged About & Skills layout for desktop */
+    .about-skills-section .container {
+        flex-direction: column; /* Keep as column for main heading + photo above grid */
+    }
+
+    .about-skills-grid-wrapper {
+        flex-direction: row; /* Make about and skills side-by-side */
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .about-skills-section .about-content,
+    .about-skills-section .skills-content {
+        flex: 1;
+        padding: 0 20px;
+    }
+
+    /* Profile photo remains centered above the two columns on desktop */
+    .profile-photo-container {
+        margin: 30px auto 50px; 
+    }
+
+    .about-skills-section h3 {
+        text-align: left; /* Align subheadings to left */
+    }
+    
+    .about-skills-section h3::after {
+        margin: 10px 0 0; /* Adjust underline position for left alignment */
+    }
+
+    .about-content p {
+        text-align: left; /* Align about text to left on desktop */
+    }
+
+    .skills-content .skills-list {
+        justify-content: flex-start; /* Align skills tags to the left */
+    }
+}
+
+@media (max-width: 767px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 10px 10px 0;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .spline-container {
+        height: 350px;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-list li {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    .contact-form button {
+        align-self: center;
+    }
+
+    .about-skills-section .container {
+        gap: 30px;
+    }
+
+    .profile-photo-container {
+        margin: 30px auto;
+    }
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya - Portfolio</title>
+    <link rel="stylesheet" href="style.css"> <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.7/build/spline-viewer.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#hero">My Portfolio</a>
+            </div>
+            <ul>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about-skills">About & Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="page-content-wrapper"> 
+        <main>
+            <section id="hero" class="hero-section">
+                <div class="hero-content">
+                    <h1>Hi, I'm Aditya</h1>
+                    <p>A passionate B.Tech student with an unwavering enthusiasm for web design and coding, actively shaping the digital world.</p>
+                    <a href="#portfolio" class="button" id="view-work-button">View My Work</a>
+                </div>
+                <div class="spline-container">
+                    <spline-viewer url="https://prod.spline.design/m43KiRLBf4bbUP4C/scene.splinecode"></spline-viewer>
+                    <button class="spline-overlay-button" id="know-about-me-button">Know About Me</button>
+                </div>
+            </section>
+
+            <section id="portfolio" class="portfolio-section">
+                <div class="container">
+                    <h2>My Work</h2>
+                    <div class="portfolio-grid">
+                        <div class="portfolio-item">
+                            <img src="eac95ad781b2c21d0cde4f48db14b8bf.avif" alt="Godwit Cafe Website Screenshot">
+                            <h3>Godwit Cafe Website</h3>
+                            <p>A modern, responsive website designed and developed for Godwit Cafe, showcasing their ambiance and offerings. Built with HTML, CSS, and JavaScript.</p>
+                            <a href="https://godwitcafe.netlify.app/" target="_blank" class="button">Visit Live Site</a>
+                        </div>
+                        <div class="portfolio-item">
+                            <img src="https://via.placeholder.com/300" alt="Upcoming Project 1">
+                            <h3>Upcoming Project</h3>
+                            <p>This space is reserved for my next exciting web development endeavor! Stay tuned for more innovative solutions.</p>
+                            <a href="#" class="button">Coming Soon!</a>
+                        </div>
+                        <div class="portfolio-item">
+                            <img src="https://via.placeholder.com/300" alt="Upcoming Project 2">
+                            <h3>Future Concept</h3>
+                            <p>Exploring new technologies and design paradigms for future projects. Ideas are brewing!</p>
+                            <a href="#" class="button">More Details Soon</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-skills" class="about-skills-section">
+                <div class="container">
+                    <h2>About Me & Skills</h2>
+
+                    <div class="profile-photo-container">
+                        <img src="WhatsApp Image 2025-06-16 at 14.24.56_9c35a4fb.jpg" alt="Aditya - Profile Photo" class="profile-photo">
+                    </div>
+
+                    <div class="about-skills-grid-wrapper">
+                        <div class="about-content">
+                            <h3>My Story</h3>
+                            <p>Write a brief introduction about yourself here. Talk about your experience, your passion, and what drives you. This is your chance to tell your story!</p>
+                            <p>For example: "I'm a B.Tech student with a strong foundation in computer science principles and a keen eye for user-centric design. My journey into web development is driven by a passion for creating intuitive and visually appealing digital experiences that solve real-world problems. I thrive on learning new technologies and pushing the boundaries of what's possible on the web."</p>
+                        </div>
+
+                        <div class="skills-content">
+                            <h3>My Core Skills</h3>
+                            <ul class="skills-list">
+                                <li>HTML5</li>
+                                <li>CSS3</li>
+                                <li>JavaScript</li>
+                                <li>React / Vue.js (if applicable)</li>
+                                <li>Node.js / Python (if applicable)</li>
+                                <li>UI/UX Design Principles</li>
+                                <li>Git & GitHub</li>
+                                <li>Responsive Design</li>
+                                <li>[Your Other Skill 1]</li>
+                                <li>[Your Other Skill 2]</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="contact" class="contact-section">
+                <div class="container">
+                    <h2>Get in Touch</h2>
+                    <p>I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
+                    <form action="#" method="POST" class="contact-form">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="button">Send Message</button>
+                    </form>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/yourprofile" target="_blank">GitHub</a>
+                        <a href="mailto:your.email@example.com">Email</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aditya. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewWorkButton = document.getElementById('view-work-button');
+            const knowAboutMeButton = document.getElementById('know-about-me-button');
+            const portfolioSection = document.getElementById('portfolio');
+            const aboutSkillsSection = document.getElementById('about-skills');
+            const contactSection = document.getElementById('contact');
+            const pageContentWrapper = document.getElementById('page-content-wrapper');
+
+            const animatedScrollTo = (targetElement) => {
+                pageContentWrapper.classList.add('animate-out');
+
+                setTimeout(() => {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                    setTimeout(() => {
+                        pageContentWrapper.classList.remove('animate-out');
+                        pageContentWrapper.classList.add('animate-in');
+                        setTimeout(() => {
+                            pageContentWrapper.classList.remove('animate-in');
+                        }, 800);
+                    }, 500); 
+                }, 50);
+            };
+
+            if (viewWorkButton && portfolioSection && pageContentWrapper) {
+                viewWorkButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    animatedScrollTo(portfolioSection);
+                });
+            }
+
+            if (knowAboutMeButton && aboutSkillsSection && pageContentWrapper) {
+                knowAboutMeButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    animatedScrollTo(aboutSkillsSection);
+                });
+            }
+
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        animatedScrollTo(targetElement);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
