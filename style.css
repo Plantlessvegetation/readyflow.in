@@ -451,20 +451,20 @@ h2::after {
 
 .social-links {
     margin-top: 30px;
+    font-size: 1.8rem;
 }
 
 .social-links a {
-    font-family: 'Open Sans', sans-serif;
     display: inline-block;
     margin: 0 15px;
     color: #00CBA7;
     text-decoration: none;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .social-links a:hover {
     color: #00A382;
+    transform: translateY(-3px);
 }
 
 /* Footer */
@@ -515,11 +515,11 @@ footer p {
 
     /* Merged About & Skills layout for desktop */
     .about-skills-section .container {
-        flex-direction: column; /* Keep as column for main heading + photo above grid */
+        flex-direction: column;
     }
 
     .about-skills-grid-wrapper {
-        flex-direction: row; /* Make about and skills side-by-side */
+        flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
     }
@@ -530,25 +530,28 @@ footer p {
         padding: 0 20px;
     }
 
-    /* Profile photo remains centered above the two columns on desktop */
     .profile-photo-container {
         margin: 30px auto 50px; 
     }
 
     .about-skills-section h3 {
-        text-align: left; /* Align subheadings to left */
+        text-align: left;
     }
     
     .about-skills-section h3::after {
-        margin: 10px 0 0; /* Adjust underline position for left alignment */
+        margin: 10px 0 0;
     }
 
     .about-content p {
-        text-align: left; /* Align about text to left on desktop */
+        text-align: left;
     }
 
     .skills-content .skills-list {
-        justify-content: flex-start; /* Align skills tags to the left */
+        justify-content: flex-start;
+    }
+
+    .social-links {
+        font-size: 2rem;
     }
 }
 
@@ -599,5 +602,9 @@ footer p {
 
     .profile-photo-container {
         margin: 30px auto;
+    }
+
+    .social-links {
+        font-size: 1.6rem;
     }
 }
