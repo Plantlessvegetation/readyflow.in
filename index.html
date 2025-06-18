@@ -3,179 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya - Portfolio</title>
-    <link rel="stylesheet" href="style.css"> <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.7/build/spline-viewer.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="description" content="ReadyFlow - Your Dream Shopify Store, Built by Experts. Custom Shopify website building plans for Indian entrepreneurs.">
+    <meta name="keywords" content="Shopify, e-commerce, dropshipping, India, online store, website setup, custom Shopify, entrepreneur, solopreneur, digital seller, readyflow, react website, html website, shopify plans">
+    <title>ReadyFlow - Your Dream Shopify Store, Built by Experts</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="#hero">My Portfolio</a>
+    <header class="navbar" id="navbar">
+        <div class="container navbar-content">
+            <a href="#hero" class="logo">ReadyFlow</a>
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#hero" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#bonuses" class="nav-link">Free Bonuses</a></li>
+                    <li><a href="#plans" class="nav-link">Plans</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
-            <ul>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#about-skills">About & Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        </div>
     </header>
 
-    <div id="page-content-wrapper"> 
-        <main>
-            <section id="hero" class="hero-section">
-                <div class="hero-content">
-                    <h1>Hi, I'm Aditya</h1>
-                    <p>A passionate B.Tech student with an unwavering enthusiasm for web design and coding, actively shaping the digital world.</p>
-                    <a href="#portfolio" class="button" id="view-work-button">View My Work</a>
-                </div>
-                <div class="spline-container">
-                    <spline-viewer url="https://prod.spline.design/m43KiRLBf4bbUP4C/scene.splinecode"></spline-viewer>
-                    <button class="spline-overlay-button" id="know-about-me-button">Know About Me</button>
-                </div>
-            </section>
+    <main>
+        <section class="hero-section" id="hero">
+            <div class="container hero-content">
+                <h1 class="animate-on-load">Your Dream Shopify Store, Built by Experts</h1>
+                <p class="animate-on-load delay-200">From ₹0 to ₹19,999 – We’ve got a plan for everyone. Join now and scale your business.</p>
+                <a href="#plans" class="btn btn-primary animate-on-load delay-400">Explore Plans</a>
+            </div>
+            <div class="spline-container">
+                <iframe src="https://my.spline.design/your-custom-bot-url" frameborder="0" width="100%" height="100%"></iframe>
+            </div>
+        </section>
 
-            <section id="portfolio" class="portfolio-section">
-                <div class="container">
-                    <h2>My Work</h2>
-                    <div class="portfolio-grid">
-                        <div class="portfolio-item">
-                            <img src="eac95ad781b2c21d0cde4f48db14b8bf.avif" alt="Godwit Cafe Website Screenshot">
-                            <h3>Godwit Cafe Website</h3>
-                            <p>A modern, responsive website designed and developed for Godwit Cafe, showcasing their ambiance and offerings. Built with HTML, CSS, and JavaScript.</p>
-                            <a href="https://godwitcafe.netlify.app/" target="_blank" class="button">Visit Live Site</a>
+        <section class="about-section" id="about">
+            <div class="container about-content animate-on-scroll">
+                <div class="about-text reveal">
+                    <h2>About Aditya & ReadyFlow</h2>
+                    <p>Hello! I'm Aditya, the founder behind ReadyFlow. My journey in the digital space began with a deep-seated passion for <strong>web development</strong>. I thrive on bringing ideas to life through code, crafting visually appealing and highly functional online experiences.</p>
+                    <p>Before fully dedicating myself to ReadyFlow, I also ventured into <strong>online sales</strong>, gaining firsthand experience with platforms like Shopify. While I've since shifted my focus entirely to my agency, that prior experience was invaluable. It equipped me with a unique understanding of the challenges and opportunities new entrepreneurs face when entering the e-commerce world.</p>
+                    <p>This background makes me particularly adept at guiding and managing Shopify setups. I understand the intricacies of setting up a store, integrating payment gateways, and optimizing for sales, not just from a developer's perspective, but from a seller's too.</p>
+                    <p>At ReadyFlow, my passion for web development converges with my practical e-commerce knowledge. I'm here to ensure that your Shopify journey isn't just about launching a store, but about building a confident, stress-free path to online success. Let's build something amazing together!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bonuses-section" id="bonuses">
+            <div class="container bonuses-content">
+                <h2 class="animate-on-scroll">Your Free Bonuses</h2>
+                <div class="bonus-items-grid">
+                    <div class="bonus-item animate-on-scroll">
+                        <i class="fab fa-whatsapp"></i>
+                        <h3>Join Our Free WhatsApp Group</h3>
+                        <p>Get instant support and connect with other aspiring entrepreneurs.</p>
+                        <a href="https://chat.whatsapp.com/KXSoNzktk99AYVIPtulfR2" target="_blank" class="btn btn-primary">Click to Join</a>
+                    </div>
+                    <div class="bonus-item animate-on-scroll">
+                        <i class="fas fa-palette"></i>
+                        <h3>3 Premium Shopify Themes</h3>
+                        <p>Receive high-quality themes to give your store a professional look, delivered within 3 days.</p>
+                    </div>
+                    <div class="bonus-item animate-on-scroll">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3>Personal Mentorship</h3>
+                        <p>Unlock real guidance, not just generic courses. Learn from experts who've been there.</p>
+                    </div>
+                    <div class="bonus-item animate-on-scroll">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Exclusive Seller Resources</h3>
+                        <p>Access valuable seller templates, product description files, and a comprehensive RTO guide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="plans-section" id="plans">
+            <div class="container">
+                <h2 class="animate-on-scroll">Our Plans & Pricing</h2>
+                <div class="pricing-cards-grid">
+
+                    <div class="pricing-card animate-on-scroll">
+                        <h3>₹0 PLAN</h3>
+                        <p class="price"><span>₹</span>0</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> 3 Shopify themes in 3 days</li>
+                            <li><i class="fas fa-check-circle"></i> Join WhatsApp group</li>
+                            <li><i class="fas fa-check-circle"></i> Expert guidance</li>
+                        </ul>
+                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20am%20ready%20to%20be%20a%20future%20entrepreneur%20with%20the%200%20plan%21%20Please%20tell%20me%20more%20about%20it." target="_blank" class="btn btn-primary">Start Free</a>
+                    </div>
+
+                    <div class="pricing-card animate-on-scroll">
+                        <h3>₹299 PLAN</h3>
+                        <p class="price"><span>₹</span>299</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Free bonuses</li>
+                            <li><i class="fas fa-check-circle"></i> Product research PDF</li>
+                            <li><i class="fas fa-check-circle"></i> Beginner roadmap</li>
+                        </ul>
+                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20am%20ready%20to%20be%20a%20future%20entrepreneur%20with%20the%20299%20plan%21%20Please%20tell%20me%20more%20about%20it." target="_blank" class="btn btn-primary">Get Started</a>
+                    </div>
+
+                    <div class="pricing-card animate-on-scroll popular">
+                        <span class="popular-badge">Most Popular</span>
+                        <h3>₹1499 PLAN</h3>
+                        <p class="price"><span>₹</span>1499</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Shopify theme + Store setup</li>
+                            <li><i class="fas fa-check-circle"></i> Payment gateway integration</li>
+                            <li><i class="fas fa-check-circle"></i> 3 product uploads</li>
+                            <li><i class="fas fa-check-circle"></i> All free bonuses</li>
+                        </ul>
+                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20am%20ready%20to%20be%20a%20future%20entrepreneur%20with%20the%201499%20plan%21%20Please%20tell%20me%20more%20about%20it." target="_blank" class="btn btn-primary">Choose Plan</a>
+                    </div>
+
+                    <div class="pricing-card animate-on-scroll">
+                        <h3>₹2999 PLAN</h3>
+                        <p class="price"><span>₹</span>2999</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> All above</li>
+                            <li><i class="fas fa-check-circle"></i> 10 product uploads</li>
+                            <li><i class="fas fa-check-circle"></i> SEO-optimized descriptions</li>
+                            <li><i class="fas fa-check-circle"></i> High RTO pin codes list</li>
+                        </ul>
+                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20am%20ready%20to%20be%20a%20future%20entrepreneur%20with%20the%202999%20plan%21%20Please%20tell%20me%20more%20about%20it." target="_blank" class="btn btn-primary">Choose Plan</a>
+                    </div>
+
+                    <div class="pricing-card animate-on-scroll">
+                        <h3>₹7499 PLAN</h3>
+                        <p class="price"><span>₹</span>7499</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Custom HTML Website</li>
+                            <li><i class="fas fa-check-circle"></i> Shopify integrated</li>
+                            <li><i class="fas fa-check-circle"></i> SEO + speed optimized</li>
+                            <li><i class="fas fa-check-circle"></i> All free bonuses</li>
+                        </ul>
+                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20am%20ready%20to%20be%20a%20future%20entrepreneur%20with%20the%207499%20plan%21%20Please%20tell%20me%20more%20about%20it." target="_blank" class="btn btn-primary">Get Custom</a>
+                    </div>
+
+                    <div class="pricing-card animate-on-scroll">
+                        <h3>₹19,999 PLAN</h3>
+                        <p class="price"><span>₹</span>19999</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Fully custom React Website</li>
+                            <li><i class="fas fa-check-circle"></i> Backend integration</li>
+                            <li class="warning"><i class="fas fa-exclamation-triangle"></i> Not connected to Shopify</li>
+                            <li class="warning"><i class="fas fa-exclamation-triangle"></i> Harder to manage, for pros only</li>
+                        </ul>
+                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20am%20ready%20to%20be%20a%20future%20entrepreneur%20with%20the%2019999%20plan%21%20Please%20tell%20me%20more%20about%20it." target="_blank" class="btn btn-primary">Pro Level</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <h2 class="animate-on-scroll">Frequently Asked Questions</h2>
+                <div class="faq-accordion animate-on-scroll">
+                    <div class="faq-item">
+                        <button class="accordion-header">What is Shopify dropshipping?</button>
+                        <div class="accordion-content">
+                            <p>Shopify dropshipping is an e-commerce business model where you sell products online without holding any inventory. When a customer buys from your store, you purchase the item from a third-party supplier, who then ships it directly to the customer. We help you set up this entire process.</p>
                         </div>
-                        <div class="portfolio-item">
-                            <img src="https://via.placeholder.com/300" alt="Upcoming Project 1">
-                            <h3>Upcoming Project</h3>
-                            <p>This space is reserved for my next exciting web development endeavor! Stay tuned for more innovative solutions.</p>
-                            <a href="#" class="button">Coming Soon!</a>
+                    </div>
+                    <div class="faq-item">
+                        <button class="accordion-header">How long does it take to set up a store?</button>
+                        <div class="accordion-content">
+                            <p>For our Starter and Growth plans, a basic store setup with essential integrations can be completed within 3-5 business days. Custom HTML or React builds will vary depending on complexity, but we always provide clear timelines upfront.</p>
                         </div>
-                        <div class="portfolio-item">
-                            <img src="https://via.placeholder.com/300" alt="Upcoming Project 2">
-                            <h3>Future Concept</h3>
-                            <p>Exploring new technologies and design paradigms for future projects. Ideas are brewing!</p>
-                            <a href="#" class="button">More Details Soon</a>
+                    </div>
+                    <div class="faq-item">
+                        <button class="accordion-header">Do you offer ongoing support?</button>
+                        <div class="accordion-content">
+                            <p>Yes! All our plans include access to our Free WhatsApp Group for community support and quick queries. For more in-depth guidance, our mentorship program is designed to help you navigate your e-commerce journey beyond just the setup phase.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="accordion-header">What if I don't have products selected?</button>
+                        <div class="accordion-content">
+                            <p>No worries! Our ₹299 plan includes a product research PDF to guide you. For the higher-tier plans, we can even help you upload initial products to get your store ready for sales.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="accordion-header">Are the custom websites (HTML/React) integrated with Shopify?</button>
+                        <div class="accordion-content">
+                            <p>The ₹7499 Custom HTML Website plan is designed to be fully integrated with Shopify's backend (for products, orders, etc.). The ₹19,999 React Power plan is a fully custom, standalone e-commerce solution not connected to Shopify, ideal for very specific needs and experienced users.</p>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+    </main>
 
-            <section id="about-skills" class="about-skills-section">
-                <div class="container">
-                    <h2>About Me & Skills</h2>
-
-                    <div class="profile-photo-container">
-                        <img src="WhatsApp Image 2025-06-16 at 14.24.56_9c35a4fb.jpg" alt="Aditya - Profile Photo" class="profile-photo">
-                    </div>
-
-                    <div class="about-skills-grid-wrapper">
-                        <div class="about-content">
-                            <h3>My Story</h3>
-                            <p>My journey into the world of web development began with a simple childhood question: 'How are these websites actually built?' That wonder quickly transformed into a burning curiosity, prompting me to teach myself HTML early on. What started as basic curiosity soon blossomed into a full-fledged passion, guiding me through a fascinating landscape of programming languages. Now, I find myself deeply engaged with React, enjoying the process of crafting modern web applications. As a current B.Tech student in Madhya Pradesh, India, I'm constantly on the lookout for new knowledge and opportunities to innovate in this ever-evolving field.</p>
-                        </div>
-
-                        <div class="skills-content">
-                            <h3>My Core Skills</h3>
-                            <ul class="skills-list">
-                                <li>HTML</li>
-                                <li>CSS</li>
-                                <li>JavaScript</li>
-                                <li>React</li>
-                                <li>Node.js / Python</li>
-                                <li>UI/UX Design Principles</li>
-                                <li>Git & GitHub</li>
-                                <li>Responsive Design</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="contact" class="contact-section">
-                <div class="container">
-                    <h2>Get in Touch</h2>
-                    <p>I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
-                    <form action="#" method="POST" class="contact-form">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                        <button type="submit" class="button">Send Message</button>
-                    </form>
-                    <div class="social-links">
-                        <a href="https://github.com/Plantlessvegetation" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.instagram.com/plantless_vegetation?igsh=MWlncGU5d2t6YjF0Nw==" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://wa.me/message/AJ2K6QDQZBVCC1?src=qr" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                        <a href="mailto:aadityab552@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Aditya. All rights reserved.</p>
+    <footer class="cta-footer" id="contact">
+        <div class="container footer-content">
+            <div class="footer-cta-text animate-on-scroll">
+                <h2>Ready to Launch Your Dream Store?</h2>
+                <p>Connect with us today and let's make your e-commerce vision a reality.</p>
+            </div>
+            <div class="footer-contact-info animate-on-scroll">
+                <a href="https://chat.whatsapp.com/KXSoNzktk99AYVIPtulfR2" target="_blank" class="contact-link whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="mailto:readyflow.in@gmail.com" class="contact-link email">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="https://www.instagram.com/readyflow.in?igsh=bGFsand1NGF6NXdi" target="_blank" class="contact-link instagram">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://www.facebook.com/share/1AkJmLGUqg/" target="_blank" class="contact-link facebook">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 ReadyFlow. All rights reserved.</p>
+                <nav class="footer-nav-links">
+                    <a href="#hero">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#plans">Plans</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const viewWorkButton = document.getElementById('view-work-button');
-            const knowAboutMeButton = document.getElementById('know-about-me-button');
-            const portfolioSection = document.getElementById('portfolio');
-            const aboutSkillsSection = document.getElementById('about-skills');
-            const contactSection = document.getElementById('contact');
-            const pageContentWrapper = document.getElementById('page-content-wrapper');
-
-            const animatedScrollTo = (targetElement) => {
-                pageContentWrapper.classList.add('animate-out');
-
-                setTimeout(() => {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-
-                    setTimeout(() => {
-                        pageContentWrapper.classList.remove('animate-out');
-                        pageContentWrapper.classList.add('animate-in');
-                        setTimeout(() => {
-                            pageContentWrapper.classList.remove('animate-in');
-                        }, 800);
-                    }, 500); 
-                }, 50);
-            };
-
-            if (viewWorkButton && portfolioSection && pageContentWrapper) {
-                viewWorkButton.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    animatedScrollTo(portfolioSection);
-                });
-            }
-
-            if (knowAboutMeButton && aboutSkillsSection && pageContentWrapper) {
-                knowAboutMeButton.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    animatedScrollTo(aboutSkillsSection);
-                });
-            }
-
-            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-
-                    if (targetElement) {
-                        animatedScrollTo(targetElement);
-                    }
-                });
-            });
-        });
-    </script>
-
+    <script src="js/script.js"></script>
 </body>
 </html>
