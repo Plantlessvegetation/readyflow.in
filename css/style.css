@@ -319,7 +319,7 @@ section {
     line-height: 1.8;
 }
 
-/* --- NEW SECTION: Success Story --- */
+/* --- Success Story Section --- */
 .success-story-section {
     background-color: var(--dark-blue); /* Dark background for impact */
     color: var(--white);
@@ -333,6 +333,8 @@ section {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 1.5rem;
+    /* Ensure content inside is visible on scroll */
+    min-height: 1px; /* Smallest possible height for flow */
 }
 
 .success-icon {
@@ -408,6 +410,7 @@ section {
     border-radius: 0.5rem; /* Rounded corners for images */
     margin-bottom: 0.8rem;
     border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for images */
+    display: block; /* Ensure image takes up space */
 }
 
 .proof-caption {
