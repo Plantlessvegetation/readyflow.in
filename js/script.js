@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('main section'); // Select only main content sections
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Dynamic Navbar on Scroll - NEW
+    // Dynamic Navbar on Scroll
     function handleScrollNavbar() {
         if (window.scrollY > 50) { // Add 'scrolled' class after scrolling down 50px
             navbar.classList.add('scrolled');

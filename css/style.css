@@ -321,7 +321,7 @@ section {
 .about-section {
     background-color: var(--white);
     padding: 6rem 0;
-    text-align: center; /* Center content within the container */
+    text-align: center;
 }
 
 .about-content {
