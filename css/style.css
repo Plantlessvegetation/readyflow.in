@@ -104,6 +104,18 @@ ul {
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
 
+.btn-secondary { /* Added for optional email button on landing page */
+    background-color: var(--turquoise-blue);
+    color: var(--white);
+    box-shadow: none; /* Less prominent */
+}
+
+.btn-secondary:hover {
+    background-color: #059cb4; /* Darker turquoise */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
 /* --- Navbar --- */
 .navbar {
     background-color: var(--dark-blue);
@@ -305,6 +317,118 @@ section {
 .about-content p {
     color: var(--text-dark);
     line-height: 1.8;
+}
+
+/* --- NEW SECTION: Success Story --- */
+.success-story-section {
+    background-color: var(--dark-blue); /* Dark background for impact */
+    color: var(--white);
+    padding: 6rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* For potential future background effects */
+}
+
+.success-story-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.success-icon {
+    font-size: 4.5rem;
+    color: var(--accent-yellow); /* Bright color for celebration */
+    margin-bottom: 0.5em;
+    animation: bounceIn 1.2s ease-out forwards; /* Simple animation */
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.1); opacity: 1; }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+.success-story-content h2 {
+    color: var(--white); /* White heading on dark background */
+    margin-bottom: 1em;
+}
+
+.success-story-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    margin-bottom: 1.5rem; /* Reduced for closer spacing with privacy note */
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.success-story-content .privacy-note { /* Specific style for the privacy note */
+    font-size: 0.9rem; /* Slightly smaller text for the note */
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: -1rem; /* Move it closer to the paragraph above */
+    margin-bottom: 2.5rem; /* Ensure space before the button */
+    font-style: italic;
+}
+
+.proof-heading { /* New style for "This is how we work" heading */
+    color: var(--white);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-top: 3.5rem; /* Space above proofs */
+    margin-bottom: 2rem; /* Space below heading */
+}
+
+.proof-images-grid { /* Grid for arranging images */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 3 per row on larger screens, adapts down */
+    gap: 1.5rem;
+    margin-bottom: 3rem; /* Space before the button */
+    justify-content: center; /* Center grid items */
+}
+
+.proof-item {
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle background for each item */
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.proof-item:hover {
+    transform: translateY(-5px);
+}
+
+.proof-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem; /* Rounded corners for images */
+    margin-bottom: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for images */
+}
+
+.proof-caption {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+    margin-bottom: 0; /* Remove default paragraph margin */
+}
+
+
+/* Ensure the button looks good on this section */
+.success-story-content .btn-primary {
+    background-color: var(--turquoise-blue); /* Different primary button color for this section */
+    color: var(--white);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.success-story-content .btn-primary:hover {
+    background-color: #059cb4; /* Darker turquoise */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
 
 /* --- Free Bonuses Section --- */
@@ -679,3 +803,169 @@ section {
 
 .animate-on-load.delay-200 { animation-delay: 0.2s; }
 .animate-on-load.delay-400 { animation-delay: 0.4s; }
+
+
+/* --- NEW STYLES FOR WHATSAPP LANDING PAGE (whatsapp-themes.html) --- */
+
+.landing-page-main {
+    min-height: calc(100vh - 120px); /* Adjust for header/footer if they are fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 0; /* Consistent with other sections */
+    background-color: var(--dark-blue); /* Background for the landing page hero */
+    color: var(--white);
+    text-align: center;
+}
+
+.whatsapp-landing-hero {
+    /* flexbox for content centering is handled by .landing-page-main */
+    max-width: 800px; /* Max width for content readability */
+    padding: 3rem 1.5rem;
+    border-radius: 1rem;
+    background-color: rgba(0, 0, 0, 0.2); /* Slightly transparent overlay for content */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-landing-content h1 {
+    color: var(--white);
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Slightly larger for impact */
+    margin-bottom: 0.7em;
+    line-height: 1.1;
+}
+
+.whatsapp-landing-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.whatsapp-icon {
+    font-size: 5rem; /* Large icon for prominence */
+    color: #25D366; /* WhatsApp green */
+    margin-bottom: 1rem;
+}
+
+.whatsapp-btn {
+    padding: 1.5em 3.5em; /* Larger button */
+    font-size: 1.25rem; /* Larger font */
+    min-width: 280px; /* Ensure button is substantial */
+    background-color: #25D366; /* Direct WhatsApp green */
+    color: var(--white); /* White text on green button */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.whatsapp-btn:hover {
+    background-color: #1DA851; /* Darker green on hover */
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Optional Email Signup Styles */
+.optional-email-signup {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.optional-email-signup p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.email-form-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    max-width: 500px;
+    margin: 0.5rem auto 0;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.email-input {
+    flex-grow: 1;
+    padding: 0.8em 1.2em;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    max-width: 280px; /* Max width for input */
+}
+
+.email-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.email-input:focus {
+    outline: none;
+    border-color: var(--accent-yellow);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.email-submit-btn {
+    /* Using btn-secondary class from your style.css for consistency */
+    padding: 0.8em 2em;
+    font-size: 1rem;
+    min-width: 150px;
+}
+
+.email-note {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.8rem;
+}
+
+/* Adjustments for the minimal header/footer on landing page */
+.landing-navbar {
+    position: relative; /* Not fixed for this simple page */
+    box-shadow: none;
+    padding: 1rem 0; /* Adjust padding if needed */
+}
+
+.landing-navbar .navbar-content {
+    justify-content: center; /* Center the logo */
+}
+
+.landing-page-footer {
+    background-color: var(--dark-blue); /* Ensure footer background */
+    padding: 1.5rem 0;
+    text-align: center;
+}
+
+.landing-page-footer .footer-bottom {
+    padding: 0; /* Remove extra padding from main footer */
+    border-top: none; /* Remove border from main footer */
+    flex-direction: column; /* Stack items */
+    gap: 0.5rem;
+}
+
+.landing-page-footer .footer-nav-links {
+    margin-left: 0;
+}
+
+.landing-page-footer .footer-nav-links a {
+    margin: 0 0.5rem; /* Smaller margin for simple links */
+}
+
+/* Responsive adjustments for email form on smaller screens */
+@media (max-width: 480px) {
+    .email-form-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .email-input, .email-submit-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    .whatsapp-btn {
+        min-width: unset; /* Allow button to shrink */
+        width: 100%;
+        max-width: 300px;
+    }
+}

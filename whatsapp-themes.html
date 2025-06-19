@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join ReadyFlow's exclusive WhatsApp group for daily FREE Shopify themes and expert e-commerce insights. Optional email signup for VIP updates.">
+    <meta name="keywords" content="Shopify themes, free themes, e-commerce, dropshipping, India, online store, website setup, readyflow, whatsapp group, email list">
+    <title>ReadyFlow: Daily Free Shopify Themes via WhatsApp</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+
+    <!-- IMPORTANT: Link to your existing style.css for consistent branding -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Styles for the email message and optional form elements */
+        .email-message {
+            margin-top: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .error-message {
+            color: var(--orange-warning);
+        }
+        .success-message {
+            color: var(--green-success);
+        }
+
+        /* Optional Email Signup Styles (re-added and slightly adjusted) */
+        .optional-email-signup {
+            margin-top: 3.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .optional-email-signup p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .email-form-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            max-width: 500px;
+            margin: 0.5rem auto 0;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+
+        .email-input {
+            flex-grow: 1;
+            padding: 0.8em 1.2em;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 1rem;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+            max-width: 280px; /* Max width for input */
+        }
+
+        .email-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .email-submit-btn {
+            /* Using btn-secondary class from your style.css for consistency */
+            padding: 0.8em 2em;
+            font-size: 1rem;
+            min-width: 150px;
+        }
+
+        .email-note {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.8rem;
+        }
+
+        /* Responsive adjustments for email form on smaller screens */
+        @media (max-width: 480px) {
+            .email-form-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            .email-input, .email-submit-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Minimal Header - just logo, linking back to main site -->
+    <header class="navbar landing-navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">ReadyFlow</a>
+            <!-- No navigation menu or hamburger for this focused landing page -->
+        </div>
+    </header>
+
+    <main class="landing-page-main">
+        <section class="whatsapp-landing-hero animate-on-load">
+            <div class="container whatsapp-landing-content">
+                <i class="fab fa-whatsapp whatsapp-icon animate-on-load delay-200"></i>
+                <h1 class="animate-on-load delay-400">Unlock Daily FREE Shopify Themes!</h1>
+                <p class="animate-on-load delay-600">
+                    Join our exclusive WhatsApp community for a new, high-quality Shopify theme delivered directly to your phone
+                    **every single day.** Elevate your store's look instantly and get ready to launch!
+                </p>
+                <a href="https://chat.whatsapp.com/KXSoNzktk99AYVIPtulfR2" target="_blank" class="btn btn-primary whatsapp-btn animate-on-load delay-800">
+                    Join WhatsApp Group Now!
+                </a>
+
+                <!-- Optional Email Signup Section -->
+                <div class="optional-email-signup animate-on-load delay-1000">
+                    <p>Want even more **exclusive themes** & **VIP updates**?</p>
+                    <div class="email-form-wrapper">
+                        <input type="email" id="emailInput" placeholder="Your Email Address" class="email-input">
+                        <button class="btn btn-secondary email-submit-btn" onclick="submitEmail()">Get VIP Access</button>
+                    </div>
+                    <p class="email-note">We respect your privacy. No spam, ever!</p>
+                    <div id="emailMessage" class="email-message"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="cta-footer landing-page-footer">
+        <div class="container footer-bottom">
+            <p>&copy; 2025 ReadyFlow. All rights reserved.</p>
+            <nav class="footer-nav-links">
+                <a href="index.html">Back to Main Site</a> <!-- Link back to your index.html -->
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        // Basic Intersection Observer for animate-on-load (consistent with main site)
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.animate-on-load');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Adjust as needed
+            });
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+
+        // Simple client-side script for optional email submission
+        function submitEmail() {
+            const emailInput = document.getElementById('emailInput');
+            const emailMessage = document.getElementById('emailMessage');
+            const email = emailInput.value.trim(); // Trim whitespace
+
+            emailMessage.textContent = ''; // Clear previous messages
+            emailMessage.classList.remove('error-message', 'success-message');
+
+            if (email === '') {
+                emailMessage.textContent = 'Please enter your email address.';
+                emailMessage.classList.add('error-message');
+                emailInput.focus();
+                return;
+            }
+
+            // Simple regex for email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                emailMessage.textContent = 'Please enter a valid email format (e.g., yourname@example.com).';
+                emailMessage.classList.add('error-message');
+                emailInput.focus();
+                return;
+            }
+
+            // If validation passes
+            console.log('Optional Email Submitted:', email);
+
+            // In a real application, you would send this email to your backend here.
+            // For this example, we'll just show a success message.
+            emailMessage.textContent = 'Thank you! We\'ll be in touch with VIP updates.';
+            emailMessage.classList.add('success-message');
+            emailInput.value = ''; // Clear input
+
+            // IMPORTANT: If you want to integrate with a real backend for lead capture:
+            // You would use `fetch` here to send the `email` to your server.
+            // Example (replace '/your-email-capture-endpoint' with your actual server endpoint):
+            /*
+            fetch('/your-email-capture-endpoint', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: email }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                emailMessage.textContent = 'Thank you! We\'ll be in touch with VIP updates.';
+                emailMessage.classList.add('success-message');
+                emailInput.value = ''; // Clear input
+            })
+            .catch((error) => {
+                console.error('Error sending email:', error);
+                emailMessage.textContent = 'There was an error. Please try again.';
+                emailMessage.classList.add('error-message');
+            });
+            */
+        }
+    </script>
+</body>
+</html>
