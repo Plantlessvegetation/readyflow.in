@@ -232,6 +232,14 @@ ul {
     .hamburger-menu.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
+    
+    /* FIX FOR ANIMATE-ON-SCROLL ON MOBILE: Forces elements to be visible */
+    /* This ensures content is never hidden by animation on smaller screens */
+    .animate-on-scroll {
+        opacity: 1 !important; /* Force visible */
+        transform: translateY(0) !important; /* Force position */
+        transition: none !important; /* Disable transition on mobile for immediate visibility */
+    }
 }
 
 
@@ -333,8 +341,8 @@ section {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 1.5rem;
-    /* Ensure content inside is visible on scroll */
-    min-height: 1px; /* Smallest possible height for flow */
+    /* Removed animate-on-scroll from here, content elements will animate individually */
+    min-height: 1px; /* Smallest possible height for proper flow */
 }
 
 .success-icon {
@@ -425,7 +433,7 @@ section {
 .success-story-content .btn-primary {
     background-color: var(--turquoise-blue); /* Different primary button color for this section */
     color: var(--white);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4一層px 10px rgba(0,0,0,0.2);
 }
 
 .success-story-content .btn-primary:hover {
