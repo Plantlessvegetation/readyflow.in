@@ -187,6 +187,13 @@ ul {
     transition: all 0.3s ease;
 }
 
+/* Dynamic Navbar on Scroll */
+.navbar.scrolled {
+    background-color: rgba(15, 23, 42, 0.95); /* Slightly transparent dark blue */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* More prominent shadow when scrolled */
+}
+
+
 /* --- Mobile Navigation --- */
 @media (max-width: 768px) {
     .nav-menu {
@@ -239,6 +246,11 @@ ul {
         opacity: 1 !important; /* Force visible */
         transform: translateY(0) !important; /* Force position */
         transition: none !important; /* Disable transition on mobile for immediate visibility */
+    }
+
+    /* Mobile specific grid layout for proofs */
+    .proof-images-grid {
+        grid-template-columns: minmax(220px, 400px); /* Single column for proofs on mobile */
     }
 }
 
@@ -341,7 +353,6 @@ section {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 1.5rem;
-    /* Removed animate-on-scroll from here, content elements will animate individually */
     min-height: 1px; /* Smallest possible height for proper flow */
 }
 
@@ -433,7 +444,7 @@ section {
 .success-story-content .btn-primary {
     background-color: var(--turquoise-blue); /* Different primary button color for this section */
     color: var(--white);
-    box-shadow: 0 4一層px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .success-story-content .btn-primary:hover {
@@ -606,6 +617,77 @@ section {
     margin-top: auto;
     width: 80%;
 }
+
+/* --- NEW SECTION: Add-Ons --- */
+.add-ons-section {
+    background-color: var(--light-gray);
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.add-ons-intro {
+    color: var(--gray-text);
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    max-width: 700px;
+    margin: -1em auto 3rem; /* Adjust margin to pull it closer to heading */
+}
+
+.add-ons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.add-on-card {
+    background-color: var(--white);
+    padding: 2.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-on-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.add-on-card i {
+    font-size: 3.5rem;
+    color: var(--turquoise-blue);
+    margin-bottom: 0.8em;
+}
+
+.add-on-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5em;
+    color: var(--dark-blue);
+}
+
+.add-on-card .add-on-price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-yellow);
+    margin-bottom: 1rem;
+}
+
+.add-on-card .add-on-desc {
+    font-size: 0.95rem;
+    color: var(--gray-text);
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Push button to bottom */
+}
+
+.add-on-card .btn {
+    width: 100%;
+    max-width: 200px; /* Limit button width */
+}
+
 
 /* --- FAQ Section --- */
 .faq-section {

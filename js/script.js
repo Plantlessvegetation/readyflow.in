@@ -23,6 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('main section'); // Select only main content sections
     const navLinks = document.querySelectorAll('.nav-link');
 
+    // Dynamic Navbar on Scroll - NEW
+    function handleScrollNavbar() {
+        if (window.scrollY > 50) { // Add 'scrolled' class after scrolling down 50px
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }
+
     function updateActiveNavLink() {
         let currentActiveSectionId = '';
         // Calculate current scroll position relative to top, adjusting for navbar height
@@ -43,10 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Update active state on scroll
-    window.addEventListener('scroll', updateActiveNavLink);
+    // Update active state on scroll AND handle dynamic navbar
+    window.addEventListener('scroll', () => {
+        updateActiveNavLink();
+        handleScrollNavbar(); // Call dynamic navbar function on scroll
+    });
     // Initial update on page load
     updateActiveNavLink();
+    handleScrollNavbar(); // Call dynamic navbar function on load
+
 
     // Smooth scroll for internal links using native scrollIntoView
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -78,8 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // Stop observing once animated
+                // Remove observer for elements that should only animate once
+                // Unless you want them to re-animate if they go out of view and come back
+                // For a single-fire animation: observer.unobserve(entry.target);
             }
+            // If you want animation to reverse when out of view, remove this line:
+            // else { entry.target.classList.remove('is-visible'); }
         });
     }, {
         threshold: 0.2 // Trigger when 20% of the element is visible
