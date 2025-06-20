@@ -59,7 +59,7 @@
         .landing-navbar {
             background-color: transparent; /* Transparent for hero section */
             padding: 1rem 0;
-            position: absolute; /* Absolute to float over hero */
+            position: absolute; /* Keep absolute to float it */
             top: 0;
             width: 100%;
             z-index: 10;
@@ -71,13 +71,14 @@
             text-decoration: none;
             font-size: 1.8rem;
             font-weight: 700;
-            filter: drop-shadow(0 0 5px var(--glow-gold));
+            filter: drop_shadow(0 0 5px var(--glow-gold));
         }
 
         /* Main Landing Section */
         .whatsapp-landing-hero {
             position: relative;
             padding: 50px 20px;
+            padding-top: 80px; /* ADDED/ADJUSTED: Space for the fixed header */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -99,7 +100,7 @@
             font-size: 1.1rem;
             color: var(--accent-gold);
             font-weight: 600;
-            margin-bottom: 1.5rem; /* ADJUSTED HERE for more space */
+            margin-bottom: 1.5rem; /* Space between pre-headline and main heading */
             text-transform: uppercase;
             letter-spacing: 0.5px;
             text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
@@ -109,7 +110,7 @@
             font-size: 4rem; /* Larger icon */
             color: #25D366; /* Standard WhatsApp green */
             margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 15px rgba(37, 211, 102, 0.6)); /* Green glow */
+            filter: drop_shadow(0 0 15px rgba(37, 211, 102, 0.6)); /* Green glow */
         }
 
         h1 {
@@ -156,7 +157,7 @@
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.3), /* Subtle inner highlight */
                 0 0 30px var(--glow-gold); /* Outer gold glow */
-            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1); /* Subtle text shadow for depth */
+                text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1); /* Subtle text shadow for depth */
         }
 
         .btn-primary:hover {
@@ -410,7 +411,7 @@
         }
 
         @media (max-width: 480px) {
-            .whatsapp-landing-hero { padding: 30px 15px; }
+            .whatsapp-landing-hero { padding: 30px 15px; padding-top: 60px; } /* ADJUSTED: Space for fixed header on smaller mobile */
             h1 { font-size: 1.8rem; }
             .pre-headline { font-size: 0.8rem; margin-bottom: 0.8rem; } /* Adjusted margin for pre-headline */
             .whatsapp-icon { font-size: 3rem; }
@@ -442,8 +443,7 @@
     /></noscript>
     <header class="navbar landing-navbar">
         <div class="container navbar-content">
-            <a href="index.html" class="logo">ReadyFlow</a>
-        </div>
+            <div class="logo">ReadyFlow</div> </div>
     </header>
 
     <main class="landing-page-main">
