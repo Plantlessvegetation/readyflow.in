@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css"> 
 
     <style>
         /* Styles for the email message and optional form elements */
@@ -135,6 +135,67 @@
             font-size: 1.8rem;
             text-shadow: none;
         }
+
+        /* Social Proof Line Style */
+        .social-proof {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 1rem;
+            text-align: center;
+            font-family: var(--font-alt); /* Consistent with other minor text */
+
+            opacity: 0; /* Hidden for animation */
+            transform: translateY(10px);
+            transition: opacity 0.6s ease-out 0.9s, transform 0.6s ease-out 0.9s; /* Staggered delay */
+        }
+
+        .social-proof.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Proof Image Section Styles */
+        .proof-section {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            opacity: 0; /* Hidden for animation */
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out 1.1s, transform 0.6s ease-out 1.1s; /* Staggered delay */
+        }
+        .proof-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .proof-section h3 {
+            font-size: 1.2rem;
+            color: var(--beige);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .proof-image-wrapper {
+            max-width: 350px; /* Adjust max width for the screenshot */
+            margin: 0 auto;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .proof-image-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 600px) {
+            .proof-image-wrapper {
+                max-width: 90%; /* Adjust for mobile screens */
+            }
+        }
     </style>
 </head>
 <body>
@@ -155,13 +216,24 @@
                 </p>
 
                 <div class="timer-container animate-on-load delay-700">
-                    <p class="timer-message">Offer ends in:</p>
+                    <p class="timer-message">Don't miss **today's** FREE theme! Offer ends in:</p>
                     <div id="countdown-timer" class="timer-text">07:37</div>
                 </div>
 
                 <a href="https://chat.whatsapp.com/Doj4o8UAxLD8YFqo3MlWL9" target="_blank" class="btn btn-primary whatsapp-btn animate-on-load delay-800">
                     Join WhatsApp Group Now!
                 </a>
+
+                <p class="social-proof animate-on-load delay-900">
+                    Trusted by 1,000+ aspiring Shopify entrepreneurs! 🚀
+                </p>
+
+                <div class="proof-section animate-on-load delay-1000">
+                    <h3>See Today's Exclusive Theme Drop in Action!</h3>
+                    <div class="proof-image-wrapper">
+                        <img src="img/proofs/daily-theme-proof.jpg" alt="Screenshot of ReadyFlow daily theme delivery in WhatsApp group">
+                    </div>
+                </div>
 
                 <div class="optional-email-signup animate-on-load delay-1000">
                     <p>Want even more **exclusive themes** & **VIP updates**?</p>
@@ -295,7 +367,7 @@
         // Update every second
         const timerInterval = setInterval(updateCountdown, 1000);
 
-        // Make timer container animate on load
+        // Make timer container animate on load (ensure this is after timerInterval is defined)
         const timerContainer = document.querySelector('.timer-container');
         if (timerContainer) {
             const timerObserver = new IntersectionObserver(entries => {
