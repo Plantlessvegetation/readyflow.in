@@ -106,6 +106,19 @@
             text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
         }
 
+        /* NEW URGENCY NOTE STYLES */
+        .urgency-note {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            color: var(--orange-warning); /* Use a striking color */
+            font-weight: 700;
+            margin-top: -0.5rem; /* Pull it slightly closer to H1 */
+            margin-bottom: 1.5rem; /* Space below it */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 69, 0, 0.5); /* Subtle glow for urgency */
+        }
+
         .whatsapp-icon {
             font-size: 4rem; /* Larger icon */
             color: #25D366; /* Standard WhatsApp green */
@@ -450,34 +463,36 @@
         <section class="whatsapp-landing-hero">
             <div class="container whatsapp-landing-content">
                 <p class="pre-headline animate-on-load delay-100">Your Daily Edge for Shopify Success!</p>
-                <i class="fab fa-whatsapp whatsapp-icon animate-on-load delay-200"></i>
                 <h1 class="animate-on-load delay-400">Unlock Daily FREE Shopify Themes!</h1>
-                <div class="timer-container animate-on-load delay-700">
+                
+                <p class="urgency-note animate-on-load delay-600">🔥 **Only 2 FREE Theme Slots Left! Act Fast!** 🔥</p>
+
+                <div class="timer-container animate-on-load delay-800">
                     <p class="timer-message">Don't miss **today's** FREE theme! Offer ends in:</p>
                     <div id="countdown-timer" class="timer-text">07:37</div>
                 </div>
 
-                <a href="https://chat.whatsapp.com/Doj4o8UAxLD8YFqo3MlWL9" target="_blank" class="btn btn-primary whatsapp-btn animate-on-load delay-800">
-                    Join WhatsApp Group Now!
+                <a href="https://chat.whatsapp.com/Doj4o8UAxLD8YFqo3MlWL9" target="_blank" class="btn btn-primary whatsapp-btn animate-on-load delay-900">
+                    🔥 Unlock Today’s Free Drop
                 </a>
                 
-                <p class="main-tagline animate-on-load delay-600">
+                <p class="main-tagline animate-on-load delay-1000">
                     Join our exclusive **WhatsApp community** for a new, high-quality Shopify theme delivered directly to your phone
-                    **every single day.** Elevate your store's look instantly and get ready to launch!
+                    **every single day.** Elevate your store's look instantly and get ready to launch! **(Your data is safe and will not be shared.)**
                 </p>
 
-                <p class="social-proof animate-on-load delay-900">
+                <p class="social-proof animate-on-load delay-1200">
                     Trusted by 1,000+ aspiring Shopify entrepreneurs! 🚀
                 </p>
 
-                <div class="proof-section animate-on-load delay-1000">
+                <div class="proof-section animate-on-load delay-1300">
                     <h3>See Today's Exclusive Theme Drop in Action!</h3>
                     <div class="proof-image-wrapper">
                         <img src="img/proofs/daily-theme-proof.jpg" alt="Screenshot of ReadyFlow daily theme delivery in WhatsApp group">
                     </div>
                 </div>
 
-                <div class="optional-email-signup animate-on-load delay-1100">
+                <div class="optional-email-signup animate-on-load delay-1400">
                     <p>Want even more **exclusive themes** & **VIP updates**?</p>
                     <div class="email-form-wrapper">
                         <input type="email" id="emailInput" placeholder="Your Email Address" class="email-input">
