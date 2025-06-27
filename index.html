@@ -3,355 +3,939 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ReadyFlow - Your Dream Shopify Store, Built by Experts. Custom Shopify website building plans for Indian entrepreneurs.">
-    <meta name="keywords" content="Shopify, e-commerce, dropshipping, India, online store, website setup, custom Shopify, entrepreneur, solopreneur, digital seller, readyflow, react website, html website, shopify plans">
-    <title>ReadyFlow - Your Dream Shopify Store, Built by Experts</title>
+    <title>🔥 The ₹499 Website Pack Every Coder is Grabbing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Universal Styles & Variables --- */
+        :root {
+            --primary-bg: #0F0F0F; /* Pure deep black */
+            --accent-gold: #FFD700; /* Rich gold */
+            --secondary-elements: #333333; /* Dark gray for borders, etc. */
+            --text-light: #F0F0F0; /* Off-white text */
+            --text-muted: #B0B0B0; /* Muted gray for subtle text */
+            --gold-glow: rgba(255, 215, 0, 0.4);
+            --green-whatsapp: #25D366;
+        }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+        html {
+            scroll-behavior: smooth;
+        }
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="favicon.png"> <!-- Favicon link -->
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-light);
+            background-color: var(--primary-bg);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-light);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--accent-gold); /* Headline in gold */
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 0.5em;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin: 0.8rem auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 20px var(--gold-glow);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--primary-bg); /* Text in black for contrast */
+        }
+
+        .btn-primary:hover {
+            background-color: #e6c200; /* Darker gold */
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px var(--gold-glow);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-elements);
+            color: var(--text-light);
+            border: 1px solid var(--secondary-elements);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary:hover {
+            background-color: #444;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--green-whatsapp);
+            color: var(--text-light);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1DA851;
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding-top: 50px;
+        }
+
+        .hero-section .subheadline {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .price-comparison {
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .price-comparison s {
+            color: var(--text-muted);
+            margin-right: 15px;
+        }
+
+        /* Countdown Timer */
+        .countdown-timer-main {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 40px;
+            background-color: var(--secondary-elements);
+            padding: 15px 30px;
+            border-radius: 8px;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+        }
+        .countdown-timer-main span {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0 5px;
+            color: var(--text-light);
+            background-color: #222;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* --- What's Inside Section --- */
+        .whats-inside-section {
+            background-color: #1A1A1A; /* Slightly lighter black */
+            padding: 80px 0;
+            border-top: 1px solid var(--secondary-elements);
+            border-bottom: 1px solid var(--secondary-elements);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background-color: var(--primary-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            border: 1px solid var(--secondary-elements);
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            border-color: var(--accent-gold); /* Gold border glow */
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .feature-card .svg-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            fill: currentColor; /* Allows color to be set by parent */
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Reviews Section --- */
+        .reviews-section {
+            padding: 80px 0;
+        }
+
+        .star-rating-summary {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+
+        .star-rating-summary .text-muted {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .star-breakdown-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .star-breakdown-bar-row span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            width: 50px; /* Fixed width for star rating text */
+            text-align: right;
+        }
+
+        .star-breakdown-bar {
+            background-color: var(--secondary-elements);
+            height: 15px;
+            border-radius: 8px;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .star-breakdown-fill {
+            background-color: var(--accent-gold);
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .review-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background-color: var(--secondary-elements);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            border: 1px solid #444;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        }
+
+        .review-card .stars {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .review-card .review-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .review-card .author {
+            font-weight: 600;
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+        }
+
+        .review-card.hidden {
+            display: none;
+        }
+
+        .read-more-btn {
+            background-color: transparent;
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+            padding: 10px 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            background-color: var(--accent-gold);
+            color: var(--primary-bg);
+            box-shadow: 0 0 15px var(--gold-glow);
+        }
+
+        /* Leave a Review Form */
+        .review-form {
+            background-color: var(--secondary-elements);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            margin-top: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            border: 1px solid #444;
+        }
+
+        .review-form h3 {
+            font-size: 1.8rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .review-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .review-form input,
+        .review-form select,
+        .review-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #222;
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .review-form input:focus,
+        .review-form select:focus,
+        .review-form textarea:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+        }
+
+        .review-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .review-form .submit-btn {
+            display: block;
+            width: auto;
+            margin: 20px auto 0;
+            padding: 12px 30px;
+            background-color: var(--accent-gold);
+            color: var(--primary-bg);
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .review-form .submit-btn:hover {
+            background-color: #e6c200;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px var(--gold-glow);
+        }
+
+        /* Star Rating in form */
+        .star-rating-form label {
+            display: inline-block;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+        }
+        .star-rating-form label:hover,
+        .star-rating-form input:checked ~ label {
+            color: var(--accent-gold);
+        }
+        .star-rating-form input {
+            display: none;
+        }
+        .star-rating-form {
+            direction: rtl; /* Stars right to left for rating effect */
+            display: inline-block;
+            text-align: center;
+        }
+        .star-rating-form label:hover ~ label {
+            color: var(--accent-gold);
+        }
+
+
+        /* --- FOMO Boosters + Urgency --- */
+        .fomo-section {
+            background-color: #1A1A1A;
+            border-top: 1px solid var(--secondary-elements);
+            border-bottom: 1px solid var(--secondary-elements);
+            padding: 60px 0;
+        }
+
+        .marquee-strip {
+            background-color: var(--primary-bg);
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-top: 1px solid var(--secondary-elements);
+            border-bottom: 1px solid var(--secondary-elements);
+        }
+
+        .marquee-strip marquee {
+            padding: 5px 0;
+        }
+
+        /* Floating Popup */
+        .floating-popup {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(0,0,0,0.8);
+            border: 1px solid var(--accent-gold);
+            color: var(--text-light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+            z-index: 1001;
+            display: none; /* Hidden by default */
+            animation: slideInFromLeft 0.5s ease-out forwards;
+        }
+        .floating-popup.hide {
+            animation: slideOutToLeft 0.5s ease-in forwards;
+        }
+
+        @keyframes slideInFromLeft {
+            0% { transform: translateX(-100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutToLeft {
+            0% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(-100%); opacity: 0; }
+        }
+
+        .fomo-explanation h3 {
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .fomo-explanation p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- Call to Action (again) --- */
+        .cta-again-section {
+            padding: 60px 0;
+            background-color: #0A0A0A; /* Slightly different dark */
+            border-top: 1px solid var(--secondary-elements);
+            border-bottom: 1px solid var(--secondary-elements);
+        }
+
+        .cta-again-section p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+        .cta-again-section p span {
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        /* --- Join Our Community Section --- */
+        .community-section {
+            padding: 80px 0;
+        }
+
+        .community-section h2 {
+            margin-bottom: 40px;
+        }
+
+        .community-section .btn-whatsapp {
+            font-size: 1.2rem;
+            padding: 18px 40px;
+        }
+
+        .community-section .btn-whatsapp .svg-icon {
+            width: 28px;
+            height: 28px;
+            margin-right: 10px;
+            fill: currentColor;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--primary-bg);
+            color: var(--text-muted);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 2px solid var(--accent-gold); /* Green/aqua glow border-top */
+            box-shadow: 0 -5px 20px var(--gold-glow);
+        }
+
+        .main-footer small {
+            display: block;
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .hero-section .subheadline {
+                font-size: 1.2rem;
+            }
+            .price-comparison {
+                font-size: 1.5rem;
+            }
+            .price-comparison span {
+                font-size: 1.2rem;
+            }
+            .countdown-timer-main {
+                font-size: 1.4rem;
+                padding: 10px 20px;
+            }
+            .countdown-timer-main span {
+                font-size: 1.8rem;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            .hero-ctas {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .review-cards-container {
+                grid-template-columns: 1fr;
+            }
+            .review-form {
+                padding: 30px 20px;
+            }
+            .floating-popup {
+                left: 10px;
+                right: 10px;
+                width: auto;
+                text-align: center;
+            }
+            .fomo-explanation h3 {
+                font-size: 1.5rem;
+            }
+            .fomo-explanation p {
+                font-size: 1rem;
+            }
+            .cta-again-section p {
+                font-size: 1.2rem;
+            }
+            .star-breakdown-bar-row span {
+                width: 40px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="navbar" id="navbar">
-        <div class="container navbar-content">
-            <a href="#hero" class="logo">ReadyFlow</a>
-            <nav class="nav-menu" id="navMenu">
-                <ul>
-                    <li><a href="#hero" class="nav-link active">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#bonuses" class="nav-link">Free Bonuses</a></li>
-                    <li><a href="#plans" class="nav-link">Plans</a></li>
-                    <li><a href="#add-ons" class="nav-link">Add-Ons</a></li> <!-- Added Add-Ons link -->
-                    <li><a href="#faq" class="nav-link">FAQ</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="hamburger-menu" id="hamburgerMenu">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+
+    <div class="marquee-strip" style="position: sticky; top: 0; z-index: 1000; background-color: var(--primary-bg);">
+        <marquee behavior="scroll" direction="left" scrollamount="8">
+            🔥 328 coders bought this in last 72 hours • Only 1-time payment • Instant Access • Grab it now!
+        </marquee>
+    </div>
+
+    <section class="hero-section" id="home">
+        <div class="container">
+            <h1>🔥 The ₹499 Website Pack Every Coder is Grabbing</h1>
+            <p class="subheadline">"Get 10 professional website templates + lifetime updates. For a minimal price less than that of one date with your girlfriend."</p>
+
+            <p class="price-comparison"><s>₹899</s> <span style="color:var(--accent-gold); font-size: 1.5em;">Now ₹499</span></p>
+
+            <div class="countdown-timer-main">
+                ⚠️ Offer ends in: <span id="days">00</span>d <span id="hours">00</span>h <span id="minutes">00</span>m <span id="seconds">00</span>s
+            </div>
+
+            <div class="hero-ctas">
+                <a href="https://rzp.io/rzp/2l0vWlJy" target="_blank" class="btn btn-primary">🛒 Grab for ₹499 Now</a>
+                <a href="#whats-inside" class="btn btn-secondary scroll-link">🔎 View What's Inside</a>
             </div>
         </div>
-    </header>
+    </section>
 
-    <main>
-        <section class="hero-section" id="hero">
-            <div class="container hero-content">
-                <h1 class="animate-on-load">Your Dream Shopify Store, Built by Experts</h1>
-                <p class="animate-on-load delay-200">From ₹0 to ₹19,999 – We’ve got a plan for everyone. Join now and scale your business.</p>
-                <a href="#plans" class="btn btn-primary animate-on-load delay-400">Explore Plans</a>
-            </div>
-            <div class="spline-container">
-                <iframe src="https://my.spline.design/your-custom-bot-url" frameborder="0" width="100%" height="100%"></iframe>
-            </div>
-        </section>
-
-        <section class="about-section" id="about">
-            <div class="container about-content animate-on-scroll">
-                <div class="about-text reveal">
-                    <h2>About Aditya & ReadyFlow</h2>
-                    <p>Hello! I'm Aditya, the founder behind ReadyFlow. My journey in the digital space began with a deep-seated passion for <strong>web development</strong>. I thrive on bringing ideas to life through code, crafting visually appealing and highly functional online experiences.</p>
-                    <p>Before fully dedicating myself to ReadyFlow, I also ventured into <strong>online sales</strong>, gaining firsthand experience with platforms like Shopify. While I've since shifted my focus entirely to my agency, that prior experience was invaluable. It equipped me with a unique understanding of the challenges and opportunities new entrepreneurs face when entering the e-commerce world.</p>
-                    <p>This background makes me particularly adept at guiding and managing Shopify setups. I understand the intricacies of setting up a store, integrating payment gateways, and optimizing for sales, not just from a developer's perspective, but from a seller's too.</p>
-                    <p>At ReadyFlow, my passion for web development converges with my practical e-commerce knowledge. I'm here to ensure that your Shopify journey isn't just about launching a store, but about building a confident, stress-free path to online success. Let's build something amazing together!</p>
+    <section class="whats-inside-section" id="whats-inside">
+        <div class="container">
+            <h2>What's Inside The Pack?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="currentColor"/></svg>
+                    <h3>10 Professional Website Templates</h3>
+                    <p>Includes Business, Fitness, Resume, E-commerce, Photography, and Developer portfolios.</p>
                 </div>
-            </div>
-        </section>
-
-        <section class="success-story-section" id="success-story">
-            <div class="container success-story-content"> <!-- animate-on-scroll removed from here -->
-                <i class="fas fa-trophy success-icon animate-on-scroll"></i>
-                <h2 class="animate-on-scroll">Our First Client Onboarded Today!</h2>
-                <p class="animate-on-scroll">We're incredibly excited to announce a major milestone! ReadyFlow has successfully onboarded its **first client for today** for the **₹1499 Shopify Store Setup Plan!** This is a testament to our dedication to empowering Indian entrepreneurs.</p>
-                <p class="animate-on-scroll">We’re already hard at work building their dream online store, including seamless payment integration, essential product setups, and unlocking all our exclusive bonuses. We believe in transparent partnerships and respecting our clients' journey.</p>
-                <p class="privacy-note animate-on-scroll">(**Note:** To ensure the confidentiality and trust of our valued clients, their names and specific credentials remain private.)</p>
-
-                <h3 class="proof-heading animate-on-scroll">This is how we work:</h3>
-                <div class="proof-images-grid animate-on-scroll">
-                    <div class="proof-item">
-                        <img src="img/proofs/whatsapp-chat-initial-query.jpg" alt="WhatsApp chat: Client inquiring about ₹1499 plan" loading="lazy">
-                        <p class="proof-caption">Client initiates query for ₹1499 plan.</p>
-                    </div>
-                    <div class="proof-item">
-                        <img src="img/proofs/whatsapp-chat-addons-discussion.jpg" alt="WhatsApp chat: Discussion on add-ons for products" loading="lazy">
-                        <p class="proof-caption">Discussion on add-ons: 10 more products for ₹450.</p>
-                    </div>
-                    <div class="proof-item">
-                        <img src="img/proofs/whatsapp-chat-payment-breakdown.jpg" alt="WhatsApp chat: Payment terms explained" loading="lazy">
-                        <p class="proof-caption">Payment breakdown: ₹1000 advance, ₹499 on delivery, ₹450 for add-ons.</p>
-                    </div>
-                    <div class="proof-item">
-                        <img src="img/proofs/whatsapp-chat-payment-call.jpg" alt="WhatsApp chat: Payment gateway call scheduled" loading="lazy">
-                        <p class="proof-caption">Payment gateway integration call scheduled for secure discussion.</p>
-                    </div>
-                    <div class="proof-item">
-                        <img src="img/proofs/payment-proof-1000-upi-1.jpg" alt="Screenshot of ₹1000 UPI payment received" loading="lazy">
-                        <p class="proof-caption">Proof of ₹1000 advance payment received.</p>
-                    </div>
-                    <div class="proof-item">
-                        <img src="img/proofs/whatsapp-chat-delivery-timeline.jpg" alt="WhatsApp chat: Work start and delivery timeline confirmation" loading="lazy">
-                        <p class="proof-caption">Work starts, display ready by evening, full store in 3 days.</p>
-                    </div>
+                <div class="feature-card">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="currentColor"/></svg>
+                    <h3>2 High-Converting Landing Pages</h3>
+                    <p>Specially designed for events and one-product sales with urgency hooks.</p>
                 </div>
-
-                <a href="#plans" class="btn btn-primary animate-on-scroll">See How You Can Start</a>
-            </div>
-        </section>
-
-
-        <section class="bonuses-section" id="bonuses">
-            <div class="container bonuses-content">
-                <h2 class="animate-on-scroll">Your Free Bonuses</h2>
-                <div class="bonus-items-grid">
-                    <div class="bonus-item animate-on-scroll">
-                        <i class="fab fa-whatsapp"></i>
-                        <h3>Get Daily Free Shopify Themes!</h3>
-                        <p>Join our exclusive WhatsApp group for a new, high-quality Shopify theme delivered every single day!</p>
-                        <a href="https://chat.whatsapp.com/KXSoNzktk99AYVIPtulfR2" target="_blank" class="btn btn-primary">Join Now & Get Yours</a>
-                    </div>
-                    <div class="bonus-item animate-on-scroll">
-                        <i class="fas fa-palette"></i>
-                        <h3>3 Premium Shopify Themes</h3>
-                        <p>Receive high-quality themes to give your store a professional look, delivered within 3 days.</p>
-                    </div>
-                    <div class="bonus-item animate-on-scroll">
-                        <i class="fas fa-hands-helping"></i>
-                        <h3>Personal Mentorship</h3>
-                        <p>Unlock real guidance, not just generic courses. Learn from experts who've been there.</p>
-                    </div>
-                    <div class="bonus-item animate-on-scroll">
-                        <i class="fas fa-file-alt"></i>
-                        <h3>Exclusive Seller Resources</h3>
-                        <p>Access valuable seller templates, product description files, and a comprehensive RTO guide.</p>
-                    </div>
+                <div class="feature-card">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="currentColor"/></svg>
+                    <h3>Lifetime Download Access</h3>
+                    <p>Access your templates anytime, anywhere, with no expiration.</p>
                 </div>
-            </div>
-        </section>
-
-        <section class="plans-section" id="plans">
-            <div class="container">
-                <h2 class="animate-on-scroll">Our Plans & Pricing</h2>
-                <div class="pricing-cards-grid">
-
-                    <div class="pricing-card animate-on-scroll">
-                        <h3>₹0 PLAN</h3>
-                        <p class="price"><span>₹</span>0</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> 3 Shopify themes in 3 days</li>
-                            <li><i class="fas fa-check-circle"></i> Join WhatsApp group</li>
-                            <li><i class="fas fa-check-circle"></i> Expert guidance</li>
-                        </ul>
-                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20am%20ready%20to%20be%20a%20future%20entrepreneur%20with%20the%200%20plan%21%20Please%20tell%20me%20more%20about%20it." target="_blank" class="btn btn-primary">Start Free</a>
-                    </div>
-
-                    <div class="pricing-card animate-on-scroll">
-                        <h3>₹299 PLAN</h3>
-                        <p class="price"><span>₹</span>299</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Free bonuses</li>
-                            <li><i class="fas fa-check-circle"></i> Product research PDF</li>
-                            <li><i class="fas fa-check-circle"></i> Beginner roadmap</li>
-                            <li><i class="fas fa-comments"></i> Niche/Product Idea Feedback (on chat)</li> <!-- NEW FEATURE -->
-                        </ul>
-                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20am%20ready%20to%20be%20a%20future%20entrepreneur%20with%20the%20299%20plan%21%20Please%20tell%20me%20more%20about%20it." target="_blank" class="btn btn-primary">Get Started</a>
-                    </div>
-
-                    <div class="pricing-card animate-on-scroll popular">
-                        <span class="popular-badge">Most Popular</span>
-                        <h3>₹1499 PLAN</h3>
-                        <p class="price"><span>₹</span>1499</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Shopify theme + Store setup</li>
-                            <li><i class="fas fa-check-circle"></i> Payment gateway integration</li>
-                            <li><i class="fas fa-check-circle"></i> 3 product uploads</li>
-                            <li><i class="fas fa-check-circle"></i> All free bonuses</li>
-                        </ul>
-                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20am%20ready%20to%20be%20a%20future%20entrepreneur%20with%20the%201499%20plan%21%20Please%20tell%20me%20more%20about%20it." target="_blank" class="btn btn-primary">Choose Plan</a>
-                    </div>
-
-                    <div class="pricing-card animate-on-scroll">
-                        <h3>₹2999 PLAN</h3>
-                        <p class="price"><span>₹</span>2999</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> All above</li>
-                            <li><i class="fas fa-check-circle"></i> 10 product uploads</li>
-                            <li><i class="fas fa-check-circle"></i> SEO-optimized descriptions</li>
-                            <li><i class="fas fa-check-circle"></i> High RTO pin codes list</li>
-                            <li><i class="fas fa-robot"></i> Basic Website Automation</li> <!-- Added feature -->
-                            <li><i class="fab fa-whatsapp"></i> WhatsApp Automation Feature</li> <!-- Added feature -->
-                            <li><i class="fas fa-chart-line"></i> Meta Pixel Setup</li> <!-- NEW FEATURE -->
-                        </ul>
-                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20am%20ready%20to%20be%20a%20future%20entrepreneur%20with%20the%202999%20plan%21%20Please%20tell%20me%20more%20about%20it." target="_blank" class="btn btn-primary">Choose Plan</a>
-                    </div>
-
-                    <div class="pricing-card animate-on-scroll">
-                        <h3>₹7499 PLAN</h3>
-                        <p class="price"><span>₹</span>7499</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Custom HTML Website</li>
-                            <li><i class="fas fa-check-circle"></i> Shopify integrated</li>
-                            <li><i class="fas fa-check-circle"></i> SEO + speed optimized</li>
-                            <li><i class="fas fa-check-circle"></i> All free bonuses</li>
-                            <li><i class="fas fa-robot"></i> Basic Website Automation</li> <!-- Added feature -->
-                            <li><i class="fab fa-whatsapp"></i> WhatsApp Automation Feature</li> <!-- Added feature -->
-                            <li><i class="fas fa-chart-line"></i> Meta Pixel Setup</li> <!-- NEW FEATURE -->
-                        </ul>
-                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20am%20ready%20to%20be%20a%20future%20entrepreneur%20with%20the%207499%20plan%21%20Please%20tell%20me%20more%20about%20it." target="_blank" class="btn btn-primary">Get Custom</a>
-                    </div>
-
-                    <div class="pricing-card animate-on-scroll">
-                        <h3>₹19,999 PLAN</h3>
-                        <p class="price"><span>₹</span>19999</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Fully custom React Website</li>
-                            <li><i class="fas fa-check-circle"></i> Backend integration</li>
-                            <li><i class="fas fa-comments"></i> Dedicated AI Chatbot Integration</li> <!-- New Feature -->
-                            <li><i class="fab fa-whatsapp"></i> WhatsApp Automation Feature</li> <!-- New Feature -->
-                            <li><i class="fas fa-chart-line"></i> Meta Pixel Setup</li> <!-- NEW FEATURE -->
-                            <li class="warning"><i class="fas fa-exclamation-triangle"></i> Not connected to Shopify</li>
-                            <li class="warning"><i class="fas fa-exclamation-triangle"></i> Harder to manage, for pros only</li>
-                        </ul>
-                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20am%20ready%20to%20be%20a%20future%20entrepreneur%20with%20the%2019999%20plan%21%20Please%20tell%20me%20more%20about%20it." target="_blank" class="btn btn-primary">Pro Level</a>
-                    </div>
-
+                <div class="feature-card">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="currentColor"/></svg>
+                    <h3>Instant WhatsApp Support</h3>
+                    <p>Get quick help and guidance directly from our team via WhatsApp.</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- NEW SECTION: Add-Ons -->
-        <section class="add-ons-section" id="add-ons">
-            <div class="container">
-                <h2 class="animate-on-scroll">Enhance Your Store with Our Add-Ons</h2>
-                <p class="add-ons-intro animate-on-scroll">Boost your business with these powerful optional services, designed to take your store to the next level.</p>
-                <div class="add-ons-grid">
-
-                    <div class="add-on-card animate-on-scroll">
-                        <i class="fas fa-box-open"></i>
-                        <h3>Additional Product Uploads</h3>
-                        <p class="add-on-price">₹449</p>
-                        <p class="add-on-desc">Get **10 more products** uploaded to your store, complete with SEO-optimized descriptions to attract more buyers.</p>
-                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20want%20to%20add%20on%20Additional%20Product%20Uploads%20for%20my%20Shopify%20store." target="_blank" class="btn btn-primary">Add This</a>
-                    </div>
-
-                    <div class="add-on-card animate-on-scroll">
-                        <i class="fab fa-google"></i>
-                        <h3>Google Form Setup</h3>
-                        <p class="add-on-price">₹399</p>
-                        <p class="add-on-desc">Set up a custom Google Form for lead generation, customer feedback, or surveys, seamlessly linked to your Google Sheet for easy data tracking.</p>
-                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20want%20to%20add%20on%20Google%20Form%20Setup%20for%20my%20business." target="_blank" class="btn btn-primary">Add This</a>
-                    </div>
-
-                    <div class="add-on-card animate-on-scroll">
-                        <i class="fas fa-handshake"></i>
-                        <h3>Customized Thank You Page</h3>
-                        <p class="add-on-price">₹99</p>
-                        <p class="add-on-desc">Enhance customer experience with a unique, branded thank you page after purchase or form submission.</p>
-                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20want%20to%20add%20on%20a%20Customized%20Thank%20You%20Page%20for%20my%20Shopify%20store." target="_blank" class="btn btn-primary">Add This</a>
-                    </div>
-
-                    <div class="add-on-card animate-on-scroll">
-                        <i class="fas fa-comments"></i>
-                        <h3>Website Automation (Basic)</h3>
-                        <p class="add-on-price">₹199</p>
-                        <p class="add-on-desc">Implement basic automated website messages to engage visitors and guide them effectively (user replies manually).</p>
-                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20want%20to%20add%20on%20Basic%20Website%20Automation." target="_blank" class="btn btn-primary">Add This</a>
-                    </div>
-
-                    <div class="add-on-card animate-on-scroll">
-                        <i class="fas fa-robot"></i>
-                        <h3>Dedicated AI Chatbot</h3>
-                        <p class="add-on-price">₹999</p>
-                        <p class="add-on-desc">Integrate an AI-powered chatbot to handle common customer queries and provide instant, automated support 24/7.</p>
-                        <a href="https://wa.me/918602555840?text=Hey%2C%20I%20want%20to%20add%20on%20a%20Dedicated%20AI%20Chatbot." target="_blank" class="btn btn-primary">Add This</a>
-                    </div>
-
+                <div class="feature-card">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="currentColor"/></svg>
+                    <h3>Future Updates Included</h3>
+                    <p>Receive all new templates and feature enhancements for free, forever.</p>
                 </div>
-            </div>
-        </section>
-
-
-        <section class="faq-section" id="faq">
-            <div class="container">
-                <h2 class="animate-on-scroll">Frequently Asked Questions</h2>
-                <div class="faq-accordion animate-on-scroll">
-                    <div class="faq-item">
-                        <button class="accordion-header">What is Shopify dropshipping?</button>
-                        <div class="accordion-content">
-                            <p>Shopify dropshipping is an e-commerce business model where you sell products online without holding any inventory. When a customer buys from your store, you purchase the item from a third-party supplier, who then ships it directly to the customer. We help you set up this entire process.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="accordion-header">How long does it take to set up a store?</button>
-                        <div class="accordion-content">
-                            <p>For our Starter and Growth plans, a basic store setup with essential integrations can be completed within 3-5 business days. Custom HTML or React builds will vary depending on complexity, but we always provide clear timelines upfront.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="accordion-header">Do you offer ongoing support?</button>
-                        <div class="accordion-content">
-                            <p>Yes! All our plans include access to our Free WhatsApp Group for community support and quick queries. For more in-depth guidance, our mentorship program is designed to help you navigate your e-commerce journey beyond just the setup phase.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="accordion-header">What if I don't have products selected?</button>
-                        <div class="accordion-content">
-                            <p>No worries! Our ₹299 plan includes a product research PDF to guide you. For the higher-tier plans, we can even help you upload initial products to get your store ready for sales.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="accordion-header">Are the custom websites (HTML/React) integrated with Shopify?</button>
-                        <div class="accordion-content">
-                            <p>The ₹7499 Custom HTML Website plan is designed to be fully integrated with Shopify's backend (for products, orders, etc.). The ₹19,999 React Power plan is a fully custom, standalone e-commerce solution not connected to Shopify, ideal for very specific needs and experienced users.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="cta-footer" id="contact">
-        <div class="container footer-content">
-            <div class="footer-cta-text animate-on-scroll">
-                <h2>Ready to Launch Your Dream Store?</h2>
-                <p>Connect with us today and let's make your e-commerce vision a reality.</p>
-            </div>
-            <div class="footer-contact-info animate-on-scroll">
-                <a href="https://chat.whatsapp.com/KXSoNzktk99AYVIPtulfR2" target="_blank" class="contact-link whatsapp">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-                <a href="mailto:readyflow.in@gmail.com" class="contact-link email">
-                    <i class="fas fa-envelope"></i> Email
-                </a>
-                <a href="https://www.instagram.com/readyflow.in?igsh=bGFsand1NGF6NXdi" target="_blank" class="contact-link instagram">
-                    <i class="fab fa-instagram"></i> Instagram
-                </a>
-                <a href="https://www.facebook.com/share/1AkJmLGUqg/" target="_blank" class="contact-link facebook">
-                    <i class="fab fa-facebook-f"></i> Facebook
-                </a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2025 ReadyFlow. All rights reserved.</p>
-                <nav class="footer-nav-links">
-                    <a href="#hero">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#plans">Plans</a>
-                    <a href="#add-ons">Add-Ons</a> <!-- Added Add-Ons link -->
-                    <a href="#contact">Contact</a>
-                </nav>
+    </section>
+
+    <section class="reviews-section">
+        <div class="container">
+            <h2>Customer Reviews</h2>
+            <div class="star-rating-summary">
+                ⭐ 4.6 out of 5 <span class="text-muted">(based on <span id="total-reviews">53</span> reviews)</span>
+                <div class="star-breakdown-container">
+                    <div class="star-breakdown-bar-row">
+                        <span>5 ⭐</span><div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 70%;"></div></div>
+                    </div>
+                    <div class="star-breakdown-bar-row">
+                        <span>4 ⭐</span><div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 15%;"></div></div>
+                    </div>
+                    <div class="star-breakdown-bar-row">
+                        <span>3 ⭐</span><div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 8%;"></div></div>
+                    </div>
+                    <div class="star-breakdown-bar-row">
+                        <span>2 ⭐</span><div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 5%;"></div></div>
+                    </div>
+                    <div class="star-breakdown-bar-row">
+                        <span>1 ⭐</span><div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 2%;"></div></div>
+                    </div>
+                </div>
             </div>
+
+            <div class="review-cards-container" id="review-cards">
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"🔥 The designs are clean and modern. Worth every rupee. Built my client website in 3 hours using this pack. Instant support was a huge plus!"</p>
+                    <span class="author">- Rishabh S.</span>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Exactly what I needed for quick projects. The variety of templates is great, and they're easy to customize. Saved me so much time."</p>
+                    <span class="author">- Aditi P.</span>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐</div>
+                    <p class="review-text">"Few templates needed image placeholders initially, but the structure is solid. Overall great value for the price. Would buy again."</p>
+                    <span class="author">- Rohan T.</span>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Exceptional quality for ₹499. The fitness template is superb. Lifetime updates make this a no-brainer."</p>
+                    <span class="author">- Preeti K.</span>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐</div>
+                    <p class="review-text">"Had payment failure initially but support helped in 5 mins. The templates are good, but I expected more variety in styles."</p>
+                    <span class="author">- Vijay L.</span>
+                </div>
+
+                <div class="review-card hidden">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Bought this for a client project, and it delivered! Very clean code, easy to understand. Client loved the final result."</p>
+                    <span class="author">- Deepak M.</span>
+                </div>
+                <div class="review-card hidden">
+                    <div class="stars">⭐⭐</div>
+                    <p class="review-text">"The designs are okay, but I faced some responsiveness issues on older mobile devices. Had to tweak CSS quite a bit."</p>
+                    <span class="author">- Neha R.</span>
+                </div>
+                <div class="review-card hidden">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Instant access was fantastic. The portfolio templates are exactly what I needed to showcase my work. Highly recommend to fellow coders."</p>
+                    <span class="author">- Sachin J.</span>
+                </div>
+            </div>
+            <button class="read-more-btn" id="read-more-reviews">Load More Reviews (+)</button>
+
+            <div class="review-form">
+                <h3>📢 Leave a Review</h3>
+                <form id="submit-review-form">
+                    <label for="reviewer-name">Your Name:</label>
+                    <input type="text" id="reviewer-name" name="name" required>
+
+                    <label for="star-rating">Your Rating:</label>
+                    <div class="star-rating-form">
+                        <input type="radio" id="star5" name="rating" value="5" required><label for="star5">⭐</label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4">⭐</label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3">⭐</label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2">⭐</label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1">⭐</label>
+                    </div>
+
+                    <label for="review-text">Your Review:</label>
+                    <textarea id="review-text" name="review" rows="5" required></textarea>
+
+                    <button type="submit" class="submit-btn">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="fomo-section">
+        <div class="container">
+            <h2 style="color:var(--text-light);">Why This Price Won't Last...</h2>
+            <div class="fomo-explanation">
+                <h3>Due to rising hosting costs & feature upgrades, this pack will go back to ₹899 shortly.</h3>
+                <p>We're committed to providing exceptional value, but to sustain lifetime updates and premium support, this special launch price of ₹499 is strictly time-limited. Don't miss this one-time opportunity to get instant access to 10+ professional website templates for your coding journey!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-again-section">
+        <div class="container">
+            <p>Still thinking? Timer is ticking... Grab it at ₹499 before it’s ₹899 again.</p>
+            <a href="https://rzp.io/rzp/2l0vWlJy" target="_blank" class="btn btn-primary">🛒 Unlock Now</a>
+        </div>
+    </section>
+
+    <section class="community-section">
+        <div class="container">
+            <h2>👥 Join 250+ Coders Building Cool Projects</h2>
+            <a href="https://chat.whatsapp.com/Doj4o8UAxLD8YFqo3MlWL9" target="_blank" class="btn btn-whatsapp">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M.93 17.6l1.24 4.5c.09.34.42.53.78.49L7 21.6l4.08 2.04c.32.16.7.07 1-.25L23.47 7.21c.25-.26.24-.65-.02-.9L16.89.53c-.27-.26-.69-.22-.92.09L.44 16.8c-.22.25-.19.64.08.8zM2.87 17.53L1.5 19.83l.87-3.21 4.54-2.28L2.87 17.53zM12.63 21.75l-3.32-1.66 8.52-8.91 3.32 1.66-8.52 8.91z"/></svg>
+                Join WhatsApp Group
+            </a>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>Made with ❤️ by [Your Brand]</p>
+            <small>These templates are licensed for personal use only. Redistribution/resale is strictly prohibited.</small>
         </div>
     </footer>
 
-    <!-- Chatbot Widget HTML Structure (REMOVED) -->
-    <!-- The chatbot HTML structure has been removed as per your request -->
+    <div class="floating-popup" id="notification-popup">
+        💡 <span id="popup-name"></span> from <span id="popup-location"></span> just bought this!
+    </div>
 
-    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Smooth Scroll ---
+            document.querySelectorAll('.scroll-link').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // --- Countdown Timer ---
+            // Set the date and time for the offer to end (YYYY-MM-DDTHH:MM:SS)
+            // IMPORTANT: Adjust this to your actual offer end date and time!
+            // Example: Offer ends 4 hours 38 minutes 34 seconds from when the page loads (based on your prompt)
+            const now = new Date();
+            // This sets the end date to 4 hours, 38 minutes, and 34 seconds from the time the page loads.
+            const futureDate = new Date(now.getTime() + (4 * 60 * 60 * 1000) + (38 * 60 * 1000) + (34 * 1000));
+            const countDownDate = futureDate.getTime();
+
+            const countdownFunction = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                const getTwoDigits = (num) => num < 10 ? "0" + num : num;
+
+                document.getElementById("days").innerHTML = getTwoDigits(days);
+                document.getElementById("hours").innerHTML = getTwoDigits(hours);
+                document.getElementById("minutes").innerHTML = getTwoDigits(minutes);
+                document.getElementById("seconds").innerHTML = getTwoDigits(seconds);
+
+                if (distance < 0) {
+                    clearInterval(countdownFunction);
+                    const timerDisplay = document.querySelector(".countdown-timer-main");
+                    if (timerDisplay) timerDisplay.innerHTML = "⚠️ Offer Expired! Price is now ₹899.";
+                    // Optionally disable buy buttons or change text
+                    document.querySelectorAll('.btn-primary').forEach(button => {
+                        button.classList.add('disabled');
+                        button.setAttribute('disabled', 'true');
+                        button.innerText = 'Offer Ended';
+                    });
+                }
+            }, 1000);
+
+            // --- Reviews Expandable ---
+            const readMoreBtn = document.getElementById('read-more-reviews');
+            const hiddenReviews = document.querySelectorAll('.review-card.hidden');
+            let reviewsShown = false;
+
+            if (readMoreBtn && hiddenReviews.length > 0) {
+                readMoreBtn.addEventListener('click', () => {
+                    hiddenReviews.forEach(card => {
+                        card.classList.remove('hidden');
+                    });
+                    readMoreBtn.style.display = 'none'; // Hide button after showing all
+                    reviewsShown = true;
+                });
+            } else if (readMoreBtn) {
+                readMoreBtn.style.display = 'none'; // Hide button if no hidden reviews
+            }
+
+            // --- Leave a Review Form (UI only) ---
+            const submitReviewForm = document.getElementById('submit-review-form');
+            if (submitReviewForm) {
+                submitReviewForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('reviewer-name').value;
+                    const rating = document.querySelector('input[name="rating"]:checked') ? document.querySelector('input[name="rating"]:checked').value : 'N/A';
+                    const review = document.getElementById('review-text').value;
+
+                    alert(`Review Submitted (UI Only):\nName: ${name}\nRating: ${rating} Stars\nReview: "${review}"\n\n(In a real site, this would be sent to a database.)`);
+                    this.reset();
+                });
+            }
+
+            // --- Floating Popup ---
+            const popup = document.getElementById('notification-popup');
+            const popupNames = ["Rahul", "Priya", "Ankit", "Sneha", "Vikram", "Divya", "Arjun", "Kavita"];
+            const popupLocations = ["Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Chennai", "Kolkata", "Pune", "Ahmedabad"];
+
+            function showRandomPopup() {
+                if (popup) {
+                    const randomName = popupNames[Math.floor(Math.random() * popupNames.length)];
+                    const randomLocation = popupLocations[Math.floor(Math.random() * popupLocations.length)];
+                    document.getElementById('popup-name').innerText = randomName;
+                    document.getElementById('popup-location').innerText = randomLocation;
+
+                    popup.classList.remove('hide');
+                    popup.style.display = 'block';
+
+                    setTimeout(() => {
+                        popup.classList.add('hide');
+                        setTimeout(() => {
+                            popup.style.display = 'none';
+                        }, 500); // Wait for hide animation to complete
+                    }, 5000); // Show for 5 seconds
+                }
+            }
+
+            // Start showing popups after a delay, then repeat every 40 seconds
+            setTimeout(() => {
+                showRandomPopup();
+                setInterval(showRandomPopup, 40000); // Repeat every 40 seconds
+            }, 5000); // Initial delay of 5 seconds
+        });
+    </script>
 </body>
 </html>
