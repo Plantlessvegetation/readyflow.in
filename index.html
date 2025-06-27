@@ -193,7 +193,7 @@
             flex-wrap: wrap;
         }
 
-        /* --- What's Inside Section --- */
+        /* --- What's Inside Section (Parent for Features, Video, Previews) --- */
         .whats-inside-section {
             background-color: #1A1A1A; /* Slightly lighter black */
             padding: 80px 0;
@@ -206,6 +206,7 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 40px;
+            margin-bottom: 80px; /* Space before video section */
         }
 
         .feature-card {
@@ -241,6 +242,75 @@
         .feature-card p {
             font-size: 0.95rem;
             color: var(--text-muted);
+        }
+
+        /* --- Responsive Demo Video Section (part of "What's Inside") --- */
+        .whats-inside-section .video-heading {
+            margin-bottom: 25px; /* Space before video */
+            color: var(--text-light); /* Sub-heading within section */
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto 80px auto; /* Space before next section */
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* --- Template Previews Section (part of "What's Inside") --- */
+        .whats-inside-section .previews-heading {
+            margin-bottom: 40px; /* Space before grid */
+            color: var(--text-light); /* Sub-heading within section */
+        }
+
+        .template-previews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .template-preview-card {
+            background-color: var(--secondary-elements);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            border: 1px solid #444;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .template-preview-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 15px var(--gold-glow);
+        }
+
+        .template-preview-card img {
+            width: 100%;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid #555;
+        }
+
+        .template-preview-card h3 {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            padding: 15px;
         }
 
         /* --- Reviews Section --- */
@@ -609,6 +679,18 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+            .template-previews-grid {
+                grid-template-columns: 1fr;
+            }
+            .template-preview-card img {
+                height: 180px; /* Adjust image height for mobile */
+            }
+            .video-wrapper {
+                max-width: 90%;
+            }
+            .reviews-section {
+                padding: 60px 0; /* Reduce padding on mobile */
+            }
             .review-cards-container {
                 grid-template-columns: 1fr;
             }
@@ -647,7 +729,7 @@
     <section class="hero-section" id="home">
         <div class="container">
             <h1>🔥 The ₹499 Website Pack Every Coder is Grabbing</h1>
-            <p class="subheadline">"Get 10 professional website templates + lifetime updates. For a minimal price less than that of one date with your girlfriend."</p>
+            <p class="subheadline">"Get 10 professional website templates + lifetime updates. For the price of one date with a girlfriend."</p>
 
             <p class="price-comparison"><s>₹899</s> <span style="color:var(--accent-gold); font-size: 1.5em;">Now ₹499</span></p>
 
@@ -690,6 +772,59 @@
                     <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="currentColor"/></svg>
                     <h3>Future Updates Included</h3>
                     <p>Receive all new templates and feature enhancements for free, forever.</p>
+                </div>
+            </div>
+
+            <h2 class="video-heading">See Them in Action!</h2>
+            <p class="subheadline" style="margin-bottom: 40px; color: var(--text-muted);">Watch a quick demo of how responsive and adaptable these templates are across all devices.</p>
+            <div class="video-wrapper">
+                <video controls autoplay loop muted playsinline>
+                    <source src="vids/responsive-demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <h2 class="previews-heading">Preview All 10 Website Designs</h2>
+            <div class="template-previews-grid">
+                <div class="template-preview-card">
+                    <img src="template-previews/business-website.png" alt="Business Website Template">
+                    <h3>Business Website</h3>
+                </div>
+                <div class="template-preview-card">
+                    <img src="template-previews/freelancer-portfolio.png" alt="Freelancer Portfolio Template">
+                    <h3>Freelancer Portfolio</h3>
+                </div>
+                <div class="template-preview-card">
+                    <img src="template-previews/cafe-small-business.png" alt="Cafe / Small Business Template">
+                    <h3>Cafe / Small Business</h3>
+                </div>
+                <div class="template-preview-card">
+                    <img src="template-previews/fitness-gym.png" alt="Fitness Trainer / Gym Template">
+                    <h3>Fitness Trainer / Gym</h3>
+                </div>
+                <div class="template-preview-card">
+                    <img src="template-previews/event-webinar.png" alt="Event / Webinar Template">
+                    <h3>Event / Webinar</h3>
+                </div>
+                <div class="template-preview-card">
+                    <img src="template-previews/one-product-ecommerce.png" alt="One Product E-commerce Template">
+                    <h3>One Product E-commerce</h3>
+                </div>
+                <div class="template-preview-card">
+                    <img src="template-previews/photography-creative.png" alt="Photography / Creative Template">
+                    <h3>Photography / Creative</h3>
+                </div>
+                <div class="template-preview-card">
+                    <img src="template-previews/resume-cv.png" alt="Resume / CV Template">
+                    <h3>Resume / CV</h3>
+                </div>
+                <div class="template-preview-card">
+                    <img src="template-previews/developer-portfolio.png" alt="Developer Portfolio Template">
+                    <h3>Developer Portfolio</h3>
+                </div>
+                <div class="template-preview-card">
+                    <img src="template-previews/ui-ux-portfolio.png" alt="UI/UX Designer Portfolio Template">
+                    <h3>UI/UX Designer Portfolio</h3>
                 </div>
             </div>
         </div>
