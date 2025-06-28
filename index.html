@@ -191,6 +191,7 @@
             display: inline-block;
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
             text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+            white-space: nowrap; /* Keep timer on one line */
         }
         .countdown-timer-main span {
             font-size: 2.2rem;
@@ -563,32 +564,25 @@
             background-color: var(--primary-bg);
             padding: 10px 0;
             overflow: hidden; /* Hide content outside the span */
-            /* white-space: nowrap;  Removed this as it can cause issues with centering/animation conflicts */
             color: var(--accent-gold);
             font-weight: 600;
             font-size: 1.1rem;
             border-top: 1px solid var(--secondary-elements);
             border-bottom: 1px solid var(--secondary-elements);
-            display: flex; /* Use flex to allow centering if content is shorter than width */
+            display: flex; /* Use flex to allow centering */
             justify-content: center; /* Center content horizontally */
             align-items: center; /* Center content vertically */
             height: 40px; /* Define a height for the strip */
-            text-align: center; /* Fallback for older browsers or if flex breaks */
+            text-align: center; /* Fallback */
         }
 
         .ticker-strip span {
-            display: inline-block; /* Essential for animation */
+            display: inline-block; /* Required for animation and white-space */
             padding: 0 20px; /* Add some padding to the text */
             animation: tickerFadePulse 4s infinite alternate; /* Applied pulse animation */
-            /* Removed tickerSlide animation to prevent horizontal distortion */
-            /* width: 100%; Removed this to allow text to fit naturally and be centered by parent flex */
             white-space: nowrap; /* Keep the text on a single line */
+            box-sizing: border-box; /* Include padding in element's total width/height */
         }
-
-        /* @keyframes tickerSlide { Removed as requested for this fixed ticker */
-            /* 0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); } */
-        /* } */
 
         @keyframes tickerFadePulse {
             0% { opacity: 0.7; transform: scale(1); text-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
@@ -712,7 +706,7 @@
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.5rem; /* Default mobile font size */
             }
             h2 {
                 font-size: 2rem;
@@ -729,6 +723,10 @@
             .countdown-timer-main {
                 font-size: 1.4rem;
                 padding: 10px 20px;
+                display: block; /* Ensure it takes full width on small mobile */
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 90%; /* Prevent it from touching edges */
             }
             .countdown-timer-main span {
                 font-size: 1.8rem;
@@ -784,6 +782,22 @@
                 font-size: 1.8rem; /* Adjust for smaller screens */
             }
         }
+        
+        /* Further shrink H1 on very small screens if needed */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem; /* Even smaller font size for very narrow screens */
+            }
+            .hero-highlights {
+                font-size: 0.95rem; /* Adjust highlights font size as well */
+            }
+            .countdown-timer-main {
+                font-size: 1.2rem;
+            }
+            .countdown-timer-main span {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -805,7 +819,7 @@
             <p class="price-comparison"><s>₹899</s> <span style="color:var(--accent-gold); font-size: 1.5em;">Now ₹499</span></p>
 
             <div class="countdown-timer-main">
-                ⚠️ Offer ends in: <span id="days">00</span>d <span id="hours">00</span>h <span id="minutes">00</span>m <span id="seconds">00</span>s
+                ⚠️ Offer ends in: <span id="hours">00</span>h <span id="minutes">00</span>m <span id="seconds">00</span>s
             </div>
 
             <div class="hero-ctas">
@@ -1056,14 +1070,15 @@
                 const now = new Date().getTime();
                 const distance = countDownDate - now;
 
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                // Removed days calculation as per request
+                // const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                 const getTwoDigits = (num) => num < 10 ? "0" + num : num;
 
-                document.getElementById("days").innerHTML = getTwoDigits(days);
+                // document.getElementById("days").innerHTML = getTwoDigits(days); // Removed days display
                 document.getElementById("hours").innerHTML = getTwoDigits(hours);
                 document.getElementById("minutes").innerHTML = getTwoDigits(minutes);
                 document.getElementById("seconds").innerHTML = getTwoDigits(seconds);
