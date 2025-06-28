@@ -150,7 +150,7 @@
             margin-bottom: 30px;
         }
 
-        .hero-highlights {
+        .hero-highlights { /* This will no longer be visible as the <p> it belongs to is removed from hero */
             font-size: 1.1rem;
             color: var(--text-light);
             margin-bottom: 30px;
@@ -706,7 +706,8 @@
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem; /* Default mobile font size */
+                font-size: 2rem; /* Shrink H1 for tablets */
+                padding: 0 10px; /* Add some padding to prevent overflow */
             }
             h2 {
                 font-size: 2rem;
@@ -783,19 +784,20 @@
             }
         }
         
-        /* Further shrink H1 on very small screens if needed */
-        @media (max-width: 480px) {
+        /* Further shrink H1 on very small screens (e.g., iPhone SE) if needed */
+        @media (max-width: 420px) {
             h1 {
-                font-size: 2rem; /* Even smaller font size for very narrow screens */
+                font-size: 1.6rem; /* Even smaller font size for very narrow screens */
+                line-height: 1.3; /* Allow it to naturally wrap into 2 lines more easily */
             }
             .hero-highlights {
-                font-size: 0.95rem; /* Adjust highlights font size as well */
+                font-size: 0.9rem; /* Adjust highlights font size as well */
             }
             .countdown-timer-main {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
             .countdown-timer-main span {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -808,18 +810,12 @@
 
     <section class="hero-section" id="home">
         <div class="container">
-            <h1>🔥 The ₹499 Website Pack Every Coder is Grabbing</h1>
-            <p class="hero-highlights">
-                <span>10 Websites</span>
-                <span>₹499</span>
-                <span>Lifetime Access</span>
-            </p>
-            <p class="subheadline">"Sell Each Website for ₹5,000+, You Get 10. <strong>FULLY CODED</strong>. Not Just Templates, at each priced less than a pizza."</p>
-
+            <h1>🔥 <span id="main-buyers-count">107</span> coders grabbed this in last 72 hours</h1> 
+            
             <p class="price-comparison"><s>₹899</s> <span style="color:var(--accent-gold); font-size: 1.5em;">Now ₹499</span></p>
 
             <div class="countdown-timer-main">
-                ⚠️ Offer ends in: <span id="hours">00</span>h <span id="minutes">00</span>m <span id="seconds">00</span>s
+                ⚠️ Offer ends in: <span id="days">00</span>d <span id="hours">00</span>h <span id="minutes">00</span>m <span id="seconds">00</span>s
             </div>
 
             <div class="hero-ctas">
@@ -1070,18 +1066,18 @@
                 const now = new Date().getTime();
                 const distance = countDownDate - now;
 
-                // Removed days calculation as per request
-                // const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24)); // Days calculation (re-added)
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                 const getTwoDigits = (num) => num < 10 ? "0" + num : num;
 
-                // document.getElementById("days").innerHTML = getTwoDigits(days); // Removed days display
-                document.getElementById("hours").innerHTML = getTwoDigits(hours);
-                document.getElementById("minutes").innerHTML = getTwoDigits(minutes);
-                document.getElementById("seconds").innerHTML = getTwoDigits(seconds);
+                document.getElementById("days").innerHTML = getTwoDigits(days) + 'd '; // Display days again
+                document.getElementById("hours").innerHTML = getTwoDigits(hours) + 'h ';
+                document.getElementById("minutes").innerHTML = getTwoDigits(minutes) + 'm ';
+                document.getElementById("seconds").innerHTML = getTwoDigits(seconds) + 's'; // Add 's' suffix
+
 
                 if (distance < 0) {
                     clearInterval(countdownFunction);
@@ -1129,8 +1125,12 @@
             // --- Floating Popup & Dynamic Buyer/Stock Counts ---
             const popup = document.getElementById('notification-popup');
             const buyersCountSpan = document.getElementById('buyers-count');
+            // ID for the main H1 counter
+            const mainBuyersCountSpan = document.getElementById('main-buyers-count');
             
             let currentBuyersCount = parseInt(buyersCountSpan.innerText);
+            let currentMainBuyersCount = parseInt(mainBuyersCountSpan.innerText);
+
 
             const popupNames = [
                 "Aryan", "Divya", "Rohan", "Priya", "Amit", "Neha", "Raj", "Pooja", "Vikas", "Surbhi",
@@ -1185,8 +1185,10 @@
                     currentBuyersCount++;
                     buyersCountSpan.innerText = currentBuyersCount;
 
-                    // The hosting guide and pieces left counts are now static in the ticker-strip content.
-                    // This version keeps them static.
+                    // Increment main heading buyer count
+                    currentMainBuyersCount++;
+                    mainBuyersCountSpan.innerText = currentMainBuyersCount;
+
 
                     const randomName = popupNames[Math.floor(Math.random() * popupNames.length)];
                     const randomLocation = popupLocations[Math.floor(Math.random() * popupLocations.length)];
