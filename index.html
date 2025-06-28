@@ -785,11 +785,27 @@
             }
         }
     </style>
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1250412783207047'); // YOUR PIXEL ID
+fbq('track', 'PageView');
+fbq('track', 'ViewContent'); // Tracks when someone views your product page
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1250412783207047&ev=PageView&noscript=1"
+/></noscript>
 </head>
 <body>
 
     <div class="ticker-strip">
-       <span>🔥<span id="buyers-count">106</span>coders grabbed this in last 72 hours </span>
+        <span>🔥<span id="buyers-count">106</span>coders grabbed this in last 72 hours </span>
     </div>
 
     <section class="hero-section" id="home">
@@ -809,7 +825,7 @@
             </div>
 
             <div class="hero-ctas">
-                <a href="https://rzp.io/rzp/2l0vWlJy" target="_blank" class="btn btn-primary">🛒 Grab for ₹499 Now</a>
+                <a href="https://rzp.io/rzp/2l0vWlJy" id="buy-now-button-1" target="_blank" class="btn btn-primary">🛒 Grab for ₹499 Now</a>
                 <a href="#video-demo" class="btn btn-secondary scroll-link">🔎 View Demo Images</a>
                 <p class="cta-microcopy">🔒 100% Secure Razorpay Payment | Instant Access After Payment</p>
             </div>
@@ -1009,7 +1025,7 @@
     <section class="cta-again-section">
         <div class="container">
             <p>Still thinking? Timer is ticking... Grab it at ₹499 before it’s ₹899 again.</p>
-            <a href="https://rzp.io/rzp/2l0vWlJy" target="_blank" class="btn btn-primary">🛒 Unlock Now</a>
+            <a href="https://rzp.io/rzp/2l0vWlJy" id="buy-now-button-2" target="_blank" class="btn btn-primary">🛒 Unlock Now</a>
             <p class="cta-microcopy">🕒 Get Your Sites in 10 Seconds | Join 250+ Coders</p>
         </div>
     </section>
@@ -1200,5 +1216,25 @@
             }, 5000); // Initial delay of 5 seconds
         });
     </script>
+<script>
+// --- Meta Pixel Event Tracking ---
+document.addEventListener('DOMContentLoaded', function() {
+  // Track InitiateCheckout for the first button
+  var buyButton1 = document.getElementById('buy-now-button-1');
+  if (buyButton1) {
+    buyButton1.addEventListener('click', function() {
+      fbq('track', 'InitiateCheckout');
+    });
+  }
+
+  // Track InitiateCheckout for the second button
+  var buyButton2 = document.getElementById('buy-now-button-2');
+  if (buyButton2) {
+    buyButton2.addEventListener('click', function() {
+      fbq('track', 'InitiateCheckout');
+    });
+  }
+});
+</script>
 </body>
 </html>
