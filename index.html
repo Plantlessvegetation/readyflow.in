@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔥 The ₹499 Website Pack Every Coder is Grabbing</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
         /* --- Universal Styles & Variables --- */
         :root {
@@ -150,6 +150,22 @@
             margin-bottom: 30px;
         }
 
+        .hero-highlights {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        .hero-highlights span {
+            display: inline-block;
+            margin: 0 10px;
+            white-space: nowrap;
+        }
+        .hero-highlights span:not(:last-child)::after {
+            content: ' •';
+            margin-left: 10px;
+        }
+
         .price-comparison {
             margin-bottom: 30px;
             font-size: 1.8rem;
@@ -188,9 +204,17 @@
 
         .hero-ctas {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: center; /* Center buttons */
+            gap: 15px; /* Space between buttons and microcopy */
+            margin-bottom: 30px; /* Space below all CTA elements */
+        }
+
+        .cta-microcopy {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 5px; /* Small margin from the button */
+            text-align: center;
         }
 
         /* --- What's Inside Section (Parent for Features, Video, Previews) --- */
@@ -531,21 +555,47 @@
             padding: 60px 0;
         }
 
-        .marquee-strip {
+        /* Ticker Strip Styling */
+        .ticker-strip {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             background-color: var(--primary-bg);
             padding: 10px 0;
-            overflow: hidden;
-            white-space: nowrap;
+            overflow: hidden; /* Hide content outside the span */
+            /* white-space: nowrap;  Removed this as it can cause issues with centering/animation conflicts */
             color: var(--accent-gold);
             font-weight: 600;
             font-size: 1.1rem;
             border-top: 1px solid var(--secondary-elements);
             border-bottom: 1px solid var(--secondary-elements);
+            display: flex; /* Use flex to allow centering if content is shorter than width */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            height: 40px; /* Define a height for the strip */
+            text-align: center; /* Fallback for older browsers or if flex breaks */
         }
 
-        .marquee-strip marquee {
-            padding: 5px 0;
+        .ticker-strip span {
+            display: inline-block; /* Essential for animation */
+            padding: 0 20px; /* Add some padding to the text */
+            animation: tickerFadePulse 4s infinite alternate; /* Applied pulse animation */
+            /* Removed tickerSlide animation to prevent horizontal distortion */
+            /* width: 100%; Removed this to allow text to fit naturally and be centered by parent flex */
+            white-space: nowrap; /* Keep the text on a single line */
         }
+
+        /* @keyframes tickerSlide { Removed as requested for this fixed ticker */
+            /* 0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); } */
+        /* } */
+
+        @keyframes tickerFadePulse {
+            0% { opacity: 0.7; transform: scale(1); text-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
+            50% { opacity: 1; transform: scale(1.02); text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+            100% { opacity: 0.7; transform: scale(1); text-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
+        }
+
 
         /* Floating Popup */
         .floating-popup {
@@ -644,6 +694,21 @@
             color: #888;
         }
 
+        /* --- Ready Flow Logo Styling --- */
+        .agency-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.2rem; /* Adjust size as needed */
+            color: var(--accent-gold); /* Gold color for the text */
+            letter-spacing: 2px; /* A little spacing for readability */
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); /* Subtle glow */
+            /* margin-bottom: 10px; Removed from here to avoid double margin with <p> */
+            display: inline-block; /* Allows vertical margin and text-shadow to work well */
+        }
+        .agency-logo span {
+            color: var(--text-light); /* Optional: make "Flow" a different color */
+        }
+
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
             h1 {
@@ -707,7 +772,7 @@
                 font-size: 1.5rem;
             }
             .fomo-explanation p {
-                font-size: 1rem;
+                font-size: 1.rem;
             }
             .cta-again-section p {
                 font-size: 1.2rem;
@@ -715,21 +780,27 @@
             .star-breakdown-bar-row span {
                 width: 40px;
             }
+            .agency-logo {
+                font-size: 1.8rem; /* Adjust for smaller screens */
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="marquee-strip" style="position: sticky; top: 0; z-index: 1000; background-color: var(--primary-bg);">
-        <marquee behavior="scroll" direction="left" scrollamount="8">
-            🔥 328 coders bought this in last 72 hours • Only 1-time payment • Instant Access • Grab it now!
-        </marquee>
+    <div class="ticker-strip">
+       <span>🔥 <span id="buyers-count">106</span> coders grabbed this in last 72 hours • Instant Access • One-time ₹499 only</span>
     </div>
 
     <section class="hero-section" id="home">
         <div class="container">
             <h1>🔥 The ₹499 Website Pack Every Coder is Grabbing</h1>
-            <p class="subheadline">"Get 10 professional website templates + lifetime updates. For the price of one date with a girlfriend."</p>
+            <p class="hero-highlights">
+                <span>10 Websites</span>
+                <span>₹499</span>
+                <span>Lifetime Access</span>
+            </p>
+            <p class="subheadline">"Sell Each Website for ₹5,000+, You Get 10. <strong>FULLY CODED</strong>. Not Just Templates, at each priced less than a pizza."</p>
 
             <p class="price-comparison"><s>₹899</s> <span style="color:var(--accent-gold); font-size: 1.5em;">Now ₹499</span></p>
 
@@ -739,8 +810,10 @@
 
             <div class="hero-ctas">
                 <a href="https://rzp.io/rzp/2l0vWlJy" target="_blank" class="btn btn-primary">🛒 Grab for ₹499 Now</a>
-                <a href="#whats-inside-showcase" class="btn btn-secondary scroll-link">🔎 View Demo Images</a>
+                <a href="#video-demo" class="btn btn-secondary scroll-link">🔎 View Demo Images</a>
+                <p class="cta-microcopy">🔒 100% Secure Razorpay Payment | Instant Access After Payment</p>
             </div>
+            <p class="cta-microcopy">🕒 Get Your Sites in 10 Seconds | Join 250+ Coders</p>
         </div>
     </section>
 
@@ -775,7 +848,7 @@
                 </div>
             </div>
 
-            <h2 class="video-heading">See Them in Action!</h2>
+            <h2 class="video-heading" id="video-demo">See Them in Action!</h2>
             <p class="subheadline" style="margin-bottom: 40px; color: var(--text-muted);">Watch a quick demo of how responsive and adaptable these templates are across all devices.</p>
             <div class="video-wrapper">
                 <video controls autoplay loop muted playsinline>
@@ -937,6 +1010,7 @@
         <div class="container">
             <p>Still thinking? Timer is ticking... Grab it at ₹499 before it’s ₹899 again.</p>
             <a href="https://rzp.io/rzp/2l0vWlJy" target="_blank" class="btn btn-primary">🛒 Unlock Now</a>
+            <p class="cta-microcopy">🕒 Get Your Sites in 10 Seconds | Join 250+ Coders</p>
         </div>
     </section>
 
@@ -952,13 +1026,13 @@
 
     <footer class="main-footer">
         <div class="container">
-            <p>Made with ❤️ by [Your Brand]</p>
+            <p>Made with ❤️ by <div class="agency-logo">Ready<span>Flow</span></div></p>
             <small>These templates are licensed for personal use only. Redistribution/resale is strictly prohibited.</small>
         </div>
     </footer>
 
     <div class="floating-popup" id="notification-popup">
-        💡 <span id="popup-name"></span> from <span id="popup-location"></span> just bought this!
+        💡 <span id="popup-name"></span> from <span id="popup-location"></span> just bought this! Call: <span id="popup-number"></span>
     </div>
 
     <script>
@@ -973,11 +1047,8 @@
             });
 
             // --- Countdown Timer ---
-            // Set the date and time for the offer to end (YYYY-MM-DDTHH:MM:SS)
-            // IMPORTANT: Adjust this to your actual offer end date and time!
-            // Example: Offer ends 4 hours 38 minutes 34 seconds from when the page loads (based on your prompt)
             const now = new Date();
-            // This sets the end date to 4 hours, 38 minutes, and 34 seconds from the time the page loads.
+            // Set offer to end 4 hours, 38 minutes, 34 seconds from when the page loads
             const futureDate = new Date(now.getTime() + (4 * 60 * 60 * 1000) + (38 * 60 * 1000) + (34 * 1000));
             const countDownDate = futureDate.getTime();
 
@@ -1001,7 +1072,6 @@
                     clearInterval(countdownFunction);
                     const timerDisplay = document.querySelector(".countdown-timer-main");
                     if (timerDisplay) timerDisplay.innerHTML = "⚠️ Offer Expired! Price is now ₹899.";
-                    // Optionally disable buy buttons or change text
                     document.querySelectorAll('.btn-primary').forEach(button => {
                         button.classList.add('disabled');
                         button.setAttribute('disabled', 'true');
@@ -1020,11 +1090,11 @@
                     hiddenReviews.forEach(card => {
                         card.classList.remove('hidden');
                     });
-                    readMoreBtn.style.display = 'none'; // Hide button after showing all
+                    readMoreBtn.style.display = 'none';
                     reviewsShown = true;
                 });
             } else if (readMoreBtn) {
-                readMoreBtn.style.display = 'none'; // Hide button if no hidden reviews
+                readMoreBtn.style.display = 'none';
             }
 
             // --- Leave a Review Form (UI only) ---
@@ -1041,17 +1111,75 @@
                 });
             }
 
-            // --- Floating Popup ---
+            // --- Floating Popup & Dynamic Buyer/Stock Counts ---
             const popup = document.getElementById('notification-popup');
-            const popupNames = ["Rahul", "Priya", "Ankit", "Sneha", "Vikram", "Divya", "Arjun", "Kavita"];
-            const popupLocations = ["Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Chennai", "Kolkata", "Pune", "Ahmedabad"];
+            const buyersCountSpan = document.getElementById('buyers-count');
+            
+            let currentBuyersCount = parseInt(buyersCountSpan.innerText);
+
+            const popupNames = [
+                "Aryan", "Divya", "Rohan", "Priya", "Amit", "Neha", "Raj", "Pooja", "Vikas", "Surbhi",
+                "Arjun", "Shruti", "Mihir", "Ketaki", "Samir", "Anjali", "Vivek", "Priyanka", "Omkar", "Ishani",
+                "Karthik", "Aishwarya", "Suresh", "Lakshmi", "Vijay", "Meena", "Anand", "Geetha", "Prakash", "Shanthi",
+                "Sourav", "Antara", "Rajesh", "Rina", "Prosenjit", "Soma", "Alok", "Debjani", "Subhash", "Mamata",
+                "Akash", "Bharti", "Gopal", "Rekha", "Vinod", "Seema", "Ashish", "Kusum", "Jitendra", "Rani",
+                "Harpreet", "Jaswinder", "Gurminder", "Amrit", "Baljeet", "Navneet", "Ranjit", "Sukhwinder", "Manjeet", "Kuldeep",
+                "Fatima", "Ali", "Zoya", "Imran", "Sana", "Khalid", "Ayesha", "Javed", "Meher", "Rizwan",
+                "Siddharth", "Gauri", "Krishna", "Radhika", "Vivekanand", "Saraswati", "Ram", "Sita", "Shivani", "Ganesh"
+            ];
+
+            const popupLocations = [
+                "Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Chennai", "Kolkata", "Pune", "Ahmedabad", "Surat", "Jaipur",
+                "Lucknow", "Chandigarh", "Bhopal", "Indore", "Thiruvananthapuram", "Kochi", "Coimbatore", "Visakhapatnam", "Nagpur", "Nashik",
+                "Varanasi", "Agra", "Amritsar", "Guwahati", "Bhubaneswar", "Patna", "Ranchi", "Shillong", "Mysore", "Madurai",
+                "Vijayawala", "Goa", "Vadodara", "Rajkot", "Jabalpur", "Gwalior", "Ujjain", "Sagar", "Rewa", "Durg",
+                "Dehradun", "Shimla", "Haridwar", "Puri", "Darjeeling", "Kohima", "Imphal", "Agartala", "Panaji", "Puducherry"
+            ];
+
+            function generateIndianPhoneNumber() {
+                let number = "";
+                // Generate a random 10-digit number. Start with 6, 7, 8, or 9 for Indian mobile.
+                const firstDigit = Math.floor(Math.random() * 4) + 6; // 6, 7, 8, 9
+                number += firstDigit;
+                for (let i = 0; i < 9; i++) {
+                    number += Math.floor(Math.random() * 10);
+                }
+
+                // Convert to array to modify
+                let hiddenNumberArray = number.split('');
+                let positionsToHide = new Set(); // Use a Set to ensure unique positions
+
+                // Select 4 random unique positions to hide
+                while (positionsToHide.size < 4) {
+                    let randomPos = Math.floor(Math.random() * 10);
+                    positionsToHide.add(randomPos);
+                }
+
+                // Replace digits at selected positions with '*'
+                positionsToHide.forEach(pos => {
+                    hiddenNumberArray[pos] = '*';
+                });
+
+                return hiddenNumberArray.join('');
+            }
+
 
             function showRandomPopup() {
                 if (popup) {
+                    // Increment buyer count in the ticker
+                    currentBuyersCount++;
+                    buyersCountSpan.innerText = currentBuyersCount;
+
+                    // The hosting guide and pieces left counts are now static in the ticker-strip content.
+                    // This version keeps them static.
+
                     const randomName = popupNames[Math.floor(Math.random() * popupNames.length)];
                     const randomLocation = popupLocations[Math.floor(Math.random() * popupLocations.length)];
+                    const phoneNumber = generateIndianPhoneNumber();
+
                     document.getElementById('popup-name').innerText = randomName;
                     document.getElementById('popup-location').innerText = randomLocation;
+                    document.getElementById('popup-number').innerText = phoneNumber;
 
                     popup.classList.remove('hide');
                     popup.style.display = 'block';
@@ -1065,10 +1193,10 @@
                 }
             }
 
-            // Start showing popups after a delay, then repeat every 40 seconds
+            // Start showing popups after a delay, then repeat every 20-40 seconds
             setTimeout(() => {
                 showRandomPopup();
-                setInterval(showRandomPopup, 40000); // Repeat every 40 seconds
+                setInterval(showRandomPopup, Math.floor(Math.random() * (40000 - 20000 + 1)) + 20000); // Random interval between 20-40 seconds
             }, 5000); // Initial delay of 5 seconds
         });
     </script>

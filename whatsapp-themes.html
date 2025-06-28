@@ -159,30 +159,26 @@
         .success-section .subheadline {
             font-size: 1.5rem;
             color: var(--text-secondary);
-            margin-bottom: 40px;
+            margin-bottom: 40px; /* Adjusted margin to push button down slightly */
         }
 
-        /* --- 2. Download Access Button --- */
-        .download-section {
-            padding-top: 40px; /* Less padding if right after hero */
-            padding-bottom: 80px;
-        }
-
-        .download-btn {
+        /* Download button styling when moved into success-section */
+        .success-section .download-btn {
             background-color: var(--accent-gold);
             color: var(--primary-bg);
             padding: 20px 40px; /* Larger button */
             font-size: 1.2rem;
             box-shadow: 0 8px 25px var(--gold-glow);
+            margin-top: 20px; /* Add some space above the button */
         }
 
-        .download-btn:hover {
+        .success-section .download-btn:hover {
             background-color: #e6c200;
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 12px 35px var(--gold-glow);
         }
 
-        .download-note {
+        .success-section .download-note {
             font-size: 0.95rem;
             color: var(--text-secondary);
             margin-top: 25px;
@@ -257,11 +253,11 @@
             .success-section .subheadline {
                 font-size: 1.3rem;
             }
-            .download-btn {
+            .success-section .download-btn { /* Adjusted for mobile */
                 padding: 15px 30px;
                 font-size: 1rem;
             }
-            .download-note {
+            .success-section .download-note { /* Adjusted for mobile */
                 font-size: 0.85rem;
             }
             .btn { /* General button adjustments for mobile */
@@ -287,15 +283,11 @@
             <i class="fas fa-check-circle success-icon"></i>
             <h1>Thank You for Your Purchase!</h1>
             <p class="subheadline">You’ve unlocked lifetime access to 10 premium website templates.</p>
-        </div>
-    </section>
 
-    <section class="download-section">
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-            <a href="https://drive.google.com/drive/folders/1IQGTI6fo9Ox6cH6ep3mFQv3pV8_Hs00x?usp=sharing" target="_blank" class="btn btn-gold download-btn">
+            <a href="https://drive.google.com/drive/folders/1IQGTI6fo9Ox6cH6ep3mFQv3pV8_Hs00x?usp=sharing" target="_blank" class="btn btn-gold download-btn" data-aos="fade-up" data-aos-delay="200">
                 <i class="fas fa-folder-open"></i> Access Your Download Folder
             </a>
-            <p class="download-note">Your files are stored safely in Google Drive. Click the button above to download them anytime.</p>
+            <p class="download-note" data-aos="fade-up" data-aos-delay="300">Your files are stored safely in Google Drive. Click the button above to download them anytime.</p>
         </div>
     </section>
 
