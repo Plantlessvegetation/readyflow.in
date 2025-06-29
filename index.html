@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Developer's Edge: Unlock Your Web Superpower</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <title>🚀 ReadyFlow: Build & Sell Professional Websites in Hours — Without Coding from Scratch</title>
+
+    <meta name="description" content="Launch stunning, fully-coded websites in hours. Get 10+ premium ReadyFlow templates for just ₹499. Lifetime access & free updates! Designed for freelancers, coders, & startups in India.">
+    <meta name="keywords" content="website templates, web development, freelancer, coding, startup, India, ReadyFlow, HTML, CSS, JavaScript, web design, website pack, responsive templates, build websites fast, sell websites, earn money web dev">
+    <meta name="author" content="ReadyFlow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/index.html"> <meta property="og:title" content="🚀 ReadyFlow: Build & Sell Professional Websites in Hours — Without Coding from Scratch">
+    <meta property="og:description" content="Get 10+ fully-coded website templates for just ₹499! Lifetime access, instant delivery, and free updates. Perfect for freelancers, coders, and startups.">
+    <meta property="og:image" content="https://yourdomain.com/og-image.png"> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <script>
@@ -25,20 +32,22 @@
     </noscript>
 
     <style>
-        /* --- Color Palette --- */
+        /* --- Color Palette (Design System) --- */
         :root {
-            --primary-bg: #0A0D10; /* Very deep blue-black */
-            --secondary-bg: #1E293B; /* Dark blue-gray for cards/sections */
-            --accent-primary: #20C2AE; /* Vibrant, professional teal/aqua */
-            --accent-secondary: #EAB308; /* Professional gold/amber */
-            --text-primary: #E2E8F0; /* Soft, legible off-white */
-            --text-secondary: #A0AEC0; /* Muted light gray */
+            --bg-primary: #0D0F1B; /* Deep Navy-Black */
+            --bg-secondary: #1A202C; /* Slightly lighter for cards/sections */
+            --accent-green: #27AE60; /* Action Green */
+            --accent-orange: #F97316; /* Warm Amber/Orange for urgency */
+            --text-light: #FFFFFF; /* White */
+            --text-muted: #CCCCCC; /* Light grey subtext */
             --border-subtle: #334155; /* Subtle dark blue-gray for borders */
             --shadow-light: rgba(0, 0, 0, 0.3);
             --shadow-strong: rgba(0, 0, 0, 0.6);
-            --glow-primary: rgba(32, 194, 174, 0.5); /* Glow based on accent-primary */
-            --glow-secondary: rgba(234, 179, 8, 0.5); /* Glow based on accent-secondary */
-            --green-whatsapp: #25D366; /* WhatsApp green, kept for recognition */
+            --glow-green: rgba(39, 174, 96, 0.5); /* Glow based on accent-green */
+            --glow-orange: rgba(249, 115, 22, 0.5); /* Glow based on accent-orange */
+            --button-radius: 24px; /* Rounded xl */
+            --section-padding-desktop: 100px;
+            --section-padding-mobile: 60px;
         }
 
         /* --- Universal Styles --- */
@@ -54,8 +63,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--text-primary);
-            background-color: var(--primary-bg);
+            color: var(--text-light);
+            background-color: var(--bg-primary);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
@@ -64,16 +73,14 @@
 
         h1, h2, h3 {
             font-family: 'Poppins', sans-serif;
-            color: var(--text-primary);
+            color: var(--text-light);
         }
 
         h1 {
-            font-size: 4rem; /* Massive hero headline */
-            font-weight: 800;
+            font-size: 4.5rem; /* Large and impactful */
+            font-weight: 700; /* SemiBold */
             line-height: 1.1;
             margin-bottom: 25px;
-            color: var(--accent-primary); /* Main headline in new accent */
-            text-shadow: 0 0 25px var(--glow-primary);
         }
 
         h2 {
@@ -89,28 +96,28 @@
             display: block;
             width: 70px;
             height: 4px;
-            background-color: var(--accent-primary);
+            background-color: var(--accent-green);
             margin: 15px auto 0;
             border-radius: 2px;
         }
 
         p {
-            color: var(--text-secondary);
+            color: var(--text-muted);
         }
 
         .container {
-            max-width: 1100px; /* Wider container for more impact */
+            max-width: 1140px; /* Max width as per design system */
             margin: 0 auto;
             padding: 0 25px;
             text-align: center;
         }
 
         section {
-            padding: 100px 0; /* More padding */
+            padding: var(--section-padding-desktop) 0;
             position: relative;
         }
         section:nth-of-type(even) {
-            background-color: var(--secondary-bg);
+            background-color: var(--bg-secondary);
         }
 
         /* --- Buttons --- */
@@ -118,11 +125,11 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 12px; /* More space for icons */
-            padding: 20px 45px; /* Larger buttons */
-            border-radius: 10px; /* Slightly more rounded */
+            gap: 12px;
+            padding: 18px 40px;
+            border-radius: var(--button-radius); /* Rounded xl */
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 700; /* Bold */
             font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -131,54 +138,43 @@
             cursor: pointer;
             box-shadow: 0 4px 15px var(--shadow-light);
             min-width: 250px; /* Consistent width */
+            font-family: 'Inter', sans-serif; /* CTA Font */
         }
 
         .btn-primary {
-            background-color: var(--accent-primary);
-            color: var(--primary-bg); /* Text in dark background */
+            background-color: var(--accent-green);
+            color: var(--text-light);
         }
 
         .btn-primary:hover {
-            background-color: #1AA892;
+            background-color: #218838;
             transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 8px 20px var(--glow-primary);
+            box-shadow: 0 8px 20px var(--glow-green);
         }
 
         .btn-secondary {
             background-color: transparent;
-            color: var(--accent-primary);
-            border: 2px solid var(--accent-primary);
+            color: var(--accent-green);
+            border: 2px solid var(--accent-green);
         }
 
         .btn-secondary:hover {
-            background-color: var(--accent-primary);
-            color: var(--primary-bg);
+            background-color: var(--accent-green);
+            color: var(--text-light);
             transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 8px 20px var(--glow-primary);
-        }
-
-        .btn-whatsapp {
-            background-color: var(--green-whatsapp);
-            color: var(--primary-bg); /* Changed to primary-bg for better contrast */
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-        }
-
-        .btn-whatsapp:hover {
-            background-color: #1DA851;
-            transform: translateY(-2px) scale(1.01);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+            box-shadow: 0 8px 20px var(--glow-green);
         }
 
         /* --- Microcopy --- */
         .microcopy {
             font-size: 0.85rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             margin-top: 10px;
             display: block;
         }
         .microcopy i {
             margin-right: 5px;
-            color: var(--accent-primary);
+            color: var(--accent-green);
         }
 
         /* --- Top Sticky Ticker --- */
@@ -186,7 +182,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: var(--secondary-bg);
+            background-color: var(--bg-secondary);
             padding: 10px 0;
             font-size: 0.95rem;
             font-weight: 600;
@@ -213,8 +209,8 @@
             justify-content: center;
             flex-direction: column;
             min-height: 90vh; /* Make it nearly fullscreen */
-            padding: 100px 0;
-            background: radial-gradient(circle at center, #1B2131 0%, var(--primary-bg) 100%); /* Radial gradient for depth */
+            padding: var(--section-padding-desktop) 0;
+            background: radial-gradient(circle at center, #1B2131 0%, var(--bg-primary) 100%); /* Radial gradient for depth */
             position: relative;
             overflow: hidden;
         }
@@ -244,18 +240,16 @@
 
         .hero-headline {
             font-size: 4.5rem;
-            font-weight: 800;
+            font-weight: 700;
             line-height: 1.1;
             margin-bottom: 25px;
             color: var(--text-light); /* Headline text white */
             text-shadow: 0 0 15px var(--shadow-strong);
         }
         .hero-headline strong {
-            color: var(--accent-green); /* Key phrase in accent color */
+            color: var(--accent-orange); /* Key phrase in accent color */
         }
-        .hero-headline .highlight-orange {
-            color: var(--accent-orange);
-        }
+        /* No specific .highlight-orange anymore as 'strong' now handles it */
 
         .hero-subheadline {
             font-family: 'Lato', sans-serif;
@@ -280,7 +274,7 @@
             color: var(--text-secondary);
         }
         .trust-badge {
-            background-color: var(--secondary-bg);
+            background-color: var(--bg-secondary);
             padding: 12px 20px;
             border-radius: 50px;
             border: 1px solid var(--border-subtle);
@@ -301,7 +295,7 @@
 
         /* --- Countdown Timer --- */
         .countdown-timer-box {
-            background-color: var(--secondary-bg);
+            background-color: var(--bg-secondary);
             padding: 30px;
             border-radius: 12px;
             border: 2px solid var(--accent-green);
@@ -341,7 +335,7 @@
             overflow: hidden; /* Hide overflow if it shrinks too much */
             width: 100%; /* Ensure flex container uses available width */
         }
-        /* Adjusted styles for individual number spans - NO BACKGROUND BOXES, minimal padding/margin */
+        /* Style for individual number spans - NO BACKGROUND BOXES, minimal padding/margin */
         .countdown-display span {
             padding: 0; /* No padding for individual number spans */
             border-radius: 0; /* No border-radius for individual boxes */
@@ -373,7 +367,7 @@
             margin-top: 50px;
         }
         .offer-card {
-            background-color: var(--secondary-bg);
+            background-color: var(--bg-secondary);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 15px var(--shadow-light);
@@ -408,7 +402,7 @@
             margin-top: 50px;
         }
         .audience-card {
-            background-color: var(--secondary-bg);
+            background-color: var(--bg-secondary);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 15px var(--shadow-light);
@@ -465,7 +459,7 @@
             margin-top: 50px;
         }
         .template-preview-card {
-            background-color: var(--primary-bg); /* Darker background for image cards */
+            background-color: var(--bg-primary); /* Darker background for image cards */
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 15px var(--shadow-light);
@@ -507,7 +501,7 @@
             font-size: 1.2rem;
             color: var(--text-light);
             padding: 15px;
-            background-color: var(--secondary-bg); /* Background for title area */
+            background-color: var(--bg-secondary); /* Background for title area */
         }
 
         /* --- Before vs After --- */
@@ -519,7 +513,7 @@
             text-align: left;
         }
         .before-after-column {
-            background-color: var(--secondary-bg);
+            background-color: var(--bg-secondary);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 15px var(--shadow-light);
@@ -562,7 +556,7 @@
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            background-color: var(--secondary-bg);
+            background-color: var(--bg-secondary);
             padding: 30px;
             border-radius: 10px;
             border: 1px solid var(--border-subtle);
@@ -612,7 +606,7 @@
             background-color: var(--primary-bg); /* Match main bg */
         }
         .scarcity-progress-bar-container {
-            background-color: var(--secondary-bg);
+            background-color: var(--bg-secondary);
             padding: 20px 30px;
             border-radius: 10px;
             border: 1px solid var(--border-subtle);
@@ -637,7 +631,7 @@
         }
         .progress-track {
             width: 100%;
-            background-color: var(--primary-bg);
+            background-color: var(--bg-primary);
             border-radius: 8px;
             overflow: hidden;
             height: 20px;
@@ -668,7 +662,7 @@
             margin-top: 50px;
         }
         .step-card {
-            background-color: var(--secondary-bg);
+            background-color: var(--bg-secondary);
             padding: 30px;
             border-radius: 10px;
             border: 1px solid var(--border-subtle);
@@ -701,7 +695,7 @@
             padding: 50px;
             border-radius: 12px;
             border: 2px solid var(--accent-green);
-            box-shadow: 0 0 30px var(--glow-primary);
+            box-shadow: 0 0 30px var(--glow-green);
             max-width: 600px;
             margin: 50px auto;
             display: flex;
@@ -723,7 +717,7 @@
         .pricing-text .current-price {
             color: var(--accent-green);
             font-size: 1.2em;
-            text-shadow: 0 0 10px var(--glow-primary);
+            text-shadow: 0 0 10px var(--glow-green);
         }
         .pricing-text .fire-emoji {
             color: var(--accent-orange);
@@ -742,7 +736,7 @@
             text-align: left;
         }
         .faq-item {
-            background-color: var(--secondary-bg);
+            background-color: var(--bg-secondary);
             border: 1px solid var(--border-subtle);
             border-radius: 8px;
             margin-bottom: 15px;
@@ -750,7 +744,7 @@
             box-shadow: 0 2px 8px var(--shadow-light);
         }
         .faq-question {
-            background-color: var(--primary-bg);
+            background-color: var(--bg-primary);
             color: var(--text-light);
             padding: 20px 25px;
             font-size: 1.1rem;
@@ -818,7 +812,7 @@
 
         /* --- Footer --- */
         footer {
-            background-color: var(--secondary-bg);
+            background-color: var(--bg-secondary);
             padding: 40px 0;
             text-align: center;
             border-top: 1px solid var(--border-subtle);
@@ -949,6 +943,7 @@
 
         /* --- Mobile Responsiveness --- */
         @media (max-width: 768px) {
+            /* General adjustments for tablets/larger phones */
             h1 { /* Generic H1 for other sections */
                 font-size: 2.5rem; 
             }
@@ -965,10 +960,10 @@
             }
             .trust-badges {
                 gap: 15px;
-                font-size: 1rem;
+                font-size: 0.95rem; /* Slightly smaller */
             }
             .trust-badge {
-                padding: 10px 18px;
+                padding: 10px 15px; /* Reduced padding */
             }
             .countdown-timer-box {
                 padding: 20px; /* Reduced padding */
@@ -981,7 +976,7 @@
                 font-size: 2rem; /* Shrunk countdown numbers for tablets */
             }
             .countdown-display span {
-                padding: 0 5px; /* Reduced padding */
+                padding: 0 4px; /* Reduced padding */
                 min-width: unset; /* Allow numbers to naturally fit */
             }
             .countdown-display .label {
@@ -992,24 +987,24 @@
             .btn {
                 padding: 15px 30px;
                 font-size: 1rem;
-                min-width: unset; /* Allow buttons to shrink */
-                width: 100%; /* Take full width of parent on mobile */
+                min-width: unset;
+                width: 100%;
             }
-            .offer-breakdown-grid, .audience-grid, .template-previews-grid, .before-after-grid {
-                grid-template-columns: 1fr; /* Stack cards vertically */
+            .offer-breakdown-grid, .audience-grid, .template-previews-grid, .before-after-grid, .how-it-works-grid {
+                grid-template-columns: 1fr; /* Stack all grids vertically */
                 gap: 20px; /* Reduced gap */
             }
-            .offer-card, .audience-card, .template-preview-card, .before-after-column {
-                padding: 20px; /* Reduced padding */
+            .offer-card, .audience-card, .template-preview-card, .before-after-column, .step-card {
+                padding: 20px; /* Reduced padding for all cards/columns */
             }
-            .offer-card i, .audience-card i {
+            .offer-card i, .audience-card i, .step-card i {
                 font-size: 2rem; /* Slightly smaller icons */
             }
-            .offer-card h3, .audience-card h3 {
+            .offer-card h3, .audience-card h3, .step-card h3 {
                 font-size: 1.3rem; /* Slightly smaller headings */
             }
             .template-preview-card img {
-                height: 150px; /* Adjusted image height */
+                height: 140px; /* Adjusted image height */
             }
             .video-wrapper {
                 max-width: 100%; /* Use full width */
@@ -1056,7 +1051,7 @@
             }
         }
 
-        @media (max-width: 480px) { /* Targeting smaller phones with more aggressive adjustments */
+        @media (max-width: 480px) { /* Even smaller phones */
             h1 {
                 font-size: 1.8rem;
             }
@@ -1069,7 +1064,7 @@
                 margin-bottom: 15px;
             }
             .hero-subheadline {
-                font-size: 1rem;
+                font-size: 1.1rem;
                 margin-bottom: 25px;
             }
             .trust-badges {
@@ -1080,6 +1075,8 @@
                 width: 100%; /* Full width for badges */
                 max-width: 250px; /* Max width to prevent them from being too wide */
                 justify-content: center; /* Center content within badge */
+                padding: 8px 12px;
+                font-size: 0.85rem;
             }
             .countdown-timer-box {
                 padding: 15px;
@@ -1090,28 +1087,28 @@
                 gap: 5px;
             }
             .countdown-header i {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
             .countdown-display {
                 font-size: 1.5rem; /* Further adjustment for very small screens */
                 gap: 0px; /* Minimal gap */
             }
             .countdown-display span {
-                padding: 4px 6px; /* Tighter padding for numbers */
-                min-width: 35px; /* Smaller min-width */
-                margin: 0 1px; /* Even tighter spacing between numbers */
+                padding: 4px 6px; /* Minimal padding */
+                min-width: 35px;
+                margin: 0 1px; /* Minimal margin between segments */
             }
             .countdown-display .label {
                 font-size: 0.7rem;
                 margin-left: 1px; /* Very minimal space */
-                margin-right: 4px; /* Tighter margin */
+                margin-right: 4px;
             }
             .btn {
                 padding: 10px 18px;
                 font-size: 0.8rem;
             }
             .cta-microcopy {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
             }
             .offer-card, .audience-card, .template-preview-card, .before-after-column, .step-card {
                 padding: 15px;
@@ -1467,7 +1464,7 @@
 
             // --- Countdown Timer ---
             const now = new Date();
-            // Offer ends 4 hours, 38 minutes, 34 seconds from now
+            // Offer ends 4 hours, 38 minutes, 34 seconds from when the page loads
             const futureDate = new Date(now.getTime() + (4 * 60 * 60 * 1000) + (38 * 60 * 1000) + (34 * 1000));
             const countDownDate = futureDate.getTime();
 
