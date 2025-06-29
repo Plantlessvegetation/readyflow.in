@@ -123,7 +123,7 @@
             border-radius: 10px; /* Slightly more rounded */
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.3rem; /* Larger font */
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
@@ -341,13 +341,13 @@
             overflow: hidden; /* Hide overflow if it shrinks too much */
             width: 100%; /* Ensure flex container uses available width */
         }
-        /* Adjusted styles for individual number spans - NO BACKGROUND BOXES */
+        /* Adjusted styles for individual number spans - NO BACKGROUND BOXES, minimal padding/margin */
         .countdown-display span {
-            padding: 0 5px; /* Adjust padding to be just around the numbers */
+            padding: 0; /* No padding for individual number spans */
             border-radius: 0; /* No border-radius for individual boxes */
             margin: 0; /* No margin between number "boxes" */
             min-width: auto; /* Let content dictate width */
-            display: inline-block; /* Essential for padding/alignment */
+            display: inline-block; /* Essential for sizing */
             text-align: center; /* Center numbers within their space */
             background-color: transparent; /* Explicitly remove background color */
         }
@@ -956,11 +956,11 @@
                 font-size: 2rem; 
             }
             .hero-headline {
-                font-size: 2.8rem; /* Adjusted hero headline for tablets */
+                font-size: 3rem; /* Adjusted hero headline for tablets */
                 margin-bottom: 20px;
             }
             .hero-subheadline {
-                font-size: 1.3rem; 
+                font-size: 1.4rem; 
                 margin-bottom: 30px;
             }
             .trust-badges {
@@ -981,8 +981,8 @@
                 font-size: 2rem; /* Shrunk countdown numbers for tablets */
             }
             .countdown-display span {
-                padding: 5px 10px; /* Reduced padding */
-                min-width: 50px; /* Further reduce min-width */
+                padding: 0 5px; /* Reduced padding */
+                min-width: unset; /* Allow numbers to naturally fit */
             }
             .countdown-display .label {
                 font-size: 0.85rem; /* Smaller labels */
@@ -1056,7 +1056,7 @@
             }
         }
 
-        @media (max-width: 420px) { /* Even smaller phones */
+        @media (max-width: 480px) { /* Targeting smaller phones with more aggressive adjustments */
             h1 {
                 font-size: 1.8rem;
             }
@@ -1069,14 +1069,17 @@
                 margin-bottom: 15px;
             }
             .hero-subheadline {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 margin-bottom: 25px;
             }
             .trust-badges {
-                font-size: 0.85rem;
+                flex-direction: column; /* Stack badges vertically */
+                gap: 10px;
             }
             .trust-badge {
-                padding: 8px 15px;
+                width: 100%; /* Full width for badges */
+                max-width: 250px; /* Max width to prevent them from being too wide */
+                justify-content: center; /* Center content within badge */
             }
             .countdown-timer-box {
                 padding: 15px;
@@ -1094,14 +1097,14 @@
                 gap: 0px; /* Minimal gap */
             }
             .countdown-display span {
-                padding: 4px 6px;
-                min-width: 35px;
-                margin: 0 2px;
+                padding: 4px 6px; /* Tighter padding for numbers */
+                min-width: 35px; /* Smaller min-width */
+                margin: 0 1px; /* Even tighter spacing between numbers */
             }
             .countdown-display .label {
                 font-size: 0.7rem;
                 margin-left: 1px; /* Very minimal space */
-                margin-right: 4px;
+                margin-right: 4px; /* Tighter margin */
             }
             .btn {
                 padding: 10px 18px;
@@ -1137,7 +1140,6 @@
                 font-size: 1.2rem;
             }
         }
-
     </style>
 </head>
 <body>
@@ -1149,7 +1151,7 @@
     <section class="hero-section" id="home">
         <div class="container">
             <h1 class="hero-headline">🚀 Launch Professional Websites in <strong class="highlight-orange">Hours</strong> — Not Days</h1>
-            <p class="hero-subheadline">Get 10+ **FULLY CODED** Premium Website Templates. Instant Access. Just ₹499. Empower your dev workflow now!</p>
+            <p class="hero-subheadline">Get 10+ <strong>FULLY CODED</strong> Premium Website Templates. Instant Access. Just ₹499. Empower your dev workflow now!</p>
 
             <div class="trust-badges">
                 <div class="trust-badge"><i class="fas fa-truck"></i> Instant Delivery</div>
@@ -1441,7 +1443,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/[YourWhatsAppNumber]" target="_blank" class="whatsapp-float-btn">
+    <a href="https://chat.whatsapp.com/Doj4o8UAxLD8YFqo3MlWL9?mode=r_c" target="_blank" class="whatsapp-float-btn">
         <i class="fab fa-whatsapp"></i> Chat Now!
     </a>
 
@@ -1465,7 +1467,7 @@
 
             // --- Countdown Timer ---
             const now = new Date();
-            // Offer ends 4 hours, 38 minutes, 34 seconds from when the page loads
+            // Offer ends 4 hours, 38 minutes, 34 seconds from now
             const futureDate = new Date(now.getTime() + (4 * 60 * 60 * 1000) + (38 * 60 * 1000) + (34 * 1000));
             const countDownDate = futureDate.getTime();
 
