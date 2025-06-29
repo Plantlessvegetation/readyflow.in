@@ -3,20 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥 The ₹499 Website Pack Every Coder is Grabbing</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <title>The Developer's Edge: Unlock Your Web Superpower</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1250412783207047'); 
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" src="https://www.facebook.com/tr?id=1250412783207047&ev=PageView&noscript=1"/>
+    </noscript>
+
     <style>
-        /* --- Universal Styles & Variables --- */
+        /* --- Color Palette --- */
         :root {
-            --primary-bg: #0F0F0F; /* Pure deep black */
-            --accent-gold: #FFD700; /* Rich gold */
-            --secondary-elements: #333333; /* Dark gray for borders, etc. */
-            --text-light: #F0F0F0; /* Off-white text */
-            --text-muted: #B0B0B0; /* Muted gray for subtle text */
-            --gold-glow: rgba(255, 215, 0, 0.4);
-            --green-whatsapp: #25D366;
+            --primary-bg: #0A0D10; /* Very deep blue-black */
+            --secondary-bg: #1E293B; /* Dark blue-gray for cards/sections */
+            --accent-primary: #20C2AE; /* Vibrant, professional teal/aqua */
+            --accent-secondary: #EAB308; /* Professional gold/amber */
+            --text-primary: #E2E8F0; /* Soft, legible off-white */
+            --text-secondary: #A0AEC0; /* Muted light gray */
+            --border-subtle: #334155; /* Subtle dark blue-gray for borders */
+            --shadow-light: rgba(0, 0, 0, 0.3);
+            --shadow-strong: rgba(0, 0, 0, 0.6);
+            --glow-primary: rgba(32, 194, 174, 0.5); /* Glow based on accent-primary */
+            --glow-secondary: rgba(234, 179, 8, 0.5); /* Glow based on accent-secondary */
+            --green-whatsapp: #25D366; /* WhatsApp green, kept for recognition */
         }
 
+        /* --- Universal Styles --- */
         * {
             margin: 0;
             padding: 0;
@@ -29,102 +54,112 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--text-light);
+            color: var(--text-primary);
             background-color: var(--primary-bg);
             line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         h1, h2, h3 {
             font-family: 'Poppins', sans-serif;
-            color: var(--text-light);
+            color: var(--text-primary);
         }
 
         h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: var(--accent-gold); /* Headline in gold */
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            font-size: 4rem; /* Massive hero headline */
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: var(--accent-primary); /* Main headline in new accent */
+            text-shadow: 0 0 25px var(--glow-primary);
         }
 
         h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 40px;
             position: relative;
-            padding-bottom: 0.5em;
+            padding-bottom: 10px;
         }
 
         h2::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 3px;
-            background-color: var(--accent-gold);
-            margin: 0.8rem auto 0 auto;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-primary);
+            margin: 15px auto 0;
             border-radius: 2px;
         }
 
+        p {
+            color: var(--text-secondary);
+        }
+
         .container {
-            max-width: 1000px;
+            max-width: 1100px; /* Wider container for more impact */
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 25px;
+            text-align: center;
         }
 
         section {
-            padding: 80px 0;
-            text-align: center;
+            padding: 100px 0; /* More padding */
+            position: relative;
+        }
+        section:nth-of-type(even) {
+            background-color: var(--secondary-bg);
         }
 
         /* --- Buttons --- */
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 16px 35px;
-            border-radius: 8px;
+            justify-content: center;
+            gap: 12px; /* More space for icons */
+            padding: 20px 45px; /* Larger buttons */
+            border-radius: 10px; /* Slightly more rounded */
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.3rem; /* Larger font */
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 5px 20px var(--gold-glow);
+            box-shadow: 0 4px 15px var(--shadow-light);
+            min-width: 250px; /* Consistent width */
         }
 
         .btn-primary {
-            background-color: var(--accent-gold);
-            color: var(--primary-bg); /* Text in black for contrast */
+            background-color: var(--accent-primary);
+            color: var(--primary-bg); /* Text in dark background */
         }
 
         .btn-primary:hover {
-            background-color: #e6c200; /* Darker gold */
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 30px var(--gold-glow);
+            background-color: #1AA892;
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 8px 20px var(--glow-primary);
         }
 
         .btn-secondary {
-            background-color: var(--secondary-elements);
-            color: var(--text-light);
-            border: 1px solid var(--secondary-elements);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            background-color: transparent;
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-primary);
         }
 
         .btn-secondary:hover {
-            background-color: #444;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            background-color: var(--accent-primary);
+            color: var(--primary-bg);
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 8px 20px var(--glow-primary);
         }
 
         .btn-whatsapp {
             background-color: var(--green-whatsapp);
-            color: var(--text-light);
+            color: var(--primary-bg); /* Changed to primary-bg for better contrast */
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
         }
 
@@ -134,486 +169,716 @@
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
         }
 
+        /* --- Microcopy --- */
+        .microcopy {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            display: block;
+        }
+        .microcopy i {
+            margin-right: 5px;
+            color: var(--accent-primary);
+        }
+
+        /* --- Top Sticky Ticker --- */
+        .ticker-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--secondary-bg);
+            padding: 10px 0;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: center;
+            border-bottom: 1px solid var(--border-subtle);
+            box-shadow: 0 2px 8px var(--shadow-light);
+            color: var(--text-light);
+        }
+        .ticker-bar span {
+            display: inline-block;
+            animation: tickerPulse 3s infinite alternate;
+            padding: 0 15px;
+        }
+        @keyframes tickerPulse {
+            0% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+            100% { opacity: 0.8; transform: scale(1); }
+        }
+
         /* --- Hero Section --- */
         .hero-section {
-            min-height: 85vh;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            padding-top: 50px;
+            min-height: 90vh; /* Make it nearly fullscreen */
+            padding: 100px 0;
+            background: radial-gradient(circle at center, #1B2131 0%, var(--primary-bg) 100%); /* Radial gradient for depth */
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero-section .subheadline {
-            font-size: 1.5rem;
+        .hero-section::before { /* Animated grid background */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.08; /* More subtle */
+            animation: pan-background 40s linear infinite;
+        }
+
+        @keyframes pan-background {
+            from { background-position: 0 0; }
+            to { background-position: -500px -500px; }
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-headline {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: var(--text-light); /* Headline text white */
+            text-shadow: 0 0 15px var(--shadow-strong);
+        }
+        .hero-headline strong {
+            color: var(--accent-green); /* Key phrase in accent color */
+        }
+        .hero-headline .highlight-orange {
+            color: var(--accent-orange);
+        }
+
+        .hero-subheadline {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.6rem;
             color: var(--text-muted);
-            margin-bottom: 30px;
+            max-width: 800px;
+            margin: 0 auto 50px; /* More space below */
+            line-height: 1.5;
+        }
+        .hero-subheadline strong {
+            color: var(--accent-green);
         }
 
-        .hero-highlights {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 30px;
-            font-weight: 500;
-        }
-        .hero-highlights span {
-            display: inline-block;
-            margin: 0 10px;
-            white-space: nowrap;
-        }
-        .hero-highlights span:not(:last-child)::after {
-            content: ' •';
-            margin-left: 10px;
-        }
-
-        .price-comparison {
-            margin-bottom: 30px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-light);
-        }
-
-        .price-comparison s {
-            color: var(--text-muted);
-            margin-right: 15px;
-        }
-
-        /* Countdown Timer */
-        .countdown-timer-main {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--accent-gold);
-            margin-bottom: 40px;
-            background-color: var(--secondary-elements);
-            padding: 15px 30px;
-            border-radius: 8px;
-            display: inline-block;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
-            text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
-        }
-        .countdown-timer-main span {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 0 5px;
-            color: var(--text-light);
-            background-color: #222;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-
-        .hero-ctas {
+        .trust-badges {
             display: flex;
-            flex-direction: column; /* Stack buttons vertically */
-            align-items: center; /* Center buttons */
-            gap: 15px; /* Space between buttons and microcopy */
-            margin-bottom: 30px; /* Space below all CTA elements */
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .trust-badge {
+            background-color: var(--secondary-bg);
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 2px 8px var(--shadow-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .trust-badge i {
+            color: var(--accent-green);
+        }
+        .trust-badge:nth-child(2) i { /* Different color for lifetime access icon */
+             color: var(--accent-orange);
+        }
+        .trust-badge:nth-child(3) i { /* Different color for secure icon */
+            color: #60A5FA; /* Blue for security */
         }
 
-        .cta-microcopy {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-top: 5px; /* Small margin from the button */
-            text-align: center;
+        /* --- Countdown Timer --- */
+        .countdown-timer-box {
+            background-color: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid var(--accent-green);
+            box-shadow: 0 0 25px var(--glow-green);
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 580px; /* Constrain width */
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* --- What's Inside Section (Parent for Features, Video, Previews) --- */
-        .whats-inside-section {
-            background-color: #1A1A1A; /* Slightly lighter black */
-            padding: 80px 0;
-            border-top: 1px solid var(--secondary-elements);
-            border-bottom: 1px solid var(--secondary-elements);
+        .countdown-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-orange); /* Alert color for "Offer ends in" */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px; /* Adjusted margin */
+        }
+        .countdown-header i {
+            font-size: 1.8rem;
         }
 
-        .features-grid {
+        .countdown-display {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem; /* Large numbers */
+            font-weight: 700;
+            color: var(--text-light); /* Numbers text color: WHITE */
+            display: flex; /* Use flexbox to align items in a row */
+            align-items: center; /* Vertically align items in the center */
+            justify-content: center; /* Horizontally center items */
+            white-space: nowrap; /* Keep on one line */
+            overflow: hidden; /* Hide overflow if it shrinks too much */
+            width: 100%; /* Ensure flex container uses available width */
+        }
+        .countdown-display span {
+            /* REMOVED background-color: var(--primary-bg); */ /* THIS WAS THE KEY TO REMOVE BOXES */
+            padding: 0 5px; /* Adjusted padding to be just around the numbers, no background */
+            border-radius: 6px; /* Keep the slight rounding if desired, but won't be visible without bg */
+            margin: 0; /* Remove margins between number "boxes" */
+            min-width: auto; /* Let content dictate width if no background */
+            display: inline-block; /* Still useful for padding/alignment */
+            text-align: center; /* Ensure numbers are centered within their span */
+        }
+        .countdown-display .label {
+            font-size: 1rem; /* Smaller labels */
+            font-weight: 400;
+            color: var(--text-muted); /* Labels color */
+            margin-left: 5px; /* Space between number and label */
+            margin-right: 15px; /* Space after labels */
+            text-shadow: none; /* Remove text shadow from labels */
+        }
+        .countdown-display .label:last-child {
+            margin-right: 0;
+        }
+
+        /* --- Core Offer Breakdown --- */
+        .offer-breakdown-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 40px;
-            margin-bottom: 80px; /* Space before video section */
+            margin-top: 50px;
         }
-
-        .feature-card {
-            background-color: var(--primary-bg);
+        .offer-card {
+            background-color: var(--secondary-bg);
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            border: 1px solid var(--secondary-elements);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            border: 1px solid var(--border-subtle);
             text-align: left;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-
-        .feature-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-            border-color: var(--accent-gold); /* Gold border glow */
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow-strong);
         }
-
-        .feature-card h3 {
+        .offer-card i {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 15px;
+        }
+        .offer-card h3 {
             font-size: 1.5rem;
-            color: var(--accent-gold);
             margin-bottom: 10px;
-            display: flex;
-            align-items: center;
+            color: var(--text-light);
         }
-        .feature-card .svg-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-            fill: currentColor; /* Allows color to be set by parent */
-        }
-
-        .feature-card p {
+        .offer-card p {
             font-size: 0.95rem;
             color: var(--text-muted);
         }
 
-        /* --- Responsive Demo Video Section (part of "What's Inside") --- */
-        .whats-inside-section .video-heading {
-            margin-bottom: 25px; /* Space before video */
-            color: var(--text-light); /* Sub-heading within section */
+        /* --- Perfect For (Audience Hook) --- */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .audience-card {
+            background-color: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            border: 1px solid var(--border-subtle);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .audience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow-strong);
+        }
+        .audience-card i {
+            font-size: 2.8rem;
+            color: var(--accent-green);
+            margin-bottom: 15px;
+        }
+        .audience-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-light);
         }
 
+        /* --- Visual Demo Grid --- */
+        .visual-demo-section h2 {
+            margin-bottom: 25px; /* Adjust spacing as video is directly under */
+        }
+        .visual-demo-section .hero-subheadline { /* Reusing hero-subheadline for consistency */
+            margin-bottom: 40px;
+        }
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
             height: 0;
             overflow: hidden;
-            max-width: 800px;
-            margin: 0 auto 80px auto; /* Space before next section */
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-            border: 2px solid var(--accent-gold);
+            max-width: 900px; /* Larger video */
+            margin: 0 auto 90px auto; /* Margin to separate from next heading */
+            border: 3px solid var(--accent-green); /* Stronger border */
+            box-shadow: 0 15px 50px rgba(0,0,0,0.7), 0 0 30px var(--glow-primary);
+            border-radius: 12px; /* Consistent rounding */
         }
-
         .video-wrapper video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 8px;
+            border-radius: 9px; /* Match outer border radius minus border thickness */
             display: block;
-        }
-
-        /* --- Template Previews Section (part of "What's Inside") --- */
-        .whats-inside-section .previews-heading {
-            margin-bottom: 40px; /* Space before grid */
-            color: var(--text-light); /* Sub-heading within section */
         }
 
         .template-previews-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 50px;
         }
-
         .template-preview-card {
-            background-color: var(--secondary-elements);
-            border-radius: 8px;
+            background-color: var(--primary-bg); /* Darker background for image cards */
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            border: 1px solid #444;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            border: 1px solid var(--border-subtle);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative; /* For hover effect */
         }
-
         .template-preview-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 15px var(--gold-glow);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow-strong);
         }
-
         .template-preview-card img {
             width: 100%;
-            height: 200px; /* Fixed height for consistency */
+            height: 180px; /* Fixed height for consistency */
             object-fit: cover;
             display: block;
-            border-bottom: 1px solid #555;
+            border-bottom: 1px solid var(--border-subtle);
         }
-
-        .template-preview-card h3 {
-            font-size: 1.3rem;
-            color: var(--accent-gold);
-            padding: 15px;
-        }
-
-        /* --- Reviews Section --- */
-        .reviews-section {
-            padding: 80px 0;
-        }
-
-        .star-rating-summary {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent-gold);
-            margin-bottom: 10px;
-        }
-
-        .star-rating-summary .text-muted {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        .star-breakdown-bar-row {
+        .template-preview-card .preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 46px); /* Adjust height to cover image part, 46px is h3 height + padding */
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--text-light);
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 5px;
-            max-width: 400px;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .template-preview-card:hover .preview-overlay {
+            opacity: 1;
+        }
+        .template-preview-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            padding: 15px;
+            background-color: var(--secondary-bg); /* Background for title area */
+        }
+
+        /* --- Before vs After --- */
+        .before-after-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 50px;
+            text-align: left;
+        }
+        .before-after-column {
+            background-color: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            border: 1px solid var(--border-subtle);
+        }
+        .before-after-column h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .before-after-column h3.before { color: var(--accent-orange); }
+        .before-after-column h3.after { color: var(--accent-green); }
+
+        .before-after-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+        .before-after-item:last-child {
+            margin-bottom: 0;
+        }
+        .before-after-item i {
+            font-size: 1.5rem;
+            min-width: 30px;
+            text-align: center;
+        }
+        .before-after-item .before-icon { color: var(--accent-orange); }
+        .before-after-item .after-icon { color: var(--accent-green); }
+        .before-after-item p {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+        .before-after-item strong {
+            color: var(--text-light);
+        }
+
+        /* --- Trust + Social Proof --- */
+        .testimonial-carousel {
+            margin-top: 50px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-        }
-        .star-breakdown-bar-row span {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            width: 50px; /* Fixed width for star rating text */
-            text-align: right;
-        }
-
-        .star-breakdown-bar {
-            background-color: var(--secondary-elements);
-            height: 15px;
-            border-radius: 8px;
-            flex-grow: 1;
+            background-color: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 4px 15px var(--shadow-light);
             overflow: hidden;
+            position: relative;
+            min-height: 150px; /* Ensure height for carousel */
+            display: flex; /* Make it a flex container for absolute positioned children */
+            justify-content: center;
+            align-items: center;
         }
-
-        .star-breakdown-fill {
-            background-color: var(--accent-gold);
-            height: 100%;
-            border-radius: 8px;
-        }
-
-        .review-cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .review-card {
-            background-color: var(--secondary-elements);
-            padding: 25px;
-            border-radius: 10px;
-            text-align: left;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-            border: 1px solid #444;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .review-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-        }
-
-        .review-card .stars {
-            color: var(--accent-gold);
+        .testimonial-slide {
             font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        .review-card .review-text {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            margin-bottom: 15px;
             font-style: italic;
+            margin-bottom: 15px;
+            opacity: 0;
+            position: absolute; /* Position slides over each other */
+            top: 50%;
+            left: 50%;
+            width: 90%; /* Take up most of width */
+            transform: translate(-50%, -50%); /* Center using transform */
+            transition: opacity 0.5s ease-in-out;
+            text-align: center; /* Center testimonial text */
         }
-
-        .review-card .author {
+        .testimonial-slide.active {
+            opacity: 1;
+        }
+        .testimonial-slide .author {
+            display: block;
             font-weight: 600;
-            color: var(--accent-gold);
+            color: var(--accent-green);
+            margin-top: 10px;
+            font-style: normal;
+        }
+        .verified-badge {
             font-size: 0.9rem;
+            color: #4CAF50; /* Green for verified */
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
 
-        .review-card.hidden {
-            display: none;
+        /* --- Urgency & Scarcity Progress Bar --- */
+        .scarcity-section {
+            background-color: var(--primary-bg); /* Match main bg */
         }
-
-        .read-more-btn {
-            background-color: transparent;
-            color: var(--accent-gold);
-            border: 1px solid var(--accent-gold);
-            padding: 10px 20px;
-            margin-top: 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .read-more-btn:hover {
-            background-color: var(--accent-gold);
-            color: var(--primary-bg);
-            box-shadow: 0 0 15px var(--gold-glow);
-        }
-
-        /* Leave a Review Form */
-        .review-form {
-            background-color: var(--secondary-elements);
-            padding: 40px;
+        .scarcity-progress-bar-container {
+            background-color: var(--secondary-bg);
+            padding: 20px 30px;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-            margin-top: 60px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 4px 15px var(--shadow-light);
+            margin-top: 30px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            text-align: left;
-            border: 1px solid #444;
         }
-
-        .review-form h3 {
-            font-size: 1.8rem;
-            color: var(--text-light);
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .review-form label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .review-form input,
-        .review-form select,
-        .review-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #555;
-            border-radius: 5px;
-            background-color: #222;
-            color: var(--text-light);
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .review-form input:focus,
-        .review-form select:focus,
-        .review-form textarea:focus {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
-        }
-
-        .review-form textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .review-form .submit-btn {
-            display: block;
-            width: auto;
-            margin: 20px auto 0;
-            padding: 12px 30px;
-            background-color: var(--accent-gold);
-            color: var(--primary-bg);
-            font-weight: 600;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .review-form .submit-btn:hover {
-            background-color: #e6c200;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px var(--gold-glow);
-        }
-
-        /* Star Rating in form */
-        .star-rating-form label {
-            display: inline-block;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            transition: color 0.2s ease;
-        }
-        .star-rating-form label:hover,
-        .star-rating-form input:checked ~ label {
-            color: var(--accent-gold);
-        }
-        .star-rating-form input {
-            display: none;
-        }
-        .star-rating-form {
-            direction: rtl; /* Stars right to left for rating effect */
-            display: inline-block;
-            text-align: center;
-        }
-        .star-rating-form label:hover ~ label {
-            color: var(--accent-gold);
-        }
-
-
-        /* --- FOMO Boosters + Urgency --- */
-        .fomo-section {
-            background-color: #1A1A1A;
-            border-top: 1px solid var(--secondary-elements);
-            border-bottom: 1px solid var(--secondary-elements);
-            padding: 60px 0;
-        }
-
-        /* Ticker Strip Styling */
-        .ticker-strip {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: var(--primary-bg);
-            padding: 10px 0;
-            overflow: hidden; /* Hide content outside the span */
-            /* white-space: nowrap;  Removed this as it can cause issues with centering/animation conflicts */
-            color: var(--accent-gold);
-            font-weight: 600;
+        .scarcity-progress-bar-container p {
             font-size: 1.1rem;
-            border-top: 1px solid var(--secondary-elements);
-            border-bottom: 1px solid var(--secondary-elements);
-            display: flex; /* Use flex to allow centering if content is shorter than width */
-            justify-content: center; /* Center content horizontally */
-            align-items: center; /* Center content vertically */
-            height: 40px; /* Define a height for the strip */
-            text-align: center; /* Fallback for older browsers or if flex breaks */
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .scarcity-progress-bar-container p i {
+            color: var(--accent-orange);
+        }
+        .progress-track {
+            width: 100%;
+            background-color: var(--primary-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            height: 20px;
+            border: 1px solid var(--border-subtle);
+        }
+        .progress-fill {
+            height: 100%;
+            width: 100%; /* Default 100% and reduce with JS */
+            background-color: var(--accent-orange);
+            border-radius: 8px;
+            transition: width 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-weight: 700;
         }
 
-        .ticker-strip span {
-            display: inline-block; /* Essential for animation */
-            padding: 0 20px; /* Add some padding to the text */
-            animation: tickerFadePulse 4s infinite alternate; /* Applied pulse animation */
-            /* Removed tickerSlide animation to prevent horizontal distortion */
-            /* width: 100%; Removed this to allow text to fit naturally and be centered by parent flex */
-            white-space: nowrap; /* Keep the text on a single line */
+        /* --- How It Works --- */
+        .how-it-works-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .step-card {
+            background-color: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 4px 15px var(--shadow-light);
+            flex: 1 1 calc(33% - 40px); /* Three columns on desktop */
+            min-width: 280px; /* Min width for mobile stacking */
+            text-align: center;
+        }
+        .step-card i {
+            font-size: 3rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+        }
+        .step-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        .step-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
         }
 
-        /* @keyframes tickerSlide { Removed as requested for this fixed ticker */
-            /* 0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); } */
-        /* } */
+        /* --- Pricing Reveal Section --- */
+        .pricing-reveal-section {
+            background-color: var(--secondary-bg);
+        }
+        .pricing-box {
+            background-color: var(--primary-bg);
+            padding: 50px;
+            border-radius: 12px;
+            border: 2px solid var(--accent-green);
+            box-shadow: 0 0 30px var(--glow-primary);
+            max-width: 600px;
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        .pricing-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            line-height: 1.2;
+        }
+        .pricing-text s {
+            color: var(--text-muted);
+            margin-right: 20px;
+            font-size: 0.8em;
+        }
+        .pricing-text .current-price {
+            color: var(--accent-green);
+            font-size: 1.2em;
+            text-shadow: 0 0 10px var(--glow-primary);
+        }
+        .pricing-text .fire-emoji {
+            color: var(--accent-orange);
+            font-size: 1.2em;
+        }
 
-        @keyframes tickerFadePulse {
-            0% { opacity: 0.7; transform: scale(1); text-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
-            50% { opacity: 1; transform: scale(1.02); text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
-            100% { opacity: 0.7; transform: scale(1); text-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
+        /* --- FAQ Accordion --- */
+        .faq-section {
+            background-color: var(--primary-bg); /* Match main bg */
+        }
+        .faq-accordion {
+            margin-top: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+        .faq-item {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px var(--shadow-light);
+        }
+        .faq-question {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            padding: 20px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        .faq-question:hover {
+            background-color: #1A202C; /* Slightly lighter on hover */
+        }
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .faq-answer p {
+            padding-bottom: 20px;
+            margin-bottom: 0; /* Override default p margin */
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Adjust max-height based on content */
+            padding-top: 15px;
+            padding-bottom: 20px;
+        }
+
+        /* --- Sticky WhatsApp CTA --- */
+        .whatsapp-float-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--green-whatsapp);
+            color: var(--primary-bg); /* Changed to primary-bg for better contrast */
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1002;
+        }
+        .whatsapp-float-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+        }
+        .whatsapp-float-btn i {
+            font-size: 1.5rem;
         }
 
 
-        /* Floating Popup */
-        .floating-popup {
+        /* --- Footer --- */
+        footer {
+            background-color: var(--secondary-bg);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+        }
+        footer p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        footer small {
+            font-size: 0.75rem;
+            display: block;
+            margin-top: 15px;
+        }
+        /* Agency Logo in footer */
+        .agency-logo-footer {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem; /* Adjusted for smaller footer space */
+            color: var(--accent-green);
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px var(--glow-primary);
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .agency-logo-footer span {
+            color: var(--text-primary);
+        }
+
+        /* --- Live Alert Popup --- */
+        .live-alert-popup {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background-color: rgba(0,0,0,0.8);
-            border: 1px solid var(--accent-gold);
-            color: var(--text-light);
+            background-color: rgba(26, 32, 44, 0.9); /* Dark background with transparency */
+            color: var(--text-primary);
             padding: 15px 20px;
             border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+            border: 1px solid var(--accent-green);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
             z-index: 1001;
             display: none; /* Hidden by default */
             animation: slideInFromLeft 0.5s ease-out forwards;
+            max-width: 280px;
+            text-align: left;
         }
-        .floating-popup.hide {
+        .live-alert-popup.hide {
             animation: slideOutToLeft 0.5s ease-in forwards;
+        }
+        .live-alert-popup i {
+            color: var(--accent-orange);
+            margin-right: 8px;
+        }
+        .live-alert-popup span.buyer-name {
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+        .live-alert-popup span.location {
+            color: var(--text-secondary);
+        }
+        .live-alert-popup span.phone-number {
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 5px;
+            color: var(--text-muted);
         }
 
         @keyframes slideInFromLeft {
@@ -625,247 +890,352 @@
             100% { transform: translateX(-100%); opacity: 0; }
         }
 
-        .fomo-explanation h3 {
-            font-size: 1.8rem;
-            color: var(--accent-gold);
-            margin-bottom: 20px;
+        /* --- Progress Bar for Scarcity --- */
+        .scarcity-section {
+            background-color: var(--primary-bg); /* Match main bg */
         }
-
-        .fomo-explanation p {
+        .scarcity-progress-bar-container {
+            background-color: var(--secondary-bg);
+            padding: 20px 30px;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 4px 15px var(--shadow-light);
+            margin-top: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .scarcity-progress-bar-container p {
             font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* --- Call to Action (again) --- */
-        .cta-again-section {
-            padding: 60px 0;
-            background-color: #0A0A0A; /* Slightly different dark */
-            border-top: 1px solid var(--secondary-elements);
-            border-bottom: 1px solid var(--secondary-elements);
-        }
-
-        .cta-again-section p {
-            font-size: 1.5rem;
+            font-weight: 600;
             color: var(--text-light);
-            margin-bottom: 40px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-        .cta-again-section p span {
-            color: var(--accent-gold);
-            font-weight: 700;
+        .scarcity-progress-bar-container p i {
+            color: var(--accent-orange);
         }
-
-        /* --- Join Our Community Section --- */
-        .community-section {
-            padding: 80px 0;
-        }
-
-        .community-section h2 {
-            margin-bottom: 40px;
-        }
-
-        .community-section .btn-whatsapp {
-            font-size: 1.2rem;
-            padding: 18px 40px;
-        }
-
-        .community-section .btn-whatsapp .svg-icon {
-            width: 28px;
-            height: 28px;
-            margin-right: 10px;
-            fill: currentColor;
-        }
-
-        /* --- Footer --- */
-        .main-footer {
+        .progress-track {
+            width: 100%;
             background-color: var(--primary-bg);
-            color: var(--text-muted);
-            padding: 30px 0;
-            text-align: center;
-            border-top: 2px solid var(--accent-gold); /* Green/aqua glow border-top */
-            box-shadow: 0 -5px 20px var(--gold-glow);
+            border-radius: 8px;
+            overflow: hidden;
+            height: 20px;
+            border: 1px solid var(--border-subtle);
         }
-
-        .main-footer small {
-            display: block;
-            margin-top: 15px;
-            font-size: 0.8rem;
-            color: #888;
-        }
-
-        /* --- Ready Flow Logo Styling --- */
-        .agency-logo {
-            font-family: 'Montserrat', sans-serif;
+        .progress-fill {
+            height: 100%;
+            width: 100%; /* Default 100% and reduce with JS */
+            background-color: var(--accent-orange);
+            border-radius: 8px;
+            transition: width 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: var(--text-light);
+            font-size: 0.85rem;
             font-weight: 700;
-            font-size: 2.2rem; /* Adjust size as needed */
-            color: var(--accent-gold); /* Gold color for the text */
-            letter-spacing: 2px; /* A little spacing for readability */
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); /* Subtle glow */
-            /* margin-bottom: 10px; Removed from here to avoid double margin with <p> */
-            display: inline-block; /* Allows vertical margin and text-shadow to work well */
-        }
-        .agency-logo span {
-            color: var(--text-light); /* Optional: make "Flow" a different color */
         }
 
-        /* --- Responsive Design --- */
+
+        /* --- Mobile Responsiveness --- */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+            h1 { /* Generic H1 for other sections */
+                font-size: 2.5rem; /* Adjusted from 2.8 to 2.5 */
             }
             h2 {
-                font-size: 2rem;
+                font-size: 2rem; /* Adjusted from 2.2 to 2 */
             }
-            .hero-section .subheadline {
-                font-size: 1.2rem;
+            .hero-headline {
+                font-size: 3rem; /* Adjusted hero headline for tablets (was 3.2) */
+                margin-bottom: 20px;
             }
-            .price-comparison {
-                font-size: 1.5rem;
+            .hero-subheadline {
+                font-size: 1.3rem; /* Adjusted from 1.4 to 1.3 */
+                margin-bottom: 30px;
             }
-            .price-comparison span {
-                font-size: 1.2rem;
+            .trust-badges {
+                gap: 15px;
+                font-size: 1rem;
             }
-            .countdown-timer-main {
-                font-size: 1.4rem;
-                padding: 10px 20px;
+            .trust-badge {
+                padding: 10px 18px;
             }
-            .countdown-timer-main span {
-                font-size: 1.8rem;
-            }
-            .btn {
-                padding: 12px 25px;
-                font-size: 0.9rem;
-            }
-            .hero-ctas {
-                flex-direction: column;
+            .countdown-timer-box {
+                padding: 20px; /* Reduced padding */
                 gap: 15px;
             }
-            .features-grid {
-                grid-template-columns: 1fr;
+            .countdown-header {
+                font-size: 1.3rem;
             }
-            .template-previews-grid {
-                grid-template-columns: 1fr; /* Single column on mobile */
+            .countdown-display {
+                font-size: 2rem; /* Shrunk countdown numbers for tablets */
+            }
+            .countdown-display span {
+                padding: 5px 10px; /* Reduced padding */
+                min-width: 50px; /* Further reduce min-width */
+            }
+            .countdown-display .label {
+                font-size: 0.85rem; /* Smaller labels */
+                margin-left: 2px; /* Adjusted margin for mobile */
+                margin-right: 8px; /* Tighter margin */
+            }
+            .btn {
+                padding: 15px 30px;
+                font-size: 1rem;
+                min-width: unset; /* Allow buttons to shrink */
+                width: 100%; /* Take full width of parent on mobile */
+            }
+            .offer-breakdown-grid, .audience-grid, .template-previews-grid, .before-after-grid {
+                grid-template-columns: 1fr; /* Stack cards vertically */
+                gap: 20px; /* Reduced gap */
+            }
+            .offer-card, .audience-card, .template-preview-card, .before-after-column {
+                padding: 20px; /* Reduced padding */
+            }
+            .offer-card i, .audience-card i {
+                font-size: 2rem; /* Slightly smaller icons */
+            }
+            .offer-card h3, .audience-card h3 {
+                font-size: 1.3rem; /* Slightly smaller headings */
             }
             .template-preview-card img {
-                height: 180px; /* Adjust image height for mobile */
+                height: 150px; /* Adjusted image height */
             }
             .video-wrapper {
-                max-width: 90%;
+                max-width: 100%; /* Use full width */
+                margin-bottom: 50px; /* Adjusted margin */
             }
-            .reviews-section {
-                padding: 60px 0; /* Reduce padding on mobile */
+            section {
+                padding: 50px 0; /* Reduced overall section padding */
             }
-            .review-cards-container {
-                grid-template-columns: 1fr;
+            .pricing-text {
+                font-size: 1.8rem; /* Adjusted for mobile */
             }
-            .review-form {
-                padding: 30px 20px;
+            .pricing-text s {
+                font-size: 0.65em;
             }
-            .floating-popup {
-                left: 10px;
+            .faq-question {
+                padding: 12px 18px;
+                font-size: 0.95rem;
+            }
+            .faq-answer p {
+                font-size: 0.9rem;
+            }
+            .whatsapp-float-btn {
+                bottom: 10px;
                 right: 10px;
-                width: auto;
-                text-align: center;
+                padding: 10px 15px;
+                font-size: 0.85rem;
+                gap: 6px;
             }
-            .fomo-explanation h3 {
-                font-size: 1.5rem;
-            }
-            .fomo-explanation p {
-                font-size: 1.rem;
-            }
-            .cta-again-section p {
+            .whatsapp-float-btn i {
                 font-size: 1.2rem;
             }
-            .star-breakdown-bar-row span {
-                width: 40px;
+            .live-alert-popup {
+                max-width: 95%;
+                left: 2.5%;
+                right: 2.5%;
+                padding: 12px 15px; /* Reduced padding */
+                font-size: 0.8rem;
             }
-            .agency-logo {
-                font-size: 1.8rem; /* Adjust for smaller screens */
+            .agency-logo-footer {
+                font-size: 1.3rem; /* Reduced logo size for small screens */
+            }
+            .scarcity-progress-bar-container p {
+                font-size: 1rem;
             }
         }
+
+        @media (max-width: 420px) { /* Even smaller phones */
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .hero-headline {
+                font-size: 2.2rem; /* Further shrink hero headline for small phones */
+                line-height: 1.2;
+                margin-bottom: 15px;
+            }
+            .hero-subheadline {
+                font-size: 1.1rem;
+                margin-bottom: 25px;
+            }
+            .trust-badges {
+                font-size: 0.85rem;
+            }
+            .trust-badge {
+                padding: 8px 15px;
+            }
+            .countdown-timer-box {
+                padding: 15px;
+                gap: 10px;
+            }
+            .countdown-header {
+                font-size: 1rem;
+                gap: 5px;
+            }
+            .countdown-header i {
+                font-size: 1.2rem;
+            }
+            .countdown-display {
+                font-size: 1.5rem; /* Further adjustment for very small screens */
+                gap: 0px; /* Minimal gap */
+            }
+            .countdown-display span {
+                padding: 4px 6px;
+                min-width: 35px;
+                margin: 0 2px;
+            }
+            .countdown-display .label {
+                font-size: 0.7rem;
+                margin-left: 1px; /* Very minimal space */
+                margin-right: 4px;
+            }
+            .btn {
+                padding: 10px 18px;
+                font-size: 0.8rem;
+            }
+            .cta-microcopy {
+                font-size: 0.7rem;
+            }
+            .offer-card, .audience-card, .template-preview-card, .before-after-column, .step-card {
+                padding: 15px;
+                min-width: 250px;
+            }
+            .offer-card i, .audience-card i, .step-card i {
+                font-size: 1.8rem;
+                margin-bottom: 10px;
+            }
+            .offer-card h3, .audience-card h3, .step-card h3 {
+                font-size: 1.1rem;
+            }
+            .before-after-column h3 {
+                font-size: 1.2rem;
+            }
+            .before-after-item i {
+                font-size: 1.2rem;
+            }
+            .pricing-text {
+                font-size: 1.5rem;
+            }
+            .pricing-text s {
+                font-size: 0.5em;
+            }
+            .agency-logo-footer {
+                font-size: 1.2rem;
+            }
+        }
+
     </style>
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1250412783207047'); // YOUR PIXEL ID
-fbq('track', 'PageView');
-fbq('track', 'ViewContent'); // Tracks when someone views your product page
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1250412783207047&ev=PageView&noscript=1"
-/></noscript>
 </head>
 <body>
 
-    <div class="ticker-strip">
-        <span>🔥<span id="buyers-count">106</span>coders grabbed this in last 72 hours </span>
+    <div class="ticker-bar">
+        <span><i class="fas fa-fire"></i> <span id="buyers-count">111</span> coders just purchased! Limited offer!</span>
     </div>
 
     <section class="hero-section" id="home">
         <div class="container">
-            <h1>🔥 The ₹499 Website Pack Every Coder is Grabbing</h1>
-            <p class="hero-highlights">
-                <span>10 Websites</span>
-                <span>₹499</span>
-                <span>Lifetime Access</span>
-            </p>
-            <p class="subheadline">"Sell Each Website for ₹5,000+, You Get 10. <strong>FULLY CODED</strong>. Not Just Templates, at each priced less than a pizza."</p>
+            <h1 class="hero-headline">🚀 Launch Professional Websites in <strong class="highlight-orange">Hours</strong> — Not Days</h1>
+            <p class="hero-subheadline">Get 10+ **FULLY CODED** Premium Website Templates. Instant Access. Just ₹499. Empower your dev workflow now!</p>
 
-            <p class="price-comparison"><s>₹899</s> <span style="color:var(--accent-gold); font-size: 1.5em;">Now ₹499</span></p>
-
-            <div class="countdown-timer-main">
-                ⚠️ Offer ends in: <span id="days">00</span>d <span id="hours">00</span>h <span id="minutes">00</span>m <span id="seconds">00</span>s
+            <div class="trust-badges">
+                <div class="trust-badge"><i class="fas fa-truck"></i> Instant Delivery</div>
+                <div class="trust-badge"><i class="fas fa-infinity"></i> Lifetime Access</div>
+                <div class="trust-badge"><i class="fas fa-shield-alt"></i> 100% Secure</div>
             </div>
 
-            <div class="hero-ctas">
-                <a href="https://rzp.io/rzp/2l0vWlJy" id="buy-now-button-1" target="_blank" class="btn btn-primary">🛒 Grab for ₹499 Now</a>
-                <a href="#video-demo" class="btn btn-secondary scroll-link">🔎 View Demo Images</a>
-                <p class="cta-microcopy">🔒 100% Secure Razorpay Payment | Instant Access After Payment</p>
+            <div class="countdown-timer-box">
+                <div class="countdown-header"><i class="fas fa-exclamation-triangle"></i> Offer Ends In:</div>
+                <div class="countdown-display">
+                    <span id="days">00</span><span class="label">d</span> 
+                    <span id="hours">00</span><span class="label">h</span> 
+                    <span id="minutes">00</span><span class="label">m</span> 
+                    <span id="seconds">00</span><span class="label">s</span>
+                </div>
+                <a href="https://rzp.io/rzp/2l0vWlJy" target="_blank" class="btn btn-primary">⚡ BUY NOW FOR ₹499!</a>
+                <span class="microcopy"><i class="fas fa-lock"></i> 100% Secure Razorpay Payment | <i class="fas fa-bolt"></i> Instant Delivery!</span>
             </div>
-            <p class="cta-microcopy">🕒 Get Your Sites in 10 Seconds | Join 250+ Coders</p>
         </div>
     </section>
 
-    <section class="whats-inside-section" id="whats-inside-showcase">
+    <section class="offer-breakdown-section">
         <div class="container">
-            <h2>What's Inside The Pack?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="currentColor"/></svg>
-                    <h3>10 Professional Website Templates</h3>
-                    <p>Includes Business, Fitness, Resume, E-commerce, Photography, and Developer portfolios.</p>
+            <h2>What's Inside The ReadyFlow Pack?</h2>
+            <div class="offer-breakdown-grid">
+                <div class="offer-card">
+                    <i class="fas fa-file-code"></i>
+                    <h3>10+ Niche-Specific Templates</h3>
+                    <p>Business, portfolio, e-commerce, fitness, and more. Adaptable for any client or personal project.</p>
                 </div>
-                <div class="feature-card">
-                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="currentColor"/></svg>
-                    <h3>2 High-Converting Landing Pages</h3>
-                    <p>Specially designed for events and one-product sales with urgency hooks.</p>
+                <div class="offer-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>2 Bonus Landing Pages</h3>
+                    <p>High-converting layouts for events, products, or lead generation. Drive immediate action!</p>
                 </div>
-                <div class="feature-card">
-                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="currentColor"/></svg>
-                    <h3>Lifetime Download Access</h3>
-                    <p>Access your templates anytime, anywhere, with no expiration.</p>
+                <div class="offer-card">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>Clean HTML, CSS, JS</h3>
+                    <p>Modular, well-commented code. Easy to customize, scale, and understand, even for beginners.</p>
                 </div>
-                <div class="feature-card">
-                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="currentColor"/></svg>
+                <div class="offer-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Fully Responsive Design</h3>
+                    <p>Flawless display on any device: desktop, tablet, or mobile. Pixel-perfect on every screen size.</p>
+                </div>
+                <div class="offer-card">
+                    <i class="fas fa-sync-alt"></i>
+                    <h3>Lifetime Updates & Access</h3>
+                    <p>One-time purchase, endless value. Get all future templates and improvements for free, forever.</p>
+                </div>
+                <div class="offer-card">
+                    <i class="fab fa-whatsapp"></i>
                     <h3>Instant WhatsApp Support</h3>
-                    <p>Get quick help and guidance directly from our team via WhatsApp.</p>
-                </div>
-                <div class="feature-card">
-                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="currentColor"/></svg>
-                    <h3>Future Updates Included</h3>
-                    <p>Receive all new templates and feature enhancements for free, forever.</p>
+                    <p>Direct access to our team for quick help, guidance, and troubleshooting. We've got your back!</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <h2 class="video-heading" id="video-demo">See Them in Action!</h2>
-            <p class="subheadline" style="margin-bottom: 40px; color: var(--text-muted);">Watch a quick demo of how responsive and adaptable these templates are across all devices.</p>
+    <section class="audience-section">
+        <div class="container">
+            <h2>Who Is This Pack Perfect For?</h2>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Freelance Developers</h3>
+                    <p>Deliver projects faster, impress clients, and take on more work with ready-made solutions.</p>
+                </div>
+                <div class="audience-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Coding Students</h3>
+                    <p>Accelerate your learning, build a standout portfolio, and understand professional code structure.</p>
+                </div>
+                <div class="audience-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Small Biz Owners</h3>
+                    <p>Get a professional online presence without the heavy development cost or time investment.</p>
+                </div>
+                <div class="audience-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Agencies & Startups</h3>
+                    <p>Streamline your development process, pitch stunning concepts, and scale your operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="visual-demo-section">
+        <div class="container">
+            <h2>See ReadyFlow in Action!</h2>
+            <p class="hero-subheadline">Dive into the intuitive designs and responsive adaptability of every template. Visual clarity guaranteed.</p>
             <div class="video-wrapper">
                 <video controls autoplay loop muted playsinline>
                     <source src="vids/responsive-demo.mp4" type="video/mp4">
@@ -873,200 +1243,231 @@ src="https://www.facebook.com/tr?id=1250412783207047&ev=PageView&noscript=1"
                 </video>
             </div>
 
-            <h2 class="previews-heading">Preview All 10 Website Designs</h2>
+            <h2>Preview All 10 Website Designs</h2>
             <div class="template-previews-grid">
                 <div class="template-preview-card">
                     <img src="template-previews/business-website.png" alt="Business Website Template">
+                    <div class="preview-overlay">View Preview</div>
                     <h3>Business Website</h3>
                 </div>
                 <div class="template-preview-card">
                     <img src="template-previews/freelancer-portfolio.png" alt="Freelancer Portfolio Template">
+                    <div class="preview-overlay">View Preview</div>
                     <h3>Freelancer Portfolio</h3>
                 </div>
                 <div class="template-preview-card">
                     <img src="template-previews/cafe-small-business.png" alt="Cafe / Small Business Template">
+                    <div class="preview-overlay">View Preview</div>
                     <h3>Cafe / Small Business</h3>
                 </div>
                 <div class="template-preview-card">
                     <img src="template-previews/fitness-gym.png" alt="Fitness Trainer / Gym Template">
+                    <div class="preview-overlay">View Preview</div>
                     <h3>Fitness Trainer / Gym</h3>
                 </div>
                 <div class="template-preview-card">
                     <img src="template-previews/event-webinar.png" alt="Event / Webinar Template">
+                    <div class="preview-overlay">View Preview</div>
                     <h3>Event / Webinar</h3>
                 </div>
                 <div class="template-preview-card">
                     <img src="template-previews/one-product-ecommerce.png" alt="One Product E-commerce Template">
+                    <div class="preview-overlay">View Preview</div>
                     <h3>One Product E-commerce</h3>
                 </div>
                 <div class="template-preview-card">
                     <img src="template-previews/photography-creative.png" alt="Photography / Creative Template">
+                    <div class="preview-overlay">View Preview</div>
                     <h3>Photography / Creative</h3>
                 </div>
                 <div class="template-preview-card">
                     <img src="template-previews/resume-cv.png" alt="Resume / CV Template">
+                    <div class="preview-overlay">View Preview</div>
                     <h3>Resume / CV</h3>
                 </div>
                 <div class="template-preview-card">
                     <img src="template-previews/developer-portfolio.png" alt="Developer Portfolio Template">
+                    <div class="preview-overlay">View Preview</div>
                     <h3>Developer Portfolio</h3>
                 </div>
                 <div class="template-preview-card">
                     <img src="template-previews/ui-ux-portfolio.png" alt="UI/UX Designer Portfolio Template">
+                    <div class="preview-overlay">View Preview</div>
                     <h3>UI/UX Designer Portfolio</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="reviews-section">
+    <section class="before-after-section">
         <div class="container">
-            <h2>Customer Reviews</h2>
-            <div class="star-rating-summary">
-                ⭐ 4.6 out of 5 <span class="text-muted">(based on <span id="total-reviews">53</span> reviews)</span>
-                <div class="star-breakdown-container">
-                    <div class="star-breakdown-bar-row">
-                        <span>5 ⭐</span><div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 70%;"></div></div>
-                    </div>
-                    <div class="star-breakdown-bar-row">
-                        <span>4 ⭐</span><div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 15%;"></div></div>
-                    </div>
-                    <div class="star-breakdown-bar-row">
-                        <span>3 ⭐</span><div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 8%;"></div></div>
-                    </div>
-                    <div class="star-breakdown-bar-row">
-                        <span>2 ⭐</span><div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 5%;"></div></div>
-                    </div>
-                    <div class="star-breakdown-bar-row">
-                        <span>1 ⭐</span><div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 2%;"></div></div>
+            <h2>Your Workflow: Before vs. After ReadyFlow</h2>
+            <div class="before-after-grid">
+                <div class="before-after-column">
+                    <h3 class="before"><i class="fas fa-clock"></i> Before ReadyFlow</h3>
+                    <div class="before-after-item"><i class="fas fa-hourglass-half before-icon"></i> <p><strong>5-7 Days Dev</strong> for a single site from scratch.</p></div>
+                    <div class="before-after-item"><i class="fas fa-exclamation-triangle before-icon"></i> <p><strong>Messy, inconsistent code</strong> leads to bugs & delays.</p></div>
+                    <div class="before-after-item"><i class="fas fa-money-bill-wave before-icon"></i> <p><strong>₹7,000+ per client site</strong> in manual dev hours.</p></div>
+                    <div class="before-after-item"><i class="fas fa-face-frown before-icon"></i> <p><strong>Frustration & missed deadlines</strong> due to repetitive tasks.</p></div>
+                </div>
+                <div class="before-after-column">
+                    <h3 class="after"><i class="fas fa-check-circle"></i> With ReadyFlow</h3>
+                    <div class="before-after-item"><i class="fas fa-tachometer-alt after-icon"></i> <p><strong>< 2 Hours Setup</strong> for a fully functional website.</p></div>
+                    <div class="before-after-item"><i class="fas fa-cogs after-icon"></i> <p><strong>Clean, modular code</strong> ensures easy customization & scalability.</p></div>
+                    <div class="before-after-item"><i class="fas fa-coins after-icon"></i> <p><strong>Just ₹499 One-Time</strong> for 10+ premium sites.</p></div>
+                    <div class="before-after-item"><i class="fas fa-smile after-icon"></i> <p><strong>Efficiency & profitability soar!</strong> Focus on growth.</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="review-cards-container" id="review-cards">
-                <div class="review-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="review-text">"🔥 The designs are clean and modern. Worth every rupee. Built my client website in 3 hours using this pack. Instant support was a huge plus!"</p>
-                    <span class="author">- Rishabh S.</span>
-                </div>
-                <div class="review-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="review-text">"Exactly what I needed for quick projects. The variety of templates is great, and they're easy to customize. Saved me so much time."</p>
-                    <span class="author">- Aditi P.</span>
-                </div>
-                <div class="review-card">
-                    <div class="stars">⭐⭐⭐⭐</div>
-                    <p class="review-text">"Few templates needed image placeholders initially, but the structure is solid. Overall great value for the price. Would buy again."</p>
-                    <span class="author">- Rohan T.</span>
-                </div>
-                <div class="review-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="review-text">"Exceptional quality for ₹499. The fitness template is superb. Lifetime updates make this a no-brainer."</p>
-                    <span class="author">- Preeti K.</span>
-                </div>
-                <div class="review-card">
-                    <div class="stars">⭐⭐⭐</div>
-                    <p class="review-text">"Had payment failure initially but support helped in 5 mins. The templates are good, but I expected more variety in styles."</p>
-                    <span class="author">- Vijay L.</span>
-                </div>
-
-                <div class="review-card hidden">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="review-text">"Bought this for a client project, and it delivered! Very clean code, easy to understand. Client loved the final result."</p>
-                    <span class="author">- Deepak M.</span>
-                </div>
-                <div class="review-card hidden">
-                    <div class="stars">⭐⭐</div>
-                    <p class="review-text">"The designs are okay, but I faced some responsiveness issues on older mobile devices. Had to tweak CSS quite a bit."</p>
-                    <span class="author">- Neha R.</span>
-                </div>
-                <div class="review-card hidden">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="review-text">"Instant access was fantastic. The portfolio templates are exactly what I needed to showcase my work. Highly recommend to fellow coders."</p>
-                    <span class="author">- Sachin J.</span>
-                </div>
-            </div>
-            <button class="read-more-btn" id="read-more-reviews">Load More Reviews (+)</button>
-
-            <div class="review-form">
-                <h3>📢 Leave a Review</h3>
-                <form id="submit-review-form">
-                    <label for="reviewer-name">Your Name:</label>
-                    <input type="text" id="reviewer-name" name="name" required>
-
-                    <label for="star-rating">Your Rating:</label>
-                    <div class="star-rating-form">
-                        <input type="radio" id="star5" name="rating" value="5" required><label for="star5">⭐</label>
-                        <input type="radio" id="star4" name="rating" value="4"><label for="star4">⭐</label>
-                        <input type="radio" id="star3" name="rating" value="3"><label for="star3">⭐</label>
-                        <input type="radio" id="star2" name="rating" value="2"><label for="star2">⭐</label>
-                        <input type="radio" id="star1" name="rating" value="1"><label for="star1">⭐</label>
-                    </div>
-
-                    <label for="review-text">Your Review:</label>
-                    <textarea id="review-text" name="review" rows="5" required></textarea>
-
-                    <button type="submit" class="submit-btn">Submit Review</button>
-                </form>
             </div>
         </div>
     </section>
 
-    <section class="fomo-section">
+    <section class="trust-section">
         <div class="container">
-            <h2 style="color:var(--text-light);">Why This Price Won't Last...</h2>
-            <div class="fomo-explanation">
-                <h3>Due to rising hosting costs & feature upgrades, this pack will go back to ₹899 shortly.</h3>
-                <p>We're committed to providing exceptional value, but to sustain lifetime updates and premium support, this special launch price of ₹499 is strictly time-limited. Don't miss this one-time opportunity to get instant access to 10+ professional website templates for your coding journey!</p>
+            <h2>Trusted by Developers Nationwide</h2>
+            <div class="testimonial-carousel">
+                <div class="testimonial-slide active">
+                    <p>"This pack is an absolute game-changer! Sold 2 websites in 24 hours using these templates – earned ₹10,000 instantly. Best investment!"</p>
+                    <span class="author">- Aryan Singh, Mumbai</span>
+                </div>
+                <div class="testimonial-slide">
+                    <p>"Finally, professional templates that are genuinely easy to customize. Saved me weeks of development time. Highly recommend ReadyFlow!"</p>
+                    <span class="author">- Priyanka Reddy, Bangalore</span>
+                </div>
+                <div class="testimonial-slide">
+                    <p>"As a student, this pack helped me build a stunning portfolio in no time. The code is super clean. Plus, WhatsApp support is amazing!"</p>
+                    <span class="author">- Rohan Gupta, Delhi</span>
+                </div>
+            </div>
+            <p class="verified-badge"><i class="fas fa-check-circle"></i> Verified Purchases: Real Reviews From Real Coders.</p>
+        </div>
+    </section>
+
+    <section class="scarcity-section">
+        <div class="container">
+            <div class="scarcity-progress-bar-container">
+                <p><i class="fas fa-box-open"></i> Only <span id="packs-remaining">97</span> Packs Remaining at this Price!</p>
+                <div class="progress-track">
+                    <div class="progress-fill" style="width: 100%;">
+                        <span class="progress-text"><span id="progress-percentage">100</span>% Left</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="cta-again-section">
+    <section class="how-it-works-section">
         <div class="container">
-            <p>Still thinking? Timer is ticking... Grab it at ₹499 before it’s ₹899 again.</p>
-            <a href="https://rzp.io/rzp/2l0vWlJy" id="buy-now-button-2" target="_blank" class="btn btn-primary">🛒 Unlock Now</a>
-            <p class="cta-microcopy">🕒 Get Your Sites in 10 Seconds | Join 250+ Coders</p>
+            <h2>How It Works: Simple & Instant</h2>
+            <div class="how-it-works-grid">
+                <div class="step-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>1. Click WhatsApp Button</h3>
+                    <p>Connect with our team instantly for direct purchase and support.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-file-archive"></i>
+                    <h3>2. Get ZIP File Instantly</h3>
+                    <p>Receive your complete template pack in a secure ZIP file right after payment.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>3. Start Using or Reselling</h3>
+                    <p>Deploy your new websites, customize for clients, or start selling for profit!</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="community-section">
+    <section class="pricing-reveal-section">
         <div class="container">
-            <h2>👥 Join 250+ Coders Building Cool Projects</h2>
-            <a href="https://chat.whatsapp.com/Doj4o8UAxLD8YFqo3MlWL9" target="_blank" class="btn btn-whatsapp">
-                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M.93 17.6l1.24 4.5c.09.34.42.53.78.49L7 21.6l4.08 2.04c.32.16.7.07 1-.25L23.47 7.21c.25-.26.24-.65-.02-.9L16.89.53c-.27-.26-.69-.22-.92.09L.44 16.8c-.22.25-.19.64.08.8zM2.87 17.53L1.5 19.83l.87-3.21 4.54-2.28L2.87 17.53zM12.63 21.75l-3.32-1.66 8.52-8.91 3.32 1.66-8.52 8.91z"/></svg>
-                Join WhatsApp Group
-            </a>
+            <div class="pricing-box">
+                <p class="pricing-text">Today Only: <s>₹899</s> <span class="current-price">Now Only ₹499!</span> <span class="fire-emoji">🔥</span></p>
+                <a href="https://rzp.io/rzp/2l0vWlJy" target="_blank" class="btn btn-primary">⚡ BUY NOW FOR ₹499!</a>
+                <span class="microcopy"><i class="fas fa-shield-alt"></i> Secure Payment | Instant Download | Limited Stock!</span>
+            </div>
         </div>
     </section>
 
-    <footer class="main-footer">
+    <section class="faq-section">
         <div class="container">
-            <p>Made with ❤️ by <div class="agency-logo">Ready<span>Flow</span></div></p>
-            <small>These templates are licensed for personal use only. Redistribution/resale is strictly prohibited.</small>
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is this pack beginner-friendly? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Our templates come with clean, well-structured HTML, CSS, and JavaScript. They are designed for easy understanding and customization, making them perfect for beginners to learn from and adapt.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Will I get future updates and new templates? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! This is a lifetime access purchase. You will receive all future updates, improvements, and new templates added to the pack at no additional cost. Your ReadyFlow arsenal will continue to grow!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I use these templates for my clients' projects? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can! The templates are licensed for commercial use for your clients. You can customize them and sell them as finished websites. Redistribution or direct resale of the raw templates is prohibited.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I receive the files after purchase? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Immediately after your secure payment via Razorpay, you will receive an instant download link to a ZIP file containing all the templates. You can also contact us on WhatsApp for assistance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ by <div class="agency-logo-footer">Ready<span>Flow</span></div></p>
+            <small>All templates are licensed for personal and commercial client use. Direct redistribution or resale of the template files is strictly prohibited. © 2025 ReadyFlow.</small>
         </div>
     </footer>
 
-    <div class="floating-popup" id="notification-popup">
-        💡 <span id="popup-name"></span> from <span id="popup-location"></span> just bought this! Call: <span id="popup-number"></span>
+    <a href="https://wa.me/[YourWhatsAppNumber]" target="_blank" class="whatsapp-float-btn">
+        <i class="fab fa-whatsapp"></i> Chat Now!
+    </a>
+
+    <div class="live-alert-popup" id="notification-popup">
+        <p><i class="fas fa-fire"></i> <span class="buyer-name"></span> from <span class="location"></span> just purchased! Call: <span id="popup-number"></span></p>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Smooth Scroll ---
-            document.querySelectorAll('.scroll-link').forEach(anchor => {
+            document.querySelectorAll('a.scroll-link').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href').substring(1);
-                    document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
                 });
             });
 
             // --- Countdown Timer ---
             const now = new Date();
-            // Set offer to end 4 hours, 38 minutes, 34 seconds from when the page loads
+            // Offer ends 4 hours, 38 minutes, 34 seconds from now
             const futureDate = new Date(now.getTime() + (4 * 60 * 60 * 1000) + (38 * 60 * 1000) + (34 * 1000));
             const countDownDate = futureDate.getTime();
+
+            const countdownDisplayDays = document.getElementById("days");
+            const countdownDisplayHours = document.getElementById("hours");
+            const countdownDisplayMinutes = document.getElementById("minutes");
+            const countdownDisplaySeconds = document.getElementById("seconds");
 
             const countdownFunction = setInterval(() => {
                 const now = new Date().getTime();
@@ -1079,162 +1480,199 @@ src="https://www.facebook.com/tr?id=1250412783207047&ev=PageView&noscript=1"
 
                 const getTwoDigits = (num) => num < 10 ? "0" + num : num;
 
-                document.getElementById("days").innerHTML = getTwoDigits(days);
-                document.getElementById("hours").innerHTML = getTwoDigits(hours);
-                document.getElementById("minutes").innerHTML = getTwoDigits(minutes);
-                document.getElementById("seconds").innerHTML = getTwoDigits(seconds);
+                // Update display elements
+                countdownDisplayDays.innerText = getTwoDigits(days);
+                countdownDisplayHours.innerText = getTwoDigits(hours);
+                countdownDisplayMinutes.innerText = getTwoDigits(minutes);
+                countdownDisplaySeconds.innerText = getTwoDigits(seconds);
 
                 if (distance < 0) {
                     clearInterval(countdownFunction);
-                    const timerDisplay = document.querySelector(".countdown-timer-main");
-                    if (timerDisplay) timerDisplay.innerHTML = "⚠️ Offer Expired! Price is now ₹899.";
-                    document.querySelectorAll('.btn-primary').forEach(button => {
+                    const countdownBox = document.querySelector(".countdown-timer-box");
+                    if (countdownBox) {
+                        countdownBox.innerHTML = `
+                            <div class="countdown-header" style="color: var(--accent-orange);"><i class="fas fa-times-circle"></i> Offer Expired!</div>
+                            <p style="font-size: 1.2rem; color: var(--text-primary); margin-bottom: 15px;">The special price has ended.</p>
+                            <span class="price-comparison" style="font-size: 1.8rem; margin-bottom: 20px;">Now ₹899</span>
+                            <a href="#" class="btn btn-primary disabled" style="background-color: var(--text-secondary); cursor: not-allowed;">Offer Ended</a>
+                        `;
+                    }
+                    // Disable other primary buttons on the page that link to purchase
+                    document.querySelectorAll('a.btn-primary').forEach(button => {
                         button.classList.add('disabled');
                         button.setAttribute('disabled', 'true');
                         button.innerText = 'Offer Ended';
+                        button.style.backgroundColor = 'var(--text-secondary)'; /* Grey out */
+                        button.style.cursor = 'not-allowed';
                     });
                 }
             }, 1000);
 
-            // --- Reviews Expandable ---
-            const readMoreBtn = document.getElementById('read-more-reviews');
-            const hiddenReviews = document.querySelectorAll('.review-card.hidden');
-            let reviewsShown = false;
+            // --- Testimonial Carousel ---
+            const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+            let currentTestimonial = 0;
 
-            if (readMoreBtn && hiddenReviews.length > 0) {
-                readMoreBtn.addEventListener('click', () => {
-                    hiddenReviews.forEach(card => {
-                        card.classList.remove('hidden');
+            function showTestimonial(index) {
+                testimonialSlides.forEach((slide, i) => {
+                    if (i === index) {
+                        slide.classList.add('active');
+                    } else {
+                        slide.classList.remove('active');
+                    }
+                });
+            }
+
+            function nextTestimonial() {
+                currentTestimonial = (currentTestimonial + 1) % testimonialSlides.length;
+                showTestimonial(currentTestimonial);
+            }
+
+            if (testimonialSlides.length > 0) {
+                showTestimonial(0); // Show the first testimonial initially
+                setInterval(nextTestimonial, 7000); // Change testimonial every 7 seconds
+            }
+
+            // --- FAQ Accordion ---
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const parentItem = question.closest('.faq-item');
+                    const answer = parentItem.querySelector('.faq-answer');
+                    const isActive = parentItem.classList.contains('active');
+
+                    // Close all other open FAQs
+                    document.querySelectorAll('.faq-item.active').forEach(item => {
+                        if (item !== parentItem) {
+                            item.classList.remove('active');
+                            item.querySelector('.faq-answer').style.maxHeight = "0";
+                            item.querySelector('.faq-answer').style.paddingTop = "0";
+                            item.querySelector('.faq-answer').style.paddingBottom = "0";
+                        }
                     });
-                    readMoreBtn.style.display = 'none';
-                    reviewsShown = true;
+
+                    // Toggle current FAQ
+                    if (isActive) {
+                        parentItem.classList.remove('active');
+                        answer.style.maxHeight = "0";
+                        answer.style.paddingTop = "0";
+                        answer.style.paddingBottom = "0";
+                    } else {
+                        parentItem.classList.add('active');
+                        answer.style.maxHeight = answer.scrollHeight + "px"; // Expand to content height
+                        answer.style.paddingTop = "15px";
+                        answer.style.paddingBottom = "20px";
+                    }
                 });
-            } else if (readMoreBtn) {
-                readMoreBtn.style.display = 'none';
-            }
+            });
 
-            // --- Leave a Review Form (UI only) ---
-            const submitReviewForm = document.getElementById('submit-review-form');
-            if (submitReviewForm) {
-                submitReviewForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const name = document.getElementById('reviewer-name').value;
-                    const rating = document.querySelector('input[name="rating"]:checked') ? document.querySelector('input[name="rating"]:checked').value : 'N/A';
-                    const review = document.getElementById('review-text').value;
 
-                    alert(`Review Submitted (UI Only):\nName: ${name}\nRating: ${rating} Stars\nReview: "${review}"\n\n(In a real site, this would be sent to a database.)`);
-                    this.reset();
-                });
-            }
+            // --- Live Alert Popup & Dynamic Scarcity Counts ---
+            const liveAlertPopup = document.getElementById('notification-popup');
+            const buyersCountTickerSpan = document.getElementById('buyers-count');
+            const mainBuyersCountH1Span = document.querySelector('.hero-headline span'); // Corrected selector for H1 span
+            const packsRemainingSpan = document.getElementById('packs-remaining');
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercentageSpan = document.getElementById('progress-percentage');
 
-            // --- Floating Popup & Dynamic Buyer/Stock Counts ---
-            const popup = document.getElementById('notification-popup');
-            const buyersCountSpan = document.getElementById('buyers-count');
-            
-            let currentBuyersCount = parseInt(buyersCountSpan.innerText);
+            let currentBuyersCountTicker = parseInt(buyersCountTickerSpan.innerText);
+            let currentMainBuyersCountH1 = parseInt(mainBuyersCountH1Span.innerText);
+            let currentPacksRemaining = parseInt(packsRemainingSpan.innerText);
+            const initialTotalPacks = 97; // Keep this consistent with HTML initial value
 
             const popupNames = [
-                "Aryan", "Divya", "Rohan", "Priya", "Amit", "Neha", "Raj", "Pooja", "Vikas", "Surbhi",
-                "Arjun", "Shruti", "Mihir", "Ketaki", "Samir", "Anjali", "Vivek", "Priyanka", "Omkar", "Ishani",
-                "Karthik", "Aishwarya", "Suresh", "Lakshmi", "Vijay", "Meena", "Anand", "Geetha", "Prakash", "Shanthi",
-                "Sourav", "Antara", "Rajesh", "Rina", "Prosenjit", "Soma", "Alok", "Debjani", "Subhash", "Mamata",
-                "Akash", "Bharti", "Gopal", "Rekha", "Vinod", "Seema", "Ashish", "Kusum", "Jitendra", "Rani",
-                "Harpreet", "Jaswinder", "Gurminder", "Amrit", "Baljeet", "Navneet", "Ranjit", "Sukhwinder", "Manjeet", "Kuldeep",
-                "Fatima", "Ali", "Zoya", "Imran", "Sana", "Khalid", "Ayesha", "Javed", "Meher", "Rizwan",
-                "Siddharth", "Gauri", "Krishna", "Radhika", "Vivekanand", "Saraswati", "Ram", "Sita", "Shivani", "Ganesh"
+                "Aditya", "Priya", "Rohan", "Sneha", "Vikram", "Divya", "Ankit", "Kavita", "Deepak", "Aditi",
+                "Rishabh", "Preeti", "Mohan", "Shweta", "Sachin", "Neha", "Vijay", "Jyoti", "Sanjay", "Meena",
+                "Alok", "Pooja", "Gaurav", "Swati", "Nikhil", "Komal", "Manish", "Sonam", "Ravi", "Bharti",
+                "Amit", "Smita", "Tarun", "Simran", "Chetan", "Mona", "Pankaj", "Seema", "Vivek", "Kajal",
+                 "Aryan", "Nandini", "Kunal", "Ishita", "Rajeev", "Disha", "Girish", "Saloni", "Ankur", "Mehul"
             ];
 
             const popupLocations = [
-                "Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Chennai", "Kolkata", "Pune", "Ahmedabad", "Surat", "Jaipur",
+                "Pune", "Delhi", "Bengaluru", "Hyderabad", "Chennai", "Kolkata", "Mumbai", "Ahmedabad", "Jaipur", "Surat",
                 "Lucknow", "Chandigarh", "Bhopal", "Indore", "Thiruvananthapuram", "Kochi", "Coimbatore", "Visakhapatnam", "Nagpur", "Nashik",
-                "Varanasi", "Agra", "Amritsar", "Guwahati", "Bhubaneswar", "Patna", "Ranchi", "Shillong", "Mysore", "Madurai",
-                "Vijayawala", "Goa", "Vadodara", "Rajkot", "Jabalpur", "Gwalior", "Ujjain", "Sagar", "Rewa", "Durg",
-                "Dehradun", "Shimla", "Haridwar", "Puri", "Darjeeling", "Kohima", "Imphal", "Agartala", "Panaji", "Puducherry"
+                "Varanasi", "Amritsar", "Guwahati", "Bhubaneswar", "Patna", "Ranchi", "Shillong", "Mysore", "Madurai", "Vadodara",
+                "Indore", "Raipur", "Aurangabad", "Coimbatore", "Dehradun", "Lucknow", "Goa", "Puducherry", "Shimla", "Mangalore"
             ];
 
             function generateIndianPhoneNumber() {
-                let number = "";
+                let num = "";
                 // Generate a random 10-digit number. Start with 6, 7, 8, or 9 for Indian mobile.
                 const firstDigit = Math.floor(Math.random() * 4) + 6; // 6, 7, 8, 9
-                number += firstDigit;
+                num += firstDigit;
                 for (let i = 0; i < 9; i++) {
-                    number += Math.floor(Math.random() * 10);
+                    num += Math.floor(Math.random() * 10);
                 }
-
-                // Convert to array to modify
-                let hiddenNumberArray = number.split('');
-                let positionsToHide = new Set(); // Use a Set to ensure unique positions
-
-                // Select 4 random unique positions to hide
+                let hiddenNum = num.split('');
+                const positionsToHide = new Set();
                 while (positionsToHide.size < 4) {
-                    let randomPos = Math.floor(Math.random() * 10);
-                    positionsToHide.add(randomPos);
+                    positionsToHide.add(Math.floor(Math.random() * 10));
                 }
-
-                // Replace digits at selected positions with '*'
-                positionsToHide.forEach(pos => {
-                    hiddenNumberArray[pos] = '*';
-                });
-
-                return hiddenNumberArray.join('');
+                positionsToHide.forEach(pos => hiddenNum[pos] = '*');
+                return hiddenNum.join('');
             }
 
-
-            function showRandomPopup() {
-                if (popup) {
-                    // Increment buyer count in the ticker
-                    currentBuyersCount++;
-                    buyersCountSpan.innerText = currentBuyersCount;
-
-                    // The hosting guide and pieces left counts are now static in the ticker-strip content.
-                    // This version keeps them static.
-
-                    const randomName = popupNames[Math.floor(Math.random() * popupNames.length)];
-                    const randomLocation = popupLocations[Math.floor(Math.random() * popupLocations.length)];
-                    const phoneNumber = generateIndianPhoneNumber();
-
-                    document.getElementById('popup-name').innerText = randomName;
-                    document.getElementById('popup-location').innerText = randomLocation;
-                    document.getElementById('popup-number').innerText = phoneNumber;
-
-                    popup.classList.remove('hide');
-                    popup.style.display = 'block';
-
-                    setTimeout(() => {
-                        popup.classList.add('hide');
-                        setTimeout(() => {
-                            popup.style.display = 'none';
-                        }, 500); // Wait for hide animation to complete
-                    }, 5000); // Show for 5 seconds
-                }
+            function updateScarcityDisplay() {
+                const percentage = Math.max(0, (currentPacksRemaining / initialTotalPacks) * 100);
+                progressFill.style.width = percentage + '%';
+                progressPercentageSpan.innerText = Math.round(percentage) + '% Left';
+                packsRemainingSpan.innerText = currentPacksRemaining; // Update the number text
             }
 
-            // Start showing popups after a delay, then repeat every 20-40 seconds
-            setTimeout(() => {
-                showRandomPopup();
-                setInterval(showRandomPopup, Math.floor(Math.random() * (40000 - 20000 + 1)) + 20000); // Random interval between 20-40 seconds
-            }, 5000); // Initial delay of 5 seconds
+            function showRandomLiveAlert() {
+                if (currentPacksRemaining <= 0) {
+                    // Stop showing popups if stock is zero
+                    clearInterval(liveAlertInterval);
+                    packsRemainingSpan.innerText = '0';
+                    progressFill.style.width = '0%';
+                    progressPercentageSpan.innerText = '0% Left';
+                    // Optional: You could show a "Sold Out" message here
+                    return;
+                }
+
+                currentBuyersCountTicker++;
+                buyersCountTickerSpan.innerText = currentBuyersCountTicker;
+                
+                // Increment main H1 counter if it's less than a reasonable upper limit
+                if (currentMainBuyersCountH1 < 100000) { // Example upper limit
+                   currentMainBuyersCountH1++;
+                   mainBuyersCountH1Span.innerText = currentMainBuyersCountH1;
+                }
+
+
+                // Decrement packs remaining
+                currentPacksRemaining = Math.max(0, currentPacksRemaining - 1);
+                updateScarcityDisplay();
+
+                const randomName = popupNames[Math.floor(Math.random() * popupNames.length)];
+                const randomLocation = popupLocations[Math.floor(Math.random() * popupLocations.length)];
+                const phoneNumber = generateIndianPhoneNumber();
+
+                liveAlertPopup.querySelector('.buyer-name').innerText = randomName;
+                liveAlertPopup.querySelector('.location').innerText = randomLocation;
+                liveAlertPopup.querySelector('#popup-number').innerText = phoneNumber;
+
+                liveAlertPopup.classList.remove('hide');
+                liveAlertPopup.style.display = 'block';
+
+                const popupDisplayDuration = 5000; // Popup visible for 5 seconds
+                setTimeout(() => {
+                    liveAlertPopup.classList.add('hide');
+                }, popupDisplayDuration);
+            }
+
+            updateScarcityDisplay(); // Initialize progress bar
+            const liveAlertInterval = setInterval(showRandomLiveAlert, Math.floor(Math.random() * (30000 - 15000 + 1)) + 15000); // Random interval: 15-30 seconds
+            // Initial alert after a short delay
+            setTimeout(showRandomLiveAlert, 3000); 
+
+            // --- Exit Intent Pop-Up (Placeholder for advanced JS) ---
+            // This is complex and requires more advanced event listeners and state management
+            // Example: document.addEventListener('mouseleave', (e) => { if (e.clientY < 10 && !sessionStorage.getItem('exitIntentShown')) { /* show popup */ }});
+
+            // --- Lottie Animations (Placeholder for future integration) ---
+            // If you decide to add Lottie, you'd integrate the player here for specific elements.
+            // Example: Lottie.loadAnimation({ container: document.getElementById('my-lottie-icon'), renderer: 'svg', loop: true, autoplay: true, path: 'my-animation.json' });
         });
     </script>
-<script>
-// --- Meta Pixel Event Tracking ---
-document.addEventListener('DOMContentLoaded', function() {
-  // Track InitiateCheckout for the first button
-  var buyButton1 = document.getElementById('buy-now-button-1');
-  if (buyButton1) {
-    buyButton1.addEventListener('click', function() {
-      fbq('track', 'InitiateCheckout');
-    });
-  }
-
-  // Track InitiateCheckout for the second button
-  var buyButton2 = document.getElementById('buy-now-button-2');
-  if (buyButton2) {
-    buyButton2.addEventListener('click', function() {
-      fbq('track', 'InitiateCheckout');
-    });
-  }
-});
-</script>
 </body>
 </html>
