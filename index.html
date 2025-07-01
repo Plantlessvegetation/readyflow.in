@@ -293,8 +293,8 @@
             color: #60A5FA; /* Blue for security */
         }
 
-        /* --- Countdown Timer --- */
-        .countdown-timer-box {
+        /* --- CTA Box (formerly countdown) --- */
+        .cta-box {
             background-color: var(--bg-secondary);
             padding: 30px;
             border-radius: 12px;
@@ -310,54 +310,6 @@
             margin-right: auto;
         }
 
-        .countdown-header {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--accent-orange); /* Alert color for "Offer ends in" */
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px; /* Adjusted margin */
-        }
-        .countdown-header i {
-            font-size: 1.8rem;
-        }
-
-        .countdown-display {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.8rem; /* Large numbers */
-            font-weight: 700;
-            color: var(--text-light); /* Numbers text color: WHITE */
-            display: flex; /* Use flexbox to align items in a row */
-            align-items: center; /* Vertically align items in the center */
-            justify-content: center; /* Horizontally center items */
-            white-space: nowrap; /* Keep on one line */
-            overflow: hidden; /* Hide overflow if it shrinks too much */
-            width: 100%; /* Ensure flex container uses available width */
-        }
-        /* Style for individual number spans - NO BACKGROUND BOXES, minimal padding/margin */
-        .countdown-display span {
-            padding: 0; /* No padding for individual number spans */
-            border-radius: 0; /* No border-radius for individual boxes */
-            margin: 0; /* No margin between number "boxes" */
-            min-width: auto; /* Let content dictate width */
-            display: inline-block; /* Essential for sizing */
-            text-align: center; /* Center numbers within their space */
-            background-color: transparent; /* Explicitly remove background color */
-        }
-        .countdown-display .label {
-            font-size: 1rem; /* Smaller labels */
-            font-weight: 400;
-            color: var(--text-muted); /* Labels color */
-            margin-left: 5px; /* Space between number and label */
-            margin-right: 15px; /* Space after labels */
-            text-shadow: none; /* Remove text shadow from labels */
-            background-color: transparent; /* Explicitly remove background color */
-            padding: 0; /* Remove padding for labels */
-        }
-        .countdown-display .label:last-child {
-            margin-right: 0;
-        }
 
         /* --- Core Offer Breakdown --- */
         .offer-breakdown-grid {
@@ -965,24 +917,9 @@
             .trust-badge {
                 padding: 10px 15px; /* Reduced padding */
             }
-            .countdown-timer-box {
+            .cta-box {
                 padding: 20px; /* Reduced padding */
                 gap: 15px;
-            }
-            .countdown-header {
-                font-size: 1.3rem;
-            }
-            .countdown-display {
-                font-size: 2rem; /* Shrunk countdown numbers for tablets */
-            }
-            .countdown-display span {
-                padding: 0 4px; /* Reduced padding */
-                min-width: unset; /* Allow numbers to naturally fit */
-            }
-            .countdown-display .label {
-                font-size: 0.85rem; /* Smaller labels */
-                margin-left: 2px; /* Adjusted margin for mobile */
-                margin-right: 8px; /* Tighter margin */
             }
             .btn {
                 padding: 15px 30px;
@@ -1078,30 +1015,9 @@
                 padding: 8px 12px;
                 font-size: 0.85rem;
             }
-            .countdown-timer-box {
+            .cta-box {
                 padding: 15px;
                 gap: 10px;
-            }
-            .countdown-header {
-                font-size: 1rem;
-                gap: 5px;
-            }
-            .countdown-header i {
-                font-size: 1.1rem;
-            }
-            .countdown-display {
-                font-size: 1.5rem; /* Further adjustment for very small screens */
-                gap: 0px; /* Minimal gap */
-            }
-            .countdown-display span {
-                padding: 4px 6px; /* Minimal padding */
-                min-width: 35px;
-                margin: 0 1px; /* Minimal margin between segments */
-            }
-            .countdown-display .label {
-                font-size: 0.7rem;
-                margin-left: 1px; /* Very minimal space */
-                margin-right: 4px;
             }
             .btn {
                 padding: 10px 18px;
@@ -1156,15 +1072,8 @@
                 <div class="trust-badge"><i class="fas fa-shield-alt"></i> 100% Secure</div>
             </div>
 
-            <div class="countdown-timer-box">
-                <div class="countdown-header"><i class="fas fa-exclamation-triangle"></i> Offer Ends In:</div>
-                <div class="countdown-display">
-                    <span id="days">00</span><span class="label">d</span> 
-                    <span id="hours">00</span><span class="label">h</span> 
-                    <span id="minutes">00</span><span class="label">m</span> 
-                    <span id="seconds">00</span><span class="label">s</span>
-                </div>
-                <a href="https://rzp.io/rzp/2l0vWlJy" target="_blank" class="btn btn-primary">⚡ BUY NOW FOR ₹499!</a>
+            <div class="cta-box">
+                <a href="https://rzp.io/rzp/2l0vWlJy" target="_blank" class="btn btn-primary">Start Building Faster - Rs 499</a>
                 <span class="microcopy"><i class="fas fa-lock"></i> 100% Secure Razorpay Payment | <i class="fas fa-bolt"></i> Instant Delivery!</span>
             </div>
         </div>
@@ -1383,16 +1292,6 @@
         </div>
     </section>
 
-    <section class="pricing-reveal-section">
-        <div class="container">
-            <div class="pricing-box">
-                <p class="pricing-text">Today Only: <s>₹899</s> <span class="current-price">Now Only ₹499!</span> <span class="fire-emoji">🔥</span></p>
-                <a href="https://rzp.io/rzp/2l0vWlJy" target="_blank" class="btn btn-primary">⚡ BUY NOW FOR ₹499!</a>
-                <span class="microcopy"><i class="fas fa-shield-alt"></i> Secure Payment | Instant Download | Limited Stock!</span>
-            </div>
-        </div>
-    </section>
-
     <section class="faq-section">
         <div class="container">
             <h2>Frequently Asked Questions</h2>
@@ -1461,56 +1360,6 @@
                     }
                 });
             });
-
-            // --- Countdown Timer ---
-            const now = new Date();
-            // Offer ends 4 hours, 38 minutes, 34 seconds from when the page loads
-            const futureDate = new Date(now.getTime() + (4 * 60 * 60 * 1000) + (38 * 60 * 1000) + (34 * 1000));
-            const countDownDate = futureDate.getTime();
-
-            const countdownDisplayDays = document.getElementById("days");
-            const countdownDisplayHours = document.getElementById("hours");
-            const countdownDisplayMinutes = document.getElementById("minutes");
-            const countdownDisplaySeconds = document.getElementById("seconds");
-
-            const countdownFunction = setInterval(() => {
-                const now = new Date().getTime();
-                const distance = countDownDate - now;
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                const getTwoDigits = (num) => num < 10 ? "0" + num : num;
-
-                // Update display elements
-                countdownDisplayDays.innerText = getTwoDigits(days);
-                countdownDisplayHours.innerText = getTwoDigits(hours);
-                countdownDisplayMinutes.innerText = getTwoDigits(minutes);
-                countdownDisplaySeconds.innerText = getTwoDigits(seconds);
-
-                if (distance < 0) {
-                    clearInterval(countdownFunction);
-                    const countdownBox = document.querySelector(".countdown-timer-box");
-                    if (countdownBox) {
-                        countdownBox.innerHTML = `
-                            <div class="countdown-header" style="color: var(--accent-orange);"><i class="fas fa-times-circle"></i> Offer Expired!</div>
-                            <p style="font-size: 1.2rem; color: var(--text-primary); margin-bottom: 15px;">The special price has ended.</p>
-                            <span class="price-comparison" style="font-size: 1.8rem; margin-bottom: 20px;">Now ₹899</span>
-                            <a href="#" class="btn btn-primary disabled" style="background-color: var(--text-secondary); cursor: not-allowed;">Offer Ended</a>
-                        `;
-                    }
-                    // Disable other primary buttons on the page that link to purchase
-                    document.querySelectorAll('a.btn-primary').forEach(button => {
-                        button.classList.add('disabled');
-                        button.setAttribute('disabled', 'true');
-                        button.innerText = 'Offer Ended';
-                        button.style.backgroundColor = 'var(--text-secondary)'; /* Grey out */
-                        button.style.cursor = 'not-allowed';
-                    });
-                }
-            }, 1000);
 
             // --- Testimonial Carousel ---
             const testimonialSlides = document.querySelectorAll('.testimonial-slide');
@@ -1635,7 +1484,7 @@
 
                 currentBuyersCountTicker++;
                 buyersCountTickerSpan.innerText = currentBuyersCountTicker;
-                
+               
                 // Increment main H1 counter if it's less than a reasonable upper limit
                 if (currentMainBuyersCountH1 < 100000) { // Example upper limit
                    currentMainBuyersCountH1++;
