@@ -1,0 +1,177 @@
+/* --- LEGAL & POLICY PAGE SPECIFIC STYLES --- */
+
+.legal-policy-section {
+    padding: 60px 25px; /* Adjust padding for content sections */
+    background-color: var(--bg-primary); /* Ensures a consistent background */
+    line-height: 1.7; /* Improve readability for long text blocks */
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.legal-policy-section .container {
+    max-width: 800px; /* Constrain width for better readability of policy text */
+    margin: 0 auto;
+    text-align: left; /* Ensure text aligns left, not centered */
+}
+
+.legal-policy-section p {
+    margin-bottom: 15px; /* Spacing for paragraphs */
+    color: var(--text-muted); /* Consistent text color */
+}
+
+.legal-policy-section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: var(--accent-color); /* Highlight section titles with accent color */
+    margin-top: 40px; /* Spacing above main headings */
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-subtle); /* Subtle separator */
+    padding-bottom: 10px;
+}
+
+.legal-policy-section h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-top: 30px; /* Spacing above subheadings */
+    margin-bottom: 15px;
+}
+
+.legal-policy-section ul,
+.legal-policy-section ol {
+    list-style-position: outside; /* Ensure bullets/numbers align properly */
+    margin-left: 25px; /* Indent lists */
+    margin-bottom: 20px;
+}
+
+.legal-policy-section ul li,
+.legal-policy-section ol li {
+    margin-bottom: 10px; /* Spacing for list items */
+    color: var(--text-muted); /* Consistent text color for list items */
+}
+
+.legal-policy-section strong {
+    color: var(--text-primary); /* Ensure strong text stands out */
+}
+
+.legal-policy-section a {
+    color: var(--accent-color); /* Link color consistent with theme */
+    text-decoration: underline;
+}
+
+.legal-policy-section a:hover {
+    color: var(--text-primary);
+}
+
+/* Specific styles for contact page within legal-policy-section structure if needed */
+.contact-section .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.contact-info-block,
+.contact-form-block {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.contact-info-block h3,
+.contact-form-block h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+}
+
+.contact-info-block p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted);
+}
+.contact-info-block p i {
+    color: var(--accent-color);
+    font-size: 1.1rem;
+}
+
+.contact-info-block .social-links {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+}
+.contact-info-block .social-links a {
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+.contact-info-block .social-links a:hover {
+    color: var(--accent-color);
+}
+
+.contact-form-block .input-group {
+    margin-bottom: 20px;
+}
+.contact-form-block label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: block;
+}
+.contact-form-block input[type="text"],
+.contact-form-block input[type="email"],
+.contact-form-block textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: vertical;
+}
+.contact-form-block input:focus,
+.contact-form-block textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+}
+body.light-theme .contact-form-block input:focus,
+body.light-theme .contact-form-block textarea:focus {
+     box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+
+/* Responsive adjustments for legal pages */
+@media (max-width: 768px) {
+    .legal-policy-section {
+        padding: 40px 15px;
+    }
+    .legal-policy-section h2 {
+        font-size: 1.8rem;
+        margin-top: 30px;
+    }
+    .legal-policy-section h3 {
+        font-size: 1.2rem;
+        margin-top: 25px;
+    }
+    .legal-policy-section ul,
+    .legal-policy-section ol {
+        margin-left: 20px;
+    }
+    .legal-policy-section p,
+    .legal-policy-section ul li,
+    .legal-policy-section ol li {
+        font-size: 0.9rem;
+    }
+    .contact-section .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
