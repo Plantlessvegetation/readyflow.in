@@ -1,0 +1,208 @@
+/* --- PRICING PAGE STYLES --- */
+.pricing-section {
+    padding: 80px 25px;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: stretch; /* Makes cards equal height */
+    max-width: 1140px;
+    margin: 50px auto 0 auto;
+}
+
+.pricing-card {
+    background-color: var(--bg-secondary);
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid var(--border-subtle);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- NEW HOVER EFFECT --- */
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.pricing-card.featured {
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+    box-shadow: 0 10px 40px rgba(124, 58, 237, 0.2);
+}
+body.dark-theme .pricing-card.featured {
+    box-shadow: 0 10px 40px rgba(39, 174, 96, 0.2);
+}
+
+/* Enhanced hover for the featured card */
+.pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+}
+
+
+.featured-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-color);
+    color: #FFFFFF;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.pricing-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.pricing-price {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px;
+}
+
+.pricing-desc {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    flex-grow: 1; /* Pushes the button to the bottom */
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.features-list li {
+    margin-bottom: 15px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+}
+
+.features-list i {
+    font-size: 1.1rem;
+    margin-right: 15px;
+    width: 20px;
+    color: var(--accent-color);
+}
+
+.features-list .feature-disabled {
+    color: var(--text-muted) !important;
+    opacity: 0.6;
+}
+.features-list .feature-disabled i {
+    color: #E53E3E !important;
+}
+
+.pricing-card .btn {
+    width: 100%;
+}
+
+/* --- NEW: Winning Products CTA Section Styles --- */
+.winning-products-cta {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 40px; /* Generous padding */
+    text-align: center;
+    max-width: 900px; /* Limit width for better readability */
+    margin: 60px auto; /* Top margin for spacing, auto for centering */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    transition: all 0.3s ease;
+}
+
+.winning-products-cta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+.winning-products-cta .impact-subheadline {
+    font-size: 1.5rem; /* Larger font for main call to action */
+    color: var(--text-primary);
+    margin-bottom: 25px; /* Space below headline */
+    font-weight: 600;
+}
+
+.winning-products-cta .btn-large {
+    padding: 18px 35px; /* Larger padding for a more prominent button */
+    font-size: 1.2rem; /* Larger font size for button text */
+    font-weight: 700;
+    border-radius: 12px; /* Slightly more rounded corners for the button */
+    display: inline-flex; /* Allows icon and text to align */
+    align-items: center;
+    gap: 15px; /* Space between icon and text */
+    margin-bottom: 15px; /* Space below button */
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3); /* Button shadow */
+}
+
+body.light-theme .winning-products-cta .btn-large {
+    box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3); /* Light theme button shadow */
+}
+
+.winning-products-cta .btn-large i {
+    font-size: 1.5rem; /* Larger icon */
+}
+
+.winning-products-cta .small-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 600px; /* Constrain width for readability */
+    margin: 0 auto; /* Center the small text */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .pricing-section {
+        padding: 60px 15px;
+    }
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px; /* Constrain width on smaller screens */
+    }
+    .pricing-card {
+        padding: 30px;
+    }
+    .pricing-card h3 {
+        font-size: 1.6rem;
+    }
+    .pricing-price {
+        font-size: 3rem;
+    }
+
+    .winning-products-cta {
+        padding: 30px 20px; /* Adjust padding for smaller screens */
+        margin: 40px auto; /* Adjust margin */
+    }
+    .winning-products-cta .impact-subheadline {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+    .winning-products-cta .btn-large {
+        padding: 15px 25px;
+        font-size: 1.1rem;
+        width: auto; /* Allow button to size to content */
+        max-width: 100%; /* Prevent overflow */
+    }
+    .winning-products-cta .btn-large i {
+        font-size: 1.3rem;
+    }
+    .winning-products-cta .small-text {
+        font-size: 0.85rem;
+    }
+}

@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom AI Website Builder – Generate Your Site in Minutes | ReadyFlow</title>
+    <meta name="description" content="Get a fully custom website built by AI based on your needs. Choose effects, colors & animations. Instantly deployed with pricing calculator.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/custom-dev.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;700&family=Oswald:wght@400;700&family=Roboto:wght@400;700&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;700&family=Raleway:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="/index.html" class="home-icon-btn"><i class="fas fa-home"></i></a>
+                <a href="/index.html" class="header-logo">Ready<span>Flow</span></a>
+            </div>
+            <nav class="main-nav">
+                <a href="/pages/custom-development.html" class="active">Custom Development</a>
+                <a href="/pages/website-store.html">Template Store</a>
+                <a href="/pages/shopify-services.html">Shopify Services</a>
+            </nav>
+            <div class="header-right">
+                <button class="theme-switcher" id="theme-switcher" title="Toggle Theme">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon" style="display: none;"></i>
+                </button>
+                <a href="/cart/cart.html" class="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-item-count">0</span>
+                </a>
+                <button class="account-toggle" id="account-toggle" title="Account"><i class="fas fa-user-circle"></i></button>
+                <button class="mobile-nav-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-hero">
+            <div class="container">
+                <h1 class="section-title" style="margin-bottom: 10px;">Your Custom Web <span class="highlight-green">Solution</span></h1>
+                <p class="impact-subheadline" style="margin-top: -20px;">Let's build your dream website, step by step.</p>
+            </div>
+        </div>
+
+        <div class="selection-layout" id="main-selection">
+            <div class="selection-card" id="develop-website-card">
+                <div class="card-icon"><i class="fas fa-drafting-compass"></i></div>
+                <h2>Develop a New Website</h2>
+                <p>Get a unique, AI-assisted website built to your specifications.</p>
+                <button class="btn btn-primary select-option-btn" data-option="develop">Start Building</button>
+            </div>
+            <div class="selection-card" id="edit-code-card">
+                <div class="card-icon"><i class="fas fa-pencil-ruler"></i></div>
+                <h2>Edit Existing Code</h2>
+                <p>Need a quick update? Upload your code and select the edits you need.</p>
+                <button class="btn btn-secondary select-option-btn" data-option="edit">Start Editing</button>
+            </div>
+        </div>
+
+        <div class="custom-builder-layout" id="custom-builder-section" style="display: none;">
+            <div class="builder-sidebar">
+                <button class="back-to-selection-btn"><i class="fas fa-arrow-left"></i> Back to Options</button>
+                <h3>Build Your Website</h3>
+                <div class="progress-indicator">
+                    <div class="progress-step" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-title">Contact Info</span>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-title">Select Plan</span>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-title">Website Type</span>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <span class="step-number">4</span>
+                        <span class="step-title">Colors</span>
+                    </div>
+                    <div class="progress-step" data-step="5">
+                        <span class="step-number">5</span>
+                        <span class="step-title">Buttons</span>
+                    </div>
+                    <div class="progress-step" data-step="6">
+                        <span class="step-number">6</span>
+                        <span class="step-title">Sections</span>
+                    </div>
+                    <div class="progress-step" data-step="7">
+                        <span class="step-number">7</span>
+                        <span class="step-title">Images</span>
+                    </div>
+                    <div class="progress-step" data-step="8">
+                        <span class="step-number">8</span>
+                        <span class="step-title">Fonts</span>
+                    </div>
+                    <div class="progress-step" data-step="9">
+                        <span class="step-number">9</span>
+                        <span class="step-title">Review & Pay</span>
+                    </div>
+                </div>
+                <aside class="price-estimate-box">
+                    <h4>Estimated Price</h4>
+                    <div class="estimated-price-value" id="custom-estimated-price">₹0</div>
+                    <div class="price-bar"><div class="price-bar-fill" id="custom-price-bar-fill"></div></div>
+                    <p>This is an estimate. Final quote confirmed after review.</p>
+                </aside>
+            </div>
+
+            <div class="builder-content">
+                <div class="form-step" data-step="1">
+                    <h3>What's your Business Info?</h3>
+                    <p class="section-description">This helps us understand your needs and reach out to you.</p>
+                    <div class="input-group">
+                        <label for="business-name">Business Name</label>
+                        <input type="text" id="business-name" placeholder="E.g., ReadyFlow Solutions" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="business-type">What kind of business do you run?</label>
+                        <input type="text" id="business-type" placeholder="E.g., Cafe, School, Tuition, E-commerce Store" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="contact-number">Contact Number (with Country Code)</label>
+                        <input type="tel" id="contact-number" placeholder="E.g., +918602555840" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="contact-email">Email Address</label>
+                        <input type="email" id="contact-email" placeholder="E.g., info@readyflow.in" required>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-primary next-step-btn" data-next-step="2">Next Step <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="2">
+                    <h3>Choose Your Development Plan</h3>
+                    <p class="section-description">Select the plan that best suits your project and budget. You can always add extra features later!</p>
+
+                    <div class="plan-selection-grid">
+                        <div class="plan-card" data-plan="basic">
+                            <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                            <h4>Launch Plan (Basic)</h4>
+                            <p class="plan-price">₹499</p>
+                            <ul class="plan-features-list">
+                                <li>✔️ 1-page modern static website</li>
+                                <li>✔️ Mobile responsive</li>
+                                <li>✔️ Hosting on ReadyFlow subdomain</li>
+                                <li>✔️ 7-day concierge (free edits)</li>
+                            </ul>
+                            <button class="btn btn-secondary select-plan-btn" data-plan-type="basic">Select Basic Plan</button>
+                        </div>
+
+                        <div class="plan-card" data-plan="growth">
+                            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                            <h4>Growth Plan (Advanced)</h4>
+                            <p class="plan-price">₹1,299</p>
+                            <ul class="plan-features-list">
+                                <li>✔️ 1-page premium design with animations and transitions</li>
+                                <li>✔️ Contact form included</li>
+                                <li>✔️ Custom font, button shape, color theme</li>
+                                <li>✔️ AI-generated text and design</li>
+                                <li>✔️ 10-day concierge (free edits)</li>
+                            </ul>
+                            <button class="btn btn-primary select-plan-btn" data-plan-type="growth">Select Growth Plan</button>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary prev-step-btn" data-prev-step="1"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn btn-primary next-step-btn hidden" data-next-step="3" id="select-plan-next-btn">Next Step <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="3">
+                    <h3>Choose Your Website Type</h3>
+                    <p class="section-description">Select the type of website that best fits your project needs.</p>
+                    <div class="website-type-grid">
+                        <div class="option-box" data-type="landing-page">
+                            <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+                            <h4>Landing Page</h4>
+                            <p>Single, focused page for campaigns or product launches.</p>
+                        </div>
+                        <div class="option-box" data-type="full-website">
+                            <div class="card-icon"><i class="fas fa-globe"></i></div>
+                            <h4>Full Website</h4>
+                            <p>Multi-page site with comprehensive information and features.</p>
+                        </div>
+                        <div class="option-box" data-type="ecommerce-store">
+                            <div class="card-icon"><i class="fas fa-store"></i></div>
+                            <h4>E-commerce Store</h4>
+                            <p>Sell products online with a complete shopping cart.</p>
+                        </div>
+                         <div class="option-box" data-type="portfolio">
+                            <div class="card-icon"><i class="fas fa-camera-retro"></i></div>
+                            <h4>Portfolio</h4>
+                            <p>Showcase your work and projects with a stunning visual display.</p>
+                        </div>
+                         <div class="option-box" data-type="blog">
+                            <div class="card-icon"><i class="fas fa-blog"></i></div>
+                            <h4>Blog/Content Hub</h4>
+                            <p>Publish articles and share content regularly.</p>
+                        </div>
+                         <div class="option-box" data-type="business-listing">
+                            <div class="card-icon"><i class="fas fa-building"></i></div>
+                            <h4>Business Listing</h4>
+                            <p>Simple online presence with key business info and contact.</p>
+                        </div>
+                        <div class="option-box" data-type="custom-type">
+                            <div class="card-icon"><i class="fas fa-magic"></i></div>
+                            <h4>Custom Type</h4>
+                            <p>Define a unique website type not listed above.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-section cta-section" id="complex-website-cta">
+                        <h4>Looking for an Extensive Website?</h4>
+                        <p class="section-description">Need multiple pages, advanced features, or an e-commerce solution? Get India's lowest quote for your dream website!</p>
+                        <a href="/pages/custom-development.html" class="btn btn-primary btn-large">Get a Custom Quote Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="input-group hidden" id="custom-website-type-input-group">
+                        <label for="custom-website-type-description">Describe your custom website type:</label>
+                        <textarea id="custom-website-type-description" rows="3" placeholder="E.g., 'A social media platform for pet owners', 'An online booking system for yoga classes.'"></textarea>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary prev-step-btn" data-prev-step="2"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn btn-primary next-step-btn" data-next-step="4">Next Step <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="4">
+                    <h3>Pick Your Perfect Colors</h3>
+                    <p class="section-description">This will be the primary color scheme for your website.</p>
+                    <div class="color-options-grid">
+                        <h4>Gradients</h4>
+                        <div class="color-grid gradient-grid">
+                            <div class="color-swatch" data-color-type="gradient" data-color-value="gradient-emerald-blue" style="background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);"></div>
+                            <div class="color-swatch" data-color-type="gradient" data-color-value="gradient-sunset-orange" style="background-image: linear-gradient(to right top, #fdc830, #f37335);"></div>
+                            <div class="color-swatch" data-color-type="gradient" data-color-value="gradient-purple-haze" style="background-image: linear-gradient(to right top, #6a11cb, #2575fc);"></div>
+                            <div class="color-swatch" data-color-type="gradient" data-color-value="gradient-rose-gold" style="background-image: linear-gradient(to right, #f794a4, #fdd6bd);"></div>
+                            <div class="color-swatch" data-color-type="gradient" data-color-value="gradient-deep-ocean" style="background-image: linear-gradient(to right, #2c3e50, #4ca1af);"></div>
+                        </div>
+
+                        <h4>Simple Colors</h4>
+                        <div class="color-grid simple-grid">
+                            <div class="color-swatch" data-color-type="simple" data-color-value="#27AE60" style="background-color: #27AE60;"></div>
+                            <div class="color-swatch" data-color-type="simple" data-color-value="#7C3AED" style="background-color: #7C3AED;"></div>
+                            <div class="color-swatch" data-color-type="simple" data-color-value="#3498DB" style="background-color: #3498DB;"></div>
+                            <div class="color-swatch" data-color-type="simple" data-color-value="#E67E22" style="background-color: #E67E22;"></div>
+                            <div class="color-swatch" data-color-type="simple" data-color-value="#E74C3C" style="background-color: #E74C3C;"></div>
+                            <div class="color-swatch" data-color-type="simple" data-color-value="#F1C40F" style="background-color: #F1C40F;"></div>
+                        </div>
+
+                        <h4>Color Combinations (Primary & Secondary)</h4>
+                        <div class="color-grid combination-grid">
+                            <div class="color-swatch combination" data-color-type="combination" data-color-value="dark-blue-light-orange">
+                                <div style="background-color: #2C3E50;"></div><div style="background-color: #E67E22;"></div>
+                            </div>
+                            <div class="color-swatch combination" data-color-type="combination" data-color-value="teal-accent-coral">
+                                <div style="background-color: #00A388;"></div><div style="background-color: #FF7F50;"></div>
+                            </div>
+                            <div class="color-swatch combination" data-color-type="combination" data-color-value="classic-mono-gold">
+                                <div style="background-color: #34495E;"></div><div style="background-color: #FFD700;"></div>
+                            </div>
+                            <div class="color-swatch combination" data-color-type="combination" data-color-value="earthy-greens-brown">
+                                <div style="background-color: #5F8B5F;"></div><div style="background-color: #8B4513;"></div>
+                            </div>
+                        </div>
+
+                        <h4>Custom</h4>
+                        <div class="color-grid custom-color-grid">
+                            <div class="color-swatch" data-color-type="custom" data-color-value="custom-input">
+                                <div class="card-icon" style="background: none; margin: 0; padding: 0;"><i class="fas fa-palette"></i></div>
+                                <p style="font-size: 0.7em; margin-top: 5px; color: var(--text-primary);">Custom Colors</p>
+                            </div>
+                            <div class="color-swatch" data-color-type="our-choice" data-color-value="our-choice">
+                                <div class="card-icon" style="background: none; margin: 0; padding: 0;"><i class="fas fa-magic"></i></div>
+                                <p style="font-size: 0.7em; margin-top: 5px; color: var(--text-primary);">Leave it to us</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group hidden" id="custom-color-input-group">
+                        <label for="custom-color-description">Describe your desired colors/scheme:</label>
+                        <textarea id="custom-color-description" rows="3" placeholder="E.g., 'A vibrant primary green with subtle gold accents', 'Monochromatic grey scale with a pop of red.'"></textarea>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary prev-step-btn" data-prev-step="3"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn btn-primary next-step-btn" data-next-step="5">Next Step <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="5">
+                    <h3>Design Your Buttons</h3>
+                    <p class="section-description">Choose the shape and interaction style for your website's buttons.</p>
+
+                    <div class="form-section">
+                        <h4>Button Shape</h4>
+                        <div class="button-shape-grid">
+                            <div class="shape-option" data-shape="rounded">
+                                <button class="btn btn-primary preview-btn rounded">Preview Button</button>
+                                <span>Rounded</span>
+                            </div>
+                            <div class="shape-option" data-shape="pill">
+                                <button class="btn btn-primary preview-btn pill">Preview Button</button>
+                                <span>Pill/Fully Rounded</span>
+                            </div>
+                            <div class="shape-option" data-shape="square">
+                                <button class="btn btn-primary preview-btn square">Preview Button</button>
+                                <span>Square</span>
+                            </div>
+                            <div class="option-box" data-shape="custom-shape">
+                                <button class="btn btn-primary preview-btn custom-shape-preview">Custom Shape</button>
+                                <span>Custom Shape</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group hidden" id="custom-button-shape-input-group">
+                        <label for="custom-button-shape-description">Describe your custom button shape:</label>
+                        <textarea id="custom-button-shape-description" rows="2" placeholder="E.g., 'A subtle hexagon shape', 'Buttons with a small cut corner on top right.'"></textarea>
+                    </div>
+
+                    <div class="form-section" style="margin-top: 40px;">
+                        <h4>Button Hover/Static Effect</h4>
+                        <div class="button-effect-grid">
+                            <div class="effect-option" data-effect="none">
+                                <button class="btn btn-primary preview-btn effect-none">Static</button>
+                                <span>No Effect</span>
+                            </div>
+                            <div class="effect-option" data-effect="grow">
+                                <button class="btn btn-primary preview-btn effect-grow">Hover Grow</button>
+                                <span>Subtle Grow</span>
+                            </div>
+                            <div class="effect-option" data-effect="shadow">
+                                <button class="btn btn-primary preview-btn effect-shadow">Hover Shadow</button>
+                                <span>Shadow Pop</span>
+                            </div>
+                            <div class="effect-option" data-effect="slide-fill">
+                                <button class="btn btn-primary preview-btn effect-slide-fill">Hover Fill</button>
+                                <span>Slide Fill</span>
+                            </div>
+                            <div class="option-box" data-effect="custom-effect">
+                                <button class="btn btn-primary preview-btn custom-effect-preview">Custom Effect</button>
+                                <span>Custom Effect</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group hidden" id="custom-button-effect-input-group">
+                        <label for="custom-button-effect-description">Describe your custom button hover/static effect:</label>
+                        <textarea id="custom-button-effect-description" rows="2" placeholder="E.g., 'A glow effect that emanates from the center on hover', 'A subtle 3D pressed-in look on click.'"></textarea>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary prev-step-btn" data-prev-step="4"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn btn-primary next-step-btn" data-next-step="6">Next Step <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="6">
+                    <h3>What Sections Do You Need?</h3>
+                    <p class="section-description">Select the core pages and content blocks for your website. Your Basic Plan includes up to 3 sections.</p>
+                    <div class="section-options-grid">
+                        <div class="option-box" data-section="hero"><i class="icon fas fa-star"></i><h4>Hero / Main Banner</h4></div>
+                        <div class="option-box" data-section="about"><i class="icon fas fa-info-circle"></i><h4>About Us</h4></div>
+                        <div class="option-box" data-section="services"><i class="icon fas fa-briefcase"></i><h4>Services / Offerings</h4></div>
+                        <div class="option-box" data-section="products"><i class="icon fas fa-boxes"></i><h4>Products Display</h4></div>
+                        <div class="option-box" data-section="portfolio"><i class="icon fas fa-camera-retro"></i><h4>Portfolio / Gallery</h4></div>
+                        <div class="option-box" data-section="testimonials"><i class="icon fas fa-comments"></i><h4>Testimonials / Reviews</h4></div>
+                        <div class="option-box" data-section="faq"><i class="icon fas fa-question-circle"></i><h4>FAQ Section</h4></div>
+                        <div class="option-box" data-section="contact"><i class="icon fas fa-envelope"></i><h4>Contact Form / Info</h4></div>
+                        <div class="option-box" data-section="blog"><i class="icon fas fa-blog"></i><h4>Blog / News Feed</h4></div>
+                        <div class="option-box" data-section="cta"><i class="icon fas fa-bullhorn"></i><h4>Call to Action (CTA)</h4></div>
+                        <div class="option-box" data-section="team"><i class="icon fas fa-users"></i><h4>Team / Staff Showcase</h4></div>
+                        <div class="option-box" data-section="custom-section"><i class="icon fas fa-magic"></i><h4>Custom Section</h4><p>Describe below</p></div>
+                    </div>
+
+                    <div class="form-section" style="margin-top: 40px;">
+                        <h4>Advanced Effects (Growth Plan Only)</h4>
+                        <p class="section-description">These dynamic effects bring a premium, interactive feel to your website.</p>
+                        <div class="advanced-effects-grid section-options-grid">
+                            <div class="option-box" data-section="effect-hero-flyin">
+                                <div class="card-icon"><i class="fas fa-plane-departure"></i></div>
+                                <h4>Hero Fly-In / Morph</h4>
+                                <p>Elements animate into view on page load.</p>
+                            </div>
+                            <div class="option-box" data-section="effect-parallax-scroll">
+                                <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+                                <h4>Parallax Scroll</h4>
+                                <p>Backgrounds move at different speeds for depth.</p>
+                            </div>
+                            <div class="option-box" data-section="effect-glassmorphism">
+                                <div class="card-icon"><i class="fas fa-glass-martini-alt"></i></div>
+                                <h4>Glassmorphism UI</h4>
+                                <p>Blurry, translucent elements for a modern look.</p>
+                            </div>
+                            <div class="option-box" data-section="effect-magnetic-hover">
+                                <div class="card-icon"><i class="fas fa-magnet"></i></div>
+                                <h4>Magnetic Hover</h4>
+                                <p>Elements subtly follow/repel cursor on hover.</p>
+                            </div>
+                            <div class="option-box" data-section="effect-scroll-timeline">
+                                <div class="card-icon"><i class="fas fa-stream"></i></div>
+                                <h4>Scroll-Driven Timeline</h4>
+                                <p>Content reveals progressively as you scroll.</p>
+                            </div>
+                            <div class="option-box" data-section="effect-live-counters">
+                                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                                <h4>Animated Counters / Data</h4>
+                                <p>Numbers and graphs animate on scroll to show metrics.</p>
+                            </div>
+                            <div class="option-box" data-section="effect-custom-animation">
+                                <div class="card-icon"><i class="fas fa-magic"></i></div>
+                                <h4>Custom Advanced Animation</h4>
+                                <p>Describe a unique, complex animation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group hidden" id="custom-section-input-group">
+                        <label for="custom-section-description">Describe your custom website sections or custom advanced animation:</label>
+                        <textarea id="custom-section-description" rows="3" placeholder="E.g., 'A dynamic pricing calculator for my services', 'An interactive map showing my global clients.', 'A background particle animation for the hero section.'"></textarea>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary prev-step-btn" data-prev-step="5"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn btn-primary next-step-btn" data-next-step="7">Next Step <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="7">
+                    <h3>How Should Images Be Displayed?</h3>
+                    <p class="section-description">Choose the visual style for image sections (e.g., galleries, product images).</p>
+                    <div class="image-display-grid">
+                         <div class="option-box" data-image-style="carousel">
+                            <div class="style-icon"><i class="fas fa-images"></i></div>
+                            <h4>Carousel / Slider</h4>
+                            <p>Images rotate in a slideshow.</p>
+                        </div>
+                        <div class="option-box" data-image-style="grid">
+                            <div class="style-icon"><i class="fas fa-th-large"></i></div>
+                            <h4>Grid Layout</h4>
+                            <p>Images arranged neatly in rows and columns.</p>
+                        </div>
+                        <div class="option-box" data-image-style="masonry">
+                            <div class="style-icon"><i class="fas fa-boxes"></i></div>
+                            <h4>Masonry Layout</h4>
+                            <p>Images arranged in a dynamic, tiled pattern.</p>
+                        </div>
+                        <div class="option-box" data-image-style="full-width">
+                            <div class="style-icon"><i class="fas fa-expand-alt"></i></div>
+                            <h4>Full-Width Hero</h4>
+                            <p>Large, impactful background images.</p>
+                        </div>
+                        <div class="option-box" data-image-style="custom-image-style">
+                            <div class="style-icon"><i class="fas fa-image"></i></div>
+                            <h4>Custom Display</h4>
+                            <p>Describe a unique image presentation style.</p>
+                        </div>
+                    </div>
+                    <div class="input-group hidden" id="custom-image-style-input-group">
+                        <label for="custom-image-style-description">Describe your custom image display style:</label>
+                        <textarea id="custom-image-style-description" rows="2" placeholder="E.g., 'A mosaic collage with zoom on hover', 'Images appearing as polaroids with captions.'"></textarea>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary prev-step-btn" data-prev-step="6"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn btn-primary next-step-btn" data-next-step="8">Next Step <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="8">
+                    <h3>Select Your Website Fonts</h3>
+                    <p class="section-description">Choose a font pairing that reflects your brand's personality.</p>
+                    <div class="font-options-grid">
+                        <div class="font-option" data-font="poppins-inter">
+                            <h4 style="font-family: 'Poppins', sans-serif;">Heading Font</h4>
+                            <p style="font-family: 'Inter', sans-serif;">Body Font</p>
+                            <span>Modern & Clean</span>
+                        </div>
+                        <div class="font-option" data-font="oswald-roboto">
+                            <h4 style="font-family: 'Oswald', sans-serif;">Heading Font</h4>
+                            <p style="font-family: 'Roboto', sans-serif;">Body Font</p>
+                            <span>Bold & Readable</span>
+                        </div>
+                        <div class="font-option" data-font="playfair-montserrat">
+                            <h4 style="font-family: 'Playfair Display', serif;">Heading Font</h4>
+                            <p style="font-family: 'Montserrat', sans-serif;">Body Font</p>
+                            <span>Elegant & Minimal</span>
+                        </div>
+                        <div class="font-option" data-font="raleway-lato">
+                            <h4 style="font-family: 'Raleway', sans-serif;">Heading Font</h4>
+                            <p style="font-family: 'Lato', sans-serif;">Body Font</p>
+                            <span>Stylish & Friendly</span>
+                        </div>
+                        <div class="font-option" data-font="custom-font">
+                            <h4 style="font-family: 'Poppins', sans-serif;">Custom Font</h4>
+                            <p style="font-family: 'Inter', sans-serif;">Describe Below</p>
+                            <span>(Specify names / style)</span>
+                        </div>
+                    </div>
+                    <div class="input-group hidden" id="custom-font-input-group">
+                        <label for="custom-font-description">Describe your custom font choices:</label>
+                        <textarea id="custom-font-description" rows="2" placeholder="E.g., 'Google Font: Open Sans for headings, Lato for body', 'A custom brand font file you will provide.'"></textarea>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary prev-step-btn" data-prev-step="7"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn btn-primary next-step-btn" data-next-step="9">Review & Pay <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="9">
+                    <h3>Review Your Custom Website Request</h3>
+                    <p class="section-description">Please review your selections before proceeding to payment.</p>
+                    <div class="review-summary">
+                        <h4>Your Details:</h4>
+                        <ul>
+                            <li><strong>Business Name:</strong> <span id="review-business-name"></span></li>
+                            <li><strong>Business Type:</strong> <span id="review-business-type"></span></li>
+                            <li><strong>Contact Number:</strong> <span id="review-contact-number"></span></li>
+                            <li><strong>Email:</strong> <span id="review-contact-email"></span></li>
+                        </ul>
+                        <h4>Design Choices:</h4>
+                        <ul>
+                            <li><strong>Selected Plan:</strong> <span id="review-selected-plan"></span></li>
+                            <li><strong>Website Type:</strong> <span id="review-website-type"></span></li>
+                            <li><strong>Color Scheme:</strong> <span id="review-color-scheme"></span></li>
+                            <li><strong>Button Shape:</strong> <span id="review-button-shape"></span></li>
+                            <li><strong>Button Effect:</strong> <span id="review-button-effect"></span></li>
+                            <li><strong>Website Sections:</strong> <span id="review-website-sections"></span></li>
+                            <li><strong>Extra Pages:</strong> <span id="review-extra-pages"></span></li>
+                            <li><strong>Custom Domain Setup:</strong> <span id="review-custom-domain"></span></li>
+                            <li><strong>Image Display Style:</strong> <span id="review-image-display"></span></li>
+                            <li><strong>Fonts:</strong> <span id="review-fonts"></span></li>
+                        </ul>
+                        <div id="review-blog-upsell-summary" class="hidden">
+                            <h4>Blog Content Management:</h4>
+                            <ul>
+                                <li><strong>Content Plan:</strong> <span id="review-blog-content-plan"></span></li>
+                                <li><strong>Cost:</strong> <span id="review-blog-content-cost"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="recommended-plan-box">
+                        <h4>Your Current Plan: <span id="recommended-plan-name"></span></h4>
+                        <p class="plan-tagline" id="recommended-plan-tagline"></p>
+                        <ul class="plan-features-list">
+                            </ul>
+                    </div>
+
+                    <div class="delivery-info-box">
+                        <h4><i class="fas fa-magic"></i> Your ReadyFlow Experience Includes:</h4>
+                        <ul>
+                            <li>✨ Get a **website display (screenshot)** within **24 hours**!</li>
+                            <li>🔁 Enjoy **2 free re-do attempts** to get your design just right.</li>
+                            <li>🚀 Manual delivery and deployment to your chosen platform.</li>
+                        </ul>
+                    </div>
+
+                    <div class="upsell-offer-box" style="margin-top: 30px;">
+                        <div class="upsell-header">
+                            <i class="fas fa-globe upsell-icon"></i>
+                            <h3>Custom Domain Setup</h3>
+                        </div>
+                        <p class="upsell-tagline">Connect your own domain name (e.g., yourbusiness.com) to your new website.</p>
+                        <p class="upsell-price">Just <span class="highlight-orange">₹149</span> One-Time!</p>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="custom-domain-setup">
+                            <label for="custom-domain-setup">
+                                <span class="checkbox-custom"></span>
+                                Yes, include Custom Domain Setup
+                            </label>
+                        </div>
+                        <p class="upsell-note">You must own the domain. We will guide you through the simple setup process.</p>
+                    </div>
+
+                    <div class="final-quote-box">
+                        <h4>Final Estimated Quote:</h4>
+                        <span id="final-estimated-quote" class="estimated-price-value">₹0</span>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary prev-step-btn" data-prev-step="8"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn btn-primary" id="proceed-to-payment-btn">Proceed to Payment</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="edit-code-layout hidden" id="edit-code-section">
+            <div class="edit-code-form">
+                <button class="back-to-selection-btn"><i class="fas fa-arrow-left"></i> Back to Options</button>
+                <h3>Get Existing Code Edited</h3>
+                <p class="form-intro-text">Upload your current website files and select the edits you need. We'll deliver within 24 hours!</p>
+
+                <div class="form-section">
+                    <h4>Upload Your Files</h4>
+                    <div class="upload-box">
+                        <input type="file" id="code-upload-input" multiple accept=".html,.css,.js,.zip" style="display: none;">
+                        <label for="code-upload-input" class="btn btn-secondary upload-btn"><i class="fas fa-upload"></i> Choose Files</label>
+                        <span id="file-upload-status">No files chosen</span>
+                        <p class="upload-hint">Accepted: HTML, CSS, JS files, or a .zip archive.</p>
+                    </div>
+                </div>
+
+                <div class="form-section" data-group="edits">
+                    <h4>Select Edits (Add-ons)</h4>
+                    <div class="edit-options-grid">
+                        <div class="option-box" data-value="name-location" data-price="19"><i class="edit-icon fas fa-map-marker-alt"></i>Name, Address, Location Update <span class="price-tag">(₹19)</span></div>
+                        <div class="option-box" data-value="phone-email" data-price="19"><i class="edit-icon fas fa-phone"></i>Phone/Email Update <span class="price-tag">(₹19)</span></div>
+                        <div class="option-box" data-value="social-link" data-price="19"><i class="edit-icon fas fa-share-alt"></i>Social Media Link Update <span class="price-tag">(₹19)</span></div>
+                        <div class="option-box" data-value="favicon" data-price="19"><i class="edit-icon fas fa-star"></i>Favicon Update <span class="price-tag">(₹19)</span></div>
+                        <div class="option-box" data-value="google-maps" data-price="19"><i class="edit-icon fas fa-map"></i>Google Maps Embed/Add <span class="price-tag">(₹19)</span></div>
+                        <div class="option-box" data-value="whatsapp-button" data-price="19"><i class="edit-icon fab fa-whatsapp"></i>WhatsApp Chat Button Add <span class="price-tag">(₹19)</span></div>
+                        <div class="option-box" data-value="youtube-embed" data-price="19"><i class="edit-icon fab fa-youtube"></i>YouTube Video Embed <span class="price-tag">(₹19)</span></div>
+
+                        <div class="option-box" data-value="text-block" data-price="29"><i class="edit-icon fas fa-font"></i>Text Block Edit (up to 100 words) <span class="price-tag">(₹29)</span></div>
+                        <div class="option-box" data-value="product-add" data-price="29"><i class="edit-icon fas fa-box-open"></i>Product/Service Addition (1 item/section) <span class="price-tag">(₹29)</span></div>
+                        <div class="option-box" data-value="pricing-table" data-price="29"><i class="edit-icon fas fa-table"></i>Pricing Table Update <span class="price-tag">(₹29)</span></div>
+                        <div class="option-box" data-value="font-update" data-price="29"><i class="edit-icon fas fa-text-height"></i>Font Update (predefined styles) <span class="price-tag">(₹29)</span></div>
+                        <div class="option-box" data-value="color-scheme" data-price="29"><i class="edit-icon fas fa-palette"></i>Color Scheme Tweak (simple) <span class="price-tag">(₹29)</span></div>
+
+                        <div class="option-box" data-value="popup-bar" data-price="39"><i class="edit-icon fas fa-bullhorn"></i>Basic Pop-up / Announcement Bar <span class="price-tag">(₹39)</span></div>
+                        <div class="option-box" data-value="button-style" data-price="39"><i class="edit-icon fas fa-mouse-pointer"></i>Button Style Change (hover/color) <span class="price-tag">(₹39)</span></div>
+                        <div class="option-box" data-value="header-footer-restyle" data-price="39"><i class="edit-icon fas fa-grip-lines"></i>Header/Footer Re-style <span class="price-tag">(₹39)</span></div>
+                        <div class="option-box" data-value="background-change" data-price="39"><i class="edit-icon fas fa-image"></i>Background Change (color/image) <span class="price-tag">(₹39)</span></div>
+                    </div>
+                </div>
+
+                <div class="form-section bundled-edits-section"> <h4>Bundled Edits</h4>
+                    <div class="edit-options-grid">
+                        <div class="option-box" data-value="quick-fix-pack" data-price="39"><i class="edit-icon fas fa-tools"></i>Quick Fix Pack (Any 3 Mini Edits) <span class="price-tag">(₹39)</span></div>
+                        <div class="option-box" data-value="starter-boost" data-price="59"><i class="edit-icon fas fa-rocket"></i>Starter Boost (1 Text Block + 1 Product + 1 Social) <span class="price-tag">(₹59)</span></div>
+                        <div class="option-box" data-value="visual-refresh-pack" data-price="79"><i class="edit-icon fas fa-eye"></i>Visual Refresh Pack (Color + Font + Button + BG) <span class="price-tag">(₹79)</span></div>
+                        <div class="option-box" data-value="power-update-pack" data-price="99"><i class="edit-icon fas fa-bolt"></i>Power Update Pack (Any 6 Edits) <span class="price-tag">(₹99)</span></div>
+                        <div class="option-box" data-value="full-custom-refresh" data-price="129"><i class="edit-icon fas fa-brush"></i>Full Custom Refresh (Up to 10 Edits) <span class="price-tag">(₹129)</span></div>
+                    </div>
+                </div>
+
+                <div class="edit-price-summary">
+                    <h4>Total for Edits: <span id="edit-estimated-price">₹0</span></h4>
+                    <button class="btn btn-primary book-edit-btn">Proceed with Edits</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer-v2">
+        <div class="container">
+            <p>Made with ❤️ by ReadyFlow</p>
+            <small>© 2025 ReadyFlow. All Rights Reserved.</small>
+        </div>
+    </footer>
+
+    <div class="account-sidebar-overlay" id="account-sidebar-overlay">
+        <div class="account-sidebar" id="account-sidebar">
+            <button class="sidebar-close-btn" id="account-sidebar-close-btn">&times;</button>
+            <div class="sidebar-content">
+                <div id="account-sidebar-logged-out" class="account-options">
+                    <h3>Welcome!</h3>
+                    <p>Sign in or create an account to access your personalized features.</p>
+                    <a href="../pages/login.html" class="btn btn-primary full-width-btn">Sign In / Sign Up</a>
+                </div>
+                <div id="account-sidebar-logged-in" class="account-options hidden">
+                    <h3>Hello, <span id="user-display-name">User</span>!</h3>
+                    <ul class="account-nav">
+                        <li><a href="../cart/cart.html"><i class="fas fa-shopping-cart"></i> My Cart</a></li>
+                        <li><button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="plan-warning-modal">
+        <div class="modal-box">
+            <h3 id="plan-warning-modal-title"><i class="fas fa-exclamation-triangle" style="color: #F1C40F; margin-right: 10px;"></i> Elevate Your Experience!</h3>
+            <p id="plan-warning-modal-message">
+                It looks like you've selected more advanced features than your current plan allows.
+                The Basic Plan is perfect for launching simple websites with up to <strong id="modal-basic-plan-limit">3 sections</strong>.
+                You've chosen <strong id="modal-current-sections-count">X sections</strong>.
+                To fully realize your vision, we recommend upgrading to the Growth Plan.
+            </p>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" id="modal-downgrade-sections-btn">Proceed with Basic (Limit to 3 Sections)</button>
+                <button class="btn btn-primary" id="modal-upgrade-plan-btn">Upgrade to Growth Plan (₹1,299)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="blog-upsell-modal">
+        <div class="modal-box">
+            <h3 id="blog-upsell-modal-title"><i class="fas fa-rss-square" style="color: var(--accent-color); margin-right: 10px;"></i>Boost Your Blog Content!</h3>
+            <p>Ready to make your blog thrive? Let us handle the content uploads for you. This ensures consistency and frees up your time.</p>
+
+            <div class="upsell-options-container">
+                <div class="radio-option blog-upsell-option" data-upsell-id="daily-uploads" data-price="299">
+                    <input type="radio" id="blog-upsell-daily" name="blog-upsell-plan" value="daily-uploads">
+                    <label for="blog-upsell-daily">
+                        <span class="radio-circle"></span>
+                        <div class="option-header-content">
+                            <span class="option-name">Daily Uploads (30 Days)</span>
+                            <span class="option-price">₹299/month</span>
+                        </div>
+                        <p class="option-description">We'll upload content once per day for 30 days. Perfect for consistent presence.</p>
+                    </label>
+                </div>
+
+                <div class="radio-option blog-upsell-option" data-upsell-id="unlimited-changes" data-price="573">
+                    <input type="radio" id="blog-upsell-unlimited" name="blog-upsell-plan" value="unlimited-changes">
+                    <label for="blog-upsell-unlimited">
+                        <span class="radio-circle"></span>
+                        <div class="option-header-content">
+                            <span class="option-name">Unlimited Monthly Changes</span>
+                            <span class="option-price">₹573/month</span>
+                        </div>
+                        <p class="option-description">Need more flexibility? We'll handle unlimited content updates/uploads per month.</p>
+                    </label>
+                </div>
+            </div>
+
+            <div class="modal-buttons" style="margin-top: 25px;">
+                <button class="btn btn-secondary" id="blog-upsell-skip-btn">No Thanks, I'll Manage</button>
+                <button class="btn btn-primary" id="blog-upsell-add-btn">Add to My Order</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../assets/js/firebase-config.js"></script>
+    <script type="module" src="../assets/js/login.js"></script>
+    <script type="module" src="../assets/js/main.js"></script>
+    <script type="module" src="../assets/js/custom-price-calculator.js"></script>
+    <script type="module" src="../assets/js/custom-development-builder.js"></script>
+</body>
+</html>
