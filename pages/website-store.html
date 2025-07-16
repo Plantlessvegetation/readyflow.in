@@ -3,66 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ready-Made Website Templates – Professional Designs at ₹499 | ReadyFlow</title>
-    <meta name="description" content="Browse AI-generated website templates ready to launch. Perfect for portfolios, freelancers & shops. Start now for ₹499.">
-
+    <title>Coming Soon - Coming Soon | ReadyFlow</title>
+    <meta name="description" content="ReadyFlow's Coming Soon is currently being upgraded with exciting new full website and SaaS product offerings. Check back soon!">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/store.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .coming-soon-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh; /* Make it take most of the viewport height */
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--bg-primary);
+        }
+        .coming-soon-section h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+        .coming-soon-section p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .coming-soon-section .fas {
+            font-size: 5rem;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            animation: pulse 2s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        /* Ensure buttons match theme */
+        .btn-primary, .btn-secondary {
+            padding: 15px 30px;
+            font-size: 1rem;
+        }
+        @media (max-width: 768px) {
+            .coming-soon-section h1 {
+                font-size: 2.5rem;
+            }
+            .coming-soon-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="main-header">
         <div class="header-container">
             <div class="header-left">
-                <a href="../index.html" class="home-icon-btn"><i class="fas fa-home"></i></a>
-                <a href="../index.html" class="header-logo">Ready<span>Flow</span></a>
+                <a href="/index.html" class="home-icon-btn"><i class="fas fa-home"></i></a>
+                <a href="/index.html" class="header-logo">Ready<span>Flow</span></a>
             </div>
             <nav class="main-nav">
-                <a href="custom-development.html">Custom Development</a>
-                <a href="website-store.html" class="active">Template Store</a> <a href="shopify-services.html">Shopify Services</a>
+                <a href="/pages/custom-development.html">Custom Development</a>
+                <a href="/pages/website-store.html" class="active">Coming Soon</a>
+                <a href="/pages/shopify-services.html">Shopify Services</a>
             </nav>
             <div class="header-right">
-                <button class="theme-switcher" id="theme-switcher" title="Toggle Theme"><i class="fas fa-sun"></i><i class="fas fa-moon" style="display: none;"></i></button>
-                <a href="../cart/cart.html" class="cart-link"><i class="fas fa-shopping-cart"></i><span id="cart-item-count">0</span></a>
+                <button class="theme-switcher" id="theme-switcher" title="Toggle Theme">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon" style="display: none;"></i>
+                </button>
+                <a href="/cart/cart.html" class="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-item-count">0</span>
+                </a>
                 <button class="account-toggle" id="account-toggle" title="Account"><i class="fas fa-user-circle"></i></button>
-                <button class="mobile-nav-toggle" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+                <button class="mobile-nav-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
-    <div class="store-layout">
-        <aside class="store-sidebar">
-            <div class="sidebar-header"><h3>Filters</h3><button class="sidebar-close-btn">&times;</button></div>
-            <div class="sidebar-content">
-                <div class="filter-group"><label for="sort-by-mobile">Sort by</label><select id="sort-by-mobile" name="sort-by"><option value="default">Featured</option><option value="price-asc">Price: Low to High</option><option value="price-desc">Price: High to Low</option></select></div>
-                <div class="filter-group"><h4>Technology</h4><div class="checkbox-group"><label><input type="checkbox" name="tech" value="html"> HTML & CSS</label></div><div class="checkbox-group"><label><input type="checkbox" name="tech" value="react"> React</label></div></div>
-                <div class="filter-group"><h4>Website Type</h4><div class="checkbox-group"><label><input type="checkbox" name="type" value="portfolio"> Portfolio</label></div><div class="checkbox-group"><label><input type="checkbox" name="type" value="landing-page"> Landing Page</label></div><div class="checkbox-group"><label><input type="checkbox" name="type" value="website"> Full Website</label></div></div>
-                <div class="filter-group"><h4>Pages</h4><div class="checkbox-group"><label><input type="checkbox" name="pages" value="1"> 1 Page</label></div><div class="checkbox-group"><label><input type="checkbox" name="pages" value="2-5"> 2-5 Pages</label></div></div>
-            </div>
-        </aside>
-        <div class="page-overlay"></div>
-        <main class="product-listing-area">
-             <div class="page-hero">
-                <div class="container">
-                    <h1 class="section-title" style="margin-bottom: 10px;">Template <span class="highlight-green">Marketplace</span></h1>
-                    <p class="impact-subheadline" style="margin-top: 0;">Browse our collection of professionally crafted, high-performance website codes.</p>
-                </div>
-            </div>
-            <div class="store-content-wrapper">
-                <div class="store-toolbar">
-                    <button class="open-sidebar-btn"><i class="fas fa-filter"></i> Filters</button>
-                    <div class="sort-and-view">
-                        <select id="sort-by" name="sort-by"><option value="default">Sort by: Featured</option><option value="price-asc">Price: Low to High</option><option value="price-desc">Price: High to Low</option></select>
-                        <div class="view-switcher">
-                            <button class="view-btn active" id="list-view-btn" title="List View"><i class="fas fa-bars"></i></button>
-                            <button class="view-btn" id="grid-view-btn" title="Grid View"><i class="fas fa-th-large"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div id="product-container" class="product-list"></div>
-            </div>
-        </main>
-    </div>
+
+    <main>
+        <section class="coming-soon-section">
+            <i class="fas fa-tools"></i>
+            <h1>Coming Soon Under <span class="highlight-green">Upgrade!</span></h1>
+            <p>We're currently enhancing our Coming Soon to bring you even more exciting offerings, including **full website solutions** and **SaaS products**. We appreciate your patience!</p>
+            <a href="/pages/custom-development.html" class="btn btn-primary">Build a Custom Website</a>
+            <a href="/index.html" class="btn btn-secondary" style="margin-top: 15px;">Return to Homepage</a>
+        </section>
+    </main>
+
     <footer class="main-footer-v2">
         <div class="container">
             <p>Made with ❤️ by ReadyFlow</p>
@@ -92,7 +126,5 @@
     <script type="module" src="../assets/js/firebase-config.js"></script>
     <script type="module" src="../assets/js/login.js"></script>
     <script type="module" src="../assets/js/main.js"></script>
-    <script type="module" src="../assets/js/products.js"></script>
-    <script type="module" src="../assets/js/store.js"></script>
 </body>
 </html>

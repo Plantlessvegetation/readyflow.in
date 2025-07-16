@@ -1,4 +1,4 @@
-// This script handles all functionality for the template store and product detail pages.
+// This script handles all functionality for the Coming Soon and product detail pages.
 
 import { products } from './products.js'; // Ensure this import is correct and 'products' array is populated
 import { getCart, updateCartIcon } from './main.js';
