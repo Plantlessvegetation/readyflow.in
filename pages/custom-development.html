@@ -82,7 +82,7 @@
                     </div>
                     <div class="progress-step" data-step="4">
                         <span class="step-number">4</span>
-                        <span class="step-title">Colors</span>
+                        <span class="step-title">Theme</span>
                     </div>
                     <div class="progress-step" data-step="5">
                         <span class="step-number">5</span>
@@ -115,8 +115,12 @@
 
             <div class="builder-content">
                 <div class="form-step" data-step="1">
-                    <h3>What's your Business Info?</h3>
-                    <p class="section-description">This helps us understand your needs and reach out to you.</p>
+                    <h3>Tell Us About Your Business</h3>
+                    <p class="section-description">This helps us understand your needs and craft the perfect website for you.</p>
+                    <div class="input-group">
+                        <label for="user-name">Your Name</label>
+                        <input type="text" id="user-name" placeholder="E.g., Aditya" required>
+                    </div>
                     <div class="input-group">
                         <label for="business-name">Business Name</label>
                         <input type="text" id="business-name" placeholder="E.g., ReadyFlow Solutions" required>
@@ -126,12 +130,24 @@
                         <input type="text" id="business-type" placeholder="E.g., Cafe, School, Tuition, E-commerce Store" required>
                     </div>
                     <div class="input-group">
+                        <label for="city-location">Your City or Address (Optional)</label>
+                        <input type="text" id="city-location" placeholder="E.g., Bhopal, India or 123 Main St">
+                    </div>
+                    <div class="input-group">
                         <label for="contact-number">Contact Number (with Country Code)</label>
                         <input type="tel" id="contact-number" placeholder="E.g., +918602555840" required>
                     </div>
                     <div class="input-group">
                         <label for="contact-email">Email Address</label>
                         <input type="email" id="contact-email" placeholder="E.g., readyflow.in@gmail.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="services-offered">Services/Products Offered</label>
+                        <textarea id="services-offered" rows="3" placeholder="Briefly describe your main services or products. E.g., 'Custom software development, mobile app design, IT consulting.' or 'Specialty coffee, artisanal pastries, catering services.'"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="target-audience">Who is your target audience?</label>
+                        <textarea id="target-audience" rows="3" placeholder="E.g., 'Small business owners in India', 'Young adults interested in fitness', 'Parents seeking educational resources.'"></textarea>
                     </div>
                     <div class="navigation-buttons">
                         <button class="btn btn-primary next-step-btn" data-next-step="2">Next Step <i class="fas fa-arrow-right"></i></button>
@@ -179,22 +195,17 @@
 
                 <div class="form-step" data-step="3">
                     <h3>Choose Your Website Type</h3>
-                    <p class="section-description">Select the type of website that best fits your project needs.</p>
+                    <p class="section-description">Select the primary purpose of your single-page website.</p>
                     <div class="website-type-grid">
                         <div class="option-box" data-type="landing-page">
                             <div class="card-icon"><i class="fas fa-file-alt"></i></div>
                             <h4>Landing Page</h4>
                             <p>Single, focused page for campaigns or product launches.</p>
                         </div>
-                        <div class="option-box" data-type="full-website">
-                            <div class="card-icon"><i class="fas fa-globe"></i></div>
-                            <h4>Full Website</h4>
-                            <p>Multi-page site with comprehensive information and features.</p>
-                        </div>
                         <div class="option-box" data-type="ecommerce-store">
                             <div class="card-icon"><i class="fas fa-store"></i></div>
                             <h4>E-commerce Store</h4>
-                            <p>Sell products online with a complete shopping cart.</p>
+                            <p>Showcase products with basic e-commerce features (single page).</p>
                         </div>
                          <div class="option-box" data-type="portfolio">
                             <div class="card-icon"><i class="fas fa-camera-retro"></i></div>
@@ -204,7 +215,7 @@
                          <div class="option-box" data-type="blog">
                             <div class="card-icon"><i class="fas fa-blog"></i></div>
                             <h4>Blog/Content Hub</h4>
-                            <p>Publish articles and share content regularly.</p>
+                            <p>Publish articles and share content regularly (single page).</p>
                         </div>
                          <div class="option-box" data-type="business-listing">
                             <div class="card-icon"><i class="fas fa-building"></i></div>
@@ -218,15 +229,9 @@
                         </div>
                     </div>
 
-                    <div class="form-section cta-section" id="complex-website-cta">
-                        <h4>Looking for an Extensive Website?</h4>
-                        <p class="section-description">Need multiple pages, advanced features, or an e-commerce solution? Get India's lowest quote for your dream website!</p>
-                        <a href="/pages/custom-development.html" class="btn btn-primary btn-large">Get a Custom Quote Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
-
                     <div class="input-group hidden" id="custom-website-type-input-group">
                         <label for="custom-website-type-description">Describe your custom website type:</label>
-                        <textarea id="custom-website-type-description" rows="3" placeholder="E.g., 'A social media platform for pet owners', 'An online booking system for yoga classes.'"></textarea>
+                        <textarea id="custom-website-type-description" rows="3" placeholder="E.g., 'A simple online profile for a musician', 'A one-page event registration site.'"></textarea>
                     </div>
                     <div class="navigation-buttons">
                         <button class="btn btn-secondary prev-step-btn" data-prev-step="2"><i class="fas fa-arrow-left"></i> Previous</button>
@@ -235,59 +240,70 @@
                 </div>
 
                 <div class="form-step" data-step="4">
-                    <h3>Pick Your Perfect Colors</h3>
-                    <p class="section-description">This will be the primary color scheme for your website.</p>
+                    <h3>Let us know your preferred theme</h3>
+                    <p class="section-description">Choose a visual theme that sets the overall tone for your website.</p>
                     <div class="color-options-grid">
-                        <h4>Gradients</h4>
-                        <div class="color-grid gradient-grid">
-                            <div class="color-swatch" data-color-type="gradient" data-color-value="gradient-emerald-blue" style="background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);"></div>
-                            <div class="color-swatch" data-color-type="gradient" data-color-value="gradient-sunset-orange" style="background-image: linear-gradient(to right top, #fdc830, #f37335);"></div>
-                            <div class="color-swatch" data-color-type="gradient" data-color-value="gradient-purple-haze" style="background-image: linear-gradient(to right top, #6a11cb, #2575fc);"></div>
-                            <div class="color-swatch" data-color-type="gradient" data-color-value="gradient-rose-gold" style="background-image: linear-gradient(to right, #f794a4, #fdd6bd);"></div>
-                            <div class="color-swatch" data-color-type="gradient" data-color-value="gradient-deep-ocean" style="background-image: linear-gradient(to right, #2c3e50, #4ca1af);"></div>
+                        <h4>Pre-defined Themes</h4>
+                        <div class="theme-grid predefined-theme-grid">
+                            <div class="option-box theme-option" data-theme-type="predefined" data-theme-value="dark">
+                                <div class="card-icon"><i class="fas fa-moon" style="color: #FFFFFF;"></i></div>
+                                <h4>Dark Theme</h4>
+                                <p>Modern, sleek, and easy on the eyes.</p>
+                            </div>
+                            <div class="option-box theme-option" data-theme-type="predefined" data-theme-value="light">
+                                <div class="card-icon"><i class="fas fa-sun" style="color: #F1C40F;"></i></div>
+                                <h4>Light Theme</h4>
+                                <p>Bright, clean, and professional.</p>
+                            </div>
+                            <div class="option-box theme-option" data-theme-type="predefined" data-theme-value="warm">
+                                <div class="card-icon"><i class="fas fa-fire" style="color: #FF7043;"></i></div>
+                                <h4>Warm Theme</h4>
+                                <p>Inviting tones, cozy feel.</p>
+                            </div>
+                            <div class="option-box theme-option" data-theme-type="predefined" data-theme-value="cool">
+                                <div class="card-icon"><i class="fas fa-snowflake" style="color: #00BCD4;"></i></div>
+                                <h4>Cool Theme</h4>
+                                <p>Calm, serene, and refreshing.</p>
+                            </div>
+                            <div class="option-box theme-option" data-theme-type="predefined" data-theme-value="elegant">
+                                <div class="card-icon"><i class="fas fa-gem" style="color: #E0BBE4;"></i></div>
+                                <h4>Elegant Theme</h4>
+                                <p>Sophisticated and refined aesthetics.</p>
+                            </div>
+                            <div class="option-box theme-option" data-theme-type="predefined" data-theme-value="vibrant">
+                                <div class="card-icon"><i class="fas fa-palette" style="color: #FFD166;"></i></div>
+                                <h4>Vibrant Theme</h4>
+                                <p>Energetic, bold, and dynamic.</p>
+                            </div>
+                            <div class="option-box theme-option" data-theme-type="predefined" data-theme-value="minimal">
+                                <div class="card-icon"><i class="fas fa-square" style="color: #CCCCCC;"></i></div>
+                                <h4>Minimal Theme</h4>
+                                <p>Clean lines, focus on content.</p>
+                            </div>
+                            <div class="option-box theme-option" data-theme-type="predefined" data-theme-value="professional">
+                                <div class="card-icon"><i class="fas fa-briefcase" style="color: #4A90E2;"></i></div>
+                                <h4>Professional Theme</h4>
+                                <p>Formal, trustworthy, and business-focused.</p>
+                            </div>
                         </div>
 
-                        <h4>Simple Colors</h4>
-                        <div class="color-grid simple-grid">
-                            <div class="color-swatch" data-color-type="simple" data-color-value="#27AE60" style="background-color: #27AE60;"></div>
-                            <div class="color-swatch" data-color-type="simple" data-color-value="#7C3AED" style="background-color: #7C3AED;"></div>
-                            <div class="color-swatch" data-color-type="simple" data-color-value="#3498DB" style="background-color: #3498DB;"></div>
-                            <div class="color-swatch" data-color-type="simple" data-color-value="#E67E22" style="background-color: #E67E22;"></div>
-                            <div class="color-swatch" data-color-type="simple" data-color-value="#E74C3C" style="background-color: #E74C3C;"></div>
-                            <div class="color-swatch" data-color-type="simple" data-color-value="#F1C40F" style="background-color: #F1C40F;"></div>
-                        </div>
-
-                        <h4>Color Combinations (Primary & Secondary)</h4>
-                        <div class="color-grid combination-grid">
-                            <div class="color-swatch combination" data-color-type="combination" data-color-value="dark-blue-light-orange">
-                                <div style="background-color: #2C3E50;"></div><div style="background-color: #E67E22;"></div>
-                            </div>
-                            <div class="color-swatch combination" data-color-type="combination" data-color-value="teal-accent-coral">
-                                <div style="background-color: #00A388;"></div><div style="background-color: #FF7F50;"></div>
-                            </div>
-                            <div class="color-swatch combination" data-color-type="combination" data-color-value="classic-mono-gold">
-                                <div style="background-color: #34495E;"></div><div style="background-color: #FFD700;"></div>
-                            </div>
-                            <div class="color-swatch combination" data-color-type="combination" data-color-value="earthy-greens-brown">
-                                <div style="background-color: #5F8B5F;"></div><div style="background-color: #8B4513;"></div>
-                            </div>
-                        </div>
-
-                        <h4>Custom</h4>
-                        <div class="color-grid custom-color-grid">
-                            <div class="color-swatch" data-color-type="custom" data-color-value="custom-input">
+                        <h4>Custom Theme Preference</h4>
+                        <div class="theme-grid custom-theme-grid">
+                            <div class="option-box theme-option" data-theme-type="custom" data-theme-value="custom-input">
                                 <div class="card-icon" style="background: none; margin: 0; padding: 0;"><i class="fas fa-palette"></i></div>
-                                <p style="font-size: 0.7em; margin-top: 5px; color: var(--text-primary);">Custom Colors</p>
+                                <h4>Custom Preference</h4>
+                                <p style="font-size: 0.7em; margin-top: 5px; color: var(--text-primary);">Describe below</p>
                             </div>
-                            <div class="color-swatch" data-color-type="our-choice" data-color-value="our-choice">
+                            <div class="option-box theme-option" data-theme-type="our-choice" data-theme-value="our-choice">
                                 <div class="card-icon" style="background: none; margin: 0; padding: 0;"><i class="fas fa-magic"></i></div>
-                                <p style="font-size: 0.7em; margin-top: 5px; color: var(--text-primary);">Leave it to us</p>
+                                <h4>Leave it to us</h4>
+                                <p style="font-size: 0.7em; margin-top: 5px; color: var(--text-primary);">AI will decide the best theme</p>
                             </div>
                         </div>
                     </div>
                     <div class="input-group hidden" id="custom-color-input-group">
-                        <label for="custom-color-description">Describe your desired colors/scheme:</label>
-                        <textarea id="custom-color-description" rows="3" placeholder="E.g., 'A vibrant primary green with subtle gold accents', 'Monochromatic grey scale with a pop of red.'"></textarea>
+                        <label for="custom-color-description">Describe your desired theme or color preferences:</label>
+                        <textarea id="custom-color-description" rows="3" placeholder="E.g., 'Warm and inviting earthy tones', 'Minimalist with a pop of electric blue.'"></textarea>
                     </div>
                     <div class="navigation-buttons">
                         <button class="btn btn-secondary prev-step-btn" data-prev-step="3"><i class="fas fa-arrow-left"></i> Previous</button>
@@ -363,7 +379,7 @@
 
                 <div class="form-step" data-step="6">
                     <h3>What Sections Do You Need?</h3>
-                    <p class="section-description">Select the core pages and content blocks for your website. Your Basic Plan includes up to 3 sections.</p>
+                    <p class="section-description">Select the core content blocks for your website. Your Launch Plan includes up to 3 sections.</p>
                     <div class="section-options-grid">
                         <div class="option-box" data-section="hero"><i class="icon fas fa-star"></i><h4>Hero / Main Banner</h4></div>
                         <div class="option-box" data-section="about"><i class="icon fas fa-info-circle"></i><h4>About Us</h4></div>
@@ -516,21 +532,23 @@
                     <div class="review-summary">
                         <h4>Your Details:</h4>
                         <ul>
+                            <li><strong>Your Name:</strong> <span id="review-user-name"></span></li>
                             <li><strong>Business Name:</strong> <span id="review-business-name"></span></li>
                             <li><strong>Business Type:</strong> <span id="review-business-type"></span></li>
+                            <li><strong>City/Address:</strong> <span id="review-city-location"></span></li>
                             <li><strong>Contact Number:</strong> <span id="review-contact-number"></span></li>
                             <li><strong>Email:</strong> <span id="review-contact-email"></span></li>
+                            <li><strong>Services/Products:</strong> <span id="review-services-offered"></span></li>
+                            <li><strong>Target Audience:</strong> <span id="review-target-audience"></span></li>
                         </ul>
                         <h4>Design Choices:</h4>
                         <ul>
                             <li><strong>Selected Plan:</strong> <span id="review-selected-plan"></span></li>
                             <li><strong>Website Type:</strong> <span id="review-website-type"></span></li>
-                            <li><strong>Color Scheme:</strong> <span id="review-color-scheme"></span></li>
+                            <li><strong>Theme Preference:</strong> <span id="review-theme-preference"></span></li>
                             <li><strong>Button Shape:</strong> <span id="review-button-shape"></span></li>
                             <li><strong>Button Effect:</strong> <span id="review-button-effect"></span></li>
                             <li><strong>Website Sections:</strong> <span id="review-website-sections"></span></li>
-                            <li><strong>Extra Pages:</strong> <span id="review-extra-pages"></span></li>
-                            <li><strong>Custom Domain Setup:</strong> <span id="review-custom-domain"></span></li>
                             <li><strong>Image Display Style:</strong> <span id="review-image-display"></span></li>
                             <li><strong>Fonts:</strong> <span id="review-fonts"></span></li>
                         </ul>

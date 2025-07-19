@@ -4,14 +4,15 @@ const functions = require('firebase-functions');
 // The Firebase Admin SDK to access Firestore.
 const admin = require('firebase-admin');
 admin.initializeApp(); // Initializes with default credentials from the environment
+const db = admin.firestore(); // Firestore instance
 
-// OpenAI API
+// OpenAI API (still here, but its direct triggers are disabled for now)
 const OpenAI = require('openai');
 const openai = new OpenAI({
     apiKey: functions.config().openai.api_key,
 });
 
-// Firebase Storage
+// Firebase Storage (still here, if needed for other purposes later)
 const { getStorage } = require('firebase-admin/storage');
 const bucket = getStorage().bucket();
 
@@ -19,7 +20,7 @@ const bucket = getStorage().bucket();
 const https = require('https');
 
 // Define your Pipedream webhook URL
-const PIPEDREAM_WEBHOOK_URL = 'https://eo7litc6m5hqwus.m.pipedream.net';
+const PIPEDREAM_WEBHOOK_URL = 'https://eo7litc6m5hqwus.m.pipedream.net'; // Ensure this is your correct Pipedream URL
 
 /**
  * Helper function to send data to Pipedream.
@@ -70,332 +71,455 @@ async function sendToPipedream(requestId, dataToSend) {
     });
 }
 
+// --- EXACT PROMPT TEMPLATES (as provided by you) ---
+
+const PROMPT_TEMPLATE_499_PLAN = `You are a prompt engineer tasked with creating a website-generation prompt for a minimal, modern 1-page static website, your job is to create a prompt which will be copy pasted to other AI agent for code generation, and the prompt must include all user details. make sure the generated website using this prompt should look professional.
+
+Use the following user details to personalize the output prompt:
+
+- Name: {{USER_NAME}}
+- Business Name: {{BUSINESS_NAME}}
+- Business Type: {{BUSINESS_TYPE}}
+- Phone Number: {{PHONE_NUMBER}}
+- Email Address: {{EMAIL_ADDRESS}}
+- Brand Colors (if any): {{BRAND_COLORS}}
+- Address or City: {{CITY_LOCATION}}
+- Services Offered: {{SERVICES_LIST}}
+
+Now create a prompt that asks an AI (like GPT-4 or Gemini) to generate:
+- A single-page responsive static website (HTML/CSS/JS only)
+- Sections: {{SECTIONS_LIST}}
+- Clean and fast UI (no animations or effects)
+- Mention to use Fonts selected by user
+- Include contact info and business branding
+- Output code that’s SEO-friendly and easy to host
+- Should include all the details filled by user in the end of prompt in double coma's
+The generated prompt must be clear, concise, and require no design skills to execute. End the prompt with “Generate a full HTML/CSS/JS code for this.”`;
+
+
+const PROMPT_TEMPLATE_1299_PLAN = `You are a prompt engineer creating a rich website-generation prompt based on these user details: your job is to create a prompt which will be copy pasted to other AI agent for code generation, and the prompt must include all user details. make sure the generated website using this prompt should look professional.
+
+- Name: {{USER_NAME}}
+- Business Name: {{BUSINESS_NAME}}
+- Business Type: {{BUSINESS_TYPE}}
+- Phone Number: {{PHONE_NUMBER}}
+- Email Address: {{EMAIL_ADDRESS}}
+- Address or City: {{CITY_LOCATION}}
+- Brand Colors or Preferences: {{BRAND_COLORS}}
+- Font Preferences (if any): {{FONT_PREFERENCES}}
+- Services/Products Offered: {{SERVICES_LIST}}
+- Target Audience: {{TARGET_AUDIENCE}}
+
+Write a detailed prompt that will instruct GPT-4 or Gemini to generate:
+- Preloader with user's business name text
+- A single-page, modern, visually impressive website (HTML/CSS/JS only)
+- Smooth animations (on scroll, hover, etc.)
+- sections - {{SECTIONS_LIST}}
+- Mobile responsive layout
+- Use of premium-looking fonts and UI polish
+- Embedded HTML contact form
+- Subtle effects, transitions, and refined spacing
+- Clean and SEO-ready structure (title, meta tags, etc.)
+- Personalized with user branding and business info
+- Should include all the details filled by user in the end of prompt in double coma's
+- Prompt should must include the text Pretend to be an expert In web development and with an experience of more than 20 years, craft this professionally and at the level of agencies.
+End the prompt with: “Now generate complete HTML, CSS, and JS code for the site above.”
+
+Ensure the AI understands that this is for a modern, creative Indian business or freelancer, and it must be impressive and polished.`;
+
+
 /**
- * Cloud Function to trigger on new Firestore document creation for code generation requests.
- * It generates code via GPT-4o, stores it, updates Firestore, and sends a tracking prompt to Pipedream.
+ * Helper function to format font names for prompts.
  */
-exports.generateWebsiteCode = functions.firestore
+function formatFontName(fontPairing, customFontDescription) {
+    if (fontPairing === 'custom-font') {
+        return `Custom: ${customFontDescription || 'User-defined fonts'}`;
+    }
+    // Capitalize each word and replace hyphens for readability
+    return fontPairing.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+}
+
+/**
+ * Helper function to format color scheme/theme for prompts.
+ * This function is updated to handle the new "theme" selection structure.
+ */
+function formatColorScheme(colorScheme, customColorDescription) {
+    const themeType = colorScheme.type; // Now refers to data-theme-type
+    const themeValue = colorScheme.value; // Now refers to data-theme-value
+
+    if (themeType === 'our-choice') {
+        return `Readyflow's recommended theme.`;
+    } else if (themeType === 'custom') {
+        return `Custom Theme: ${customColorDescription || 'User-defined preference'}`;
+    } else if (themeType === 'predefined') {
+        // Handle "dark" and "light" predefined themes
+        return `Predefined Theme: ${themeValue.charAt(0).toUpperCase() + themeValue.slice(1)} Theme`;
+    }
+    // Fallback for any old color schemes or unexpected values
+    return `Unknown/Default Theme (${themeValue || 'Not specified'})`;
+}
+
+
+/**
+ * Helper function to format section names for prompts.
+ */
+function formatSectionNames(sectionsArray, customSectionDescription) {
+    if (!sectionsArray || sectionsArray.length === 0) {
+        return 'No specific sections selected.';
+    }
+    return sectionsArray.map(s => {
+        switch(s) {
+            case 'hero': return 'Hero / Main Banner';
+            case 'about': return 'About Us';
+            case 'services': return 'Services / Offerings';
+            case 'products': return 'Products Display';
+            case 'portfolio': return 'Portfolio / Gallery';
+            case 'testimonials': return 'Testimonials / Reviews';
+            case 'faq': return 'FAQ Section';
+            case 'contact': return 'Contact Form / Info';
+            case 'blog': return 'Blog / News Feed';
+            case 'cta': return 'Call to Action (CTA)';
+            case 'team': return 'Team / Staff Showcase';
+            case 'custom-section': return `Custom Section: ${customSectionDescription || 'User-defined'}`;
+            // Advanced effects (for 1299 plan)
+            case 'effect-hero-flyin': return 'Hero Fly-In / Morph Animation';
+            case 'effect-parallax-scroll': return 'Parallax Scroll Effect';
+            case 'effect-glassmorphism': return 'Glassmorphism UI Elements';
+            case 'effect-magnetic-hover': return 'Magnetic Hover Effect';
+            case 'effect-scroll-timeline': return 'Scroll-Driven Timeline Effect';
+            case 'effect-live-counters': return 'Animated Counters / Data on Scroll';
+            case 'effect-custom-animation': return `Custom Advanced Animation: ${customSectionDescription || 'User-defined'}`;
+            default: return s; // Fallback for any unmapped or raw sections
+        }
+    }).join(', ');
+}
+
+
+/**
+ * Main function to generate the AI prompt by templating the raw text.
+ */
+function generateTemplatedAIPrompt(designChoices, customerInfo) {
+    const selectedPlan = designChoices.selectedPlan;
+    let selectedTemplate = '';
+
+    if (selectedPlan === 'basic') {
+        selectedTemplate = PROMPT_TEMPLATE_499_PLAN;
+    } else if (selectedPlan === 'growth') {
+        selectedTemplate = PROMPT_TEMPLATE_1299_PLAN;
+    } else {
+        console.warn(`Unknown plan selected: ${selectedPlan}. Using default 499 plan template.`);
+        selectedTemplate = PROMPT_TEMPLATE_499_PLAN;
+    }
+
+    // --- Replace placeholders in the selected template ---
+    let populatedPrompt = selectedTemplate;
+
+    // Customer Info Replacements
+    populatedPrompt = populatedPrompt.replace('{{USER_NAME}}', customerInfo.userName || 'Not provided');
+    populatedPrompt = populatedPrompt.replace('{{BUSINESS_NAME}}', customerInfo.businessName || 'Not provided');
+    populatedPrompt = populatedPrompt.replace('{{BUSINESS_TYPE}}', customerInfo.businessType || 'Not provided');
+    populatedPrompt = populatedPrompt.replace('{{PHONE_NUMBER}}', customerInfo.contactNumber || 'Not provided');
+    populatedPrompt = populatedPrompt.replace('{{EMAIL_ADDRESS}}', customerInfo.contactEmail || 'Not provided');
+    populatedPrompt = populatedPrompt.replace('{{CITY_LOCATION}}', customerInfo.cityLocation || 'Not provided');
+    populatedPrompt = populatedPrompt.replace('{{SERVICES_LIST}}', customerInfo.servicesOffered || 'Not provided');
+    populatedPrompt = populatedPrompt.replace('{{TARGET_AUDIENCE}}', customerInfo.targetAudience || 'Not provided'); // Only for 1299 plan, will remain {{TARGET_AUDIENCE}} in 499 if not replaced.
+
+    // Design Choices Replacements
+    // Sections list is common to both templates
+    populatedPrompt = populatedPrompt.replace('{{SECTIONS_LIST}}', formatSectionNames(designChoices.websiteSections, designChoices.customSectionDescription));
+    
+    // Updated to use the new theme structure
+    populatedPrompt = populatedPrompt.replace('{{BRAND_COLORS}}', formatColorScheme(designChoices.colorScheme, designChoices.customColorDescription));
+    
+    populatedPrompt = populatedPrompt.replace('{{FONT_PREFERENCES}}', formatFontName(designChoices.fontPairing, designChoices.customFontDescription)); // Only for 1299 plan, will remain {{FONT_PREFERENCES}} in 499 if not replaced.
+
+    return populatedPrompt;
+}
+
+
+/**
+ * Firebase Cloud Function to send request data to Pipedream immediately on document creation.
+ * This function will be deployed to a specific region for South East Asia.
+ */
+exports.sendRequestToPipedreamOnCreate = functions
+    .region('asia-southeast1') // Specify the region for deployment
+    .firestore
     .document('codeGenerationRequests/{requestId}')
-    .onCreate(async (snap, context) => {
-        const requestData = snap.data();
+    .onCreate(async (snapshot, context) => {
+        const newRequestData = snapshot.data();
         const requestId = context.params.requestId;
 
-        console.log(`Processing new code generation request: ${requestId}`);
+        console.log(`New request created: ${requestId}. Generating templated prompt and sending to Pipedream from asia-southeast1.`);
 
-        if (requestData.status !== 'pending-code-generation') {
-            console.log(`Request ${requestId} not in 'pending-code-generation' status. Exiting.`);
-            return null;
-        }
+        // Generate the detailed creativeText/AI prompt using the templating logic
+        const creativeText = generateTemplatedAIPrompt(newRequestData.designChoices, newRequestData.customerInfo);
 
-        const designChoices = requestData.designChoices;
-        if (!designChoices || !designChoices.selectedPlan) {
-            console.error(`Missing designChoices or selectedPlan for request ${requestId}.`);
-            await snap.ref.update({
-                status: 'failed',
-                errorMessage: 'Missing design choices or selected plan.'
-            });
-            return null;
-        }
-
-        // --- CODE GENERATION PROMPT (for OpenAI) ---
-        let openAIPrompt = `
-You are an expert web developer with 20 plus years of experience, known for his master work in web development and AI assistant specializing in generating production-ready, agency-level website code (HTML, CSS, JavaScript) based on user specifications. Your goal is to generate clean, modern, responsive, and highly professional code.
-
---- USER REQUIREMENTS ---
-
-BUSINESS_INFO:
-- Business Name: ${requestData.customerInfo.businessName || 'Undefined Business'}
-- Contact Number: ${requestData.customerInfo.contactNumber || 'N/A'}
-- Contact Email: ${requestData.customerInfo.contactEmail || 'N/A'}
-
-DESIGN_CHOICES:
-- Selected Plan: ${designChoices.selectedPlan}
-- Website Type: ${designChoices.websiteType} ${designChoices.customWebsiteTypeDescription ? `(${designChoices.customWebsiteTypeDescription})` : ''}
-- Page Count: ${designChoices.websitePageCount} pages
-- Color Scheme: ${designChoices.colorScheme.type} (${designChoices.colorScheme.value})${designChoices.customColorDescription ? ` (${designChoices.customColorDescription})` : ''}
-- Button Shape: ${designChoices.buttonShape}${designChoices.customButtonShapeDescription ? ` (${designChoices.customButtonShapeDescription})` : ''}
-- Button Effect: ${designChoices.buttonEffect}${designChoices.customButtonEffectDescription ? ` (${designChoices.customButtonEffectDescription})` : ''}
-- Website Sections: ${designChoices.websiteSections.join(', ')}
-${designChoices.customSectionDescription ? `- Custom Section/Animation Details: ${designChoices.customSectionDescription}` : ''}
-- Image Display Style: ${designChoices.imageDisplay}${designChoices.customImageStyleDescription ? ` (${designChoices.customImageStyleDescription})` : ''}
-- Font Pairing: ${designChoices.fontPairing}${designChoices.customFontDescription ? ` (${designChoices.customFontDescription})` : ''}
-`;
-
-        if (designChoices.selectedPlan === 'growth') {
-            openAIPrompt += `
---- REQUIRED QUALITY LEVEL ---
-- Output must meet professional agency standards (used for paid client websites).
-- Must include a subtle, elegant **preloader animation** (fade-in, pulse, minimal spinner, or similar).
-- Must include **modern UI/UX** features like glassmorphism containers, hover effects, smooth transitions, scroll animations, and if not provided, infer the best based on industry type and design choices.
-
---- KEY INSTRUCTIONS ---
-
-1.  **Deliver Complete Code:**
-    - Provide full HTML for \`index.html\`, a modern \`style.css\`, and functional \`script.js\`.
-    - For multiple pages, generate them as \`page1.html\`, \`about.html\`, etc. or use single-page layout with internal navigation.
-2.  **Modern, Responsive, Polished Design:**
-    - Site must be pixel-perfect on mobile, tablet, and desktop.
-    - Use flexbox/grid, mobile-first CSS, and elegant spacing.
-    - Apply global font/color styles from user choices.
-3.  **Functionality & Interactivity:**
-    - Implement all user-selected effects or smartly assign effects based on design logic.
-    - Add preloader to show before page load (only on first load).
-    - Functional scroll transitions, hover animations, contact forms, and carousels.
-    - Avoid third-party libraries (unless requested) — use vanilla JavaScript.
-4.  **Glassmorphism & Hover Effects:**
-    - If glassmorphism is requested or inferred, apply it to major containers (hero cards, CTA boxes, section blocks).
-    - Include elegant hover effects for buttons, images, and cards.
-    - Use backdrop-filter, rgba, blur, and smooth transitions.
-5.  **Accessibility & SEO Readiness:**
-    - Use semantic tags (nav, section, header, etc.).
-    - Alt tags on all images (relevant, not lorem).
-    - Ensure keyboard accessibility and good contrast.
-6.  **Placeholder Content:**
-    - Use realistic placeholder content based on the business type.
-    - No generic “lorem ipsum”. Use industry-appropriate titles, CTAs, and service blurbs.
-7.  **No Frameworks Unless Explicitly Requested:**
-    - Only vanilla HTML, CSS, JS unless user asks for React, Vue, or other.
-    - For animations: use keyframes, CSS transitions, JS scroll triggers.
-8.  **Output Format:**
-    - Wrap each file in proper markdown code blocks and label:
-        \`\`\`html index.html \`\`\`
-        \`\`\`css style.css \`\`\`
-        \`\`\`javascript script.js \`\`\`
-9.  **Performance & Clean Code:**
-    - Avoid bloat, keep JS minimal but powerful.
-    - Responsive images, optimized layout.
-10. **Fallback Effect Logic:**
-    - If user doesn’t select button effect, font, or image style:
-      → Smartly infer best option using color scheme, website type, and section layout.
-`;
-        } else if (designChoices.selectedPlan === 'basic') {
-            openAIPrompt += `
---- REQUIRED QUALITY LEVEL ---
-- Output must be clean, responsive, and functional.
-- Prioritize simplicity and fast loading. Avoid complex animations unless specifically requested and essential for a basic site.
-
---- KEY INSTRUCTIONS ---
-
-1.  **Deliver Complete Code:**
-    - Provide full HTML for \`index.html\`, a clean \`style.css\`, and functional \`script.js\`.
-    - For a 1-page site, ensure all content is on \`index.html\`.
-2.  **Modern & Responsive Design:**
-    - Site must be responsive across devices.
-    - Use clean, efficient CSS for layout and basic styling.
-    - Apply global font/color styles from user choices.
-3.  **Functionality:**
-    - Implement basic interactive elements (e.g., simple contact form, basic image display).
-    - Avoid complex animations or effects.
-4.  **Accessibility & SEO Readiness:**
-    - Use semantic tags.
-    - Alt tags on all images (relevant).
-    - Ensure basic readability and navigation.
-5.  **Placeholder Content:**
-    - Use relevant placeholder content based on the business type. No generic “lorem ipsum.”
-6.  **No Frameworks/Libraries:**
-    - Use only vanilla HTML, CSS, and JavaScript.
-7.  **Output Format:**
-    - Wrap each file in proper markdown code blocks and label:
-        \`\`\`html index.html \`\`\`
-        \`\`\`css style.css \`\`\`
-        \`\`\`javascript script.js \`\`\`
-8.  **Performance & Clean Code:**
-    - Optimize for very fast loading. Keep code concise.
-`;
-        }
-
-        openAIPrompt += `
---- CONTEXTUAL BEHAVIOR ---
-- If Plan is 'basic' → prioritize clarity, fast loading, fewer animations
-- If Plan is 'growth' → more creative transitions, hover cards, glassmorphism
-- If Plan is 'e-commerce-store' (regardless of main plan, this is a specific type) → product grid, pricing emphasis, clean CTA, mini cart simulation (non-functional)
-
---- FINAL NOTE ---
-Always aim to impress. These websites are used to build real businesses. Keep aesthetics, speed, clarity, and interactivity in perfect balance.
-
---- GENERATE CODE BELOW ---
-`;
-
-        // --- Call GPT-4o API for Code Generation ---
-        let completion;
-        try {
-            completion = await openai.chat.completions.create({
-                model: "gpt-4o",
-                messages: [
-                    { "role": "system", "content": "You are an expert web developer and AI assistant specializing in generating production-ready website code. Generate only the code blocks as requested in the user prompt, without extra conversational text before or after the code." },
-                    { "role": "user", "content": openAIPrompt }
-                ],
-                temperature: 0.7,
-                max_tokens: 4000,
-            });
-        } catch (apiError) {
-            console.error(`OpenAI API call failed for request ${requestId}:`, apiError);
-            await snap.ref.update({
-                status: 'failed',
-                errorMessage: `OpenAI API error: ${apiError.message || 'Unknown Storage Error.'}`
-            });
-            return null;
-        }
-
-        const rawContent = completion.choices[0].message.content;
-        console.log(`Raw GPT-4o response for ${requestId}:`, rawContent);
-
-        // --- Parse Generated Code ---
-        const htmlMatch = rawContent.match(/```html\s+([\s\S]*?)\s+```/);
-        const cssMatch = rawContent.match(/```css\s+([\s\S]*?)\s+```/);
-        const jsMatch = rawContent.match(/```javascript\s+([\s\S]*?)\s+```/);
-
-        let htmlCode = htmlMatch ? htmlMatch[1].trim() : '';
-        let cssCode = cssMatch ? cssMatch[1].trim() : '';
-        let jsCode = jsMatch ? jsMatch[1].trim() : '';
-
-        if (!htmlCode || !cssCode || !jsCode) {
-            console.error(`Failed to parse all code blocks for request ${requestId}.`);
-            await snap.ref.update({
-                status: 'failed',
-                errorMessage: 'Failed to parse generated HTML, CSS, or JS code from AI response.'
-            });
-            return null;
-        }
-
-        // --- Store Generated Code in Firebase Storage ---
-        let htmlUrl = '';
-        let cssUrl = '';
-        let jsUrl = '';
+        // Prepare data for Pipedream
+        const dataToSend = {
+            customerInfo: newRequestData.customerInfo, // Sending raw data too, as it might be useful for Pipedream
+            designChoices: newRequestData.designChoices, // Sending raw data too
+            estimatedPrice: newRequestData.estimatedPrice,
+            status: 'templated_prompt_sent_to_pipedream', // Updated status
+            timestamp: admin.firestore.FieldValue.serverTimestamp(),
+            creativeText: creativeText, // creativeText now contains the fully constructed prompt string
+        };
 
         try {
-            const htmlFileName = `generated-websites/${requestId}/index.html`;
-            const htmlFile = bucket.file(htmlFileName);
-            await htmlFile.save(htmlCode, {
-                contentType: 'text/html',
-                resumable: false,
+            await sendToPipedream(requestId, dataToSend);
+            console.log(`Templated prompt for request ${requestId} successfully sent to Pipedream.`);
+            // Optionally update Firestore document status after sending to Pipedream
+            await snapshot.ref.update({
+                status: 'pipedream_code_generation_triggered_with_templated_prompt', // Updated status
+                pipedreamSentTimestamp: admin.firestore.FieldValue.serverTimestamp()
             });
-            await htmlFile.makePublic();
-            htmlUrl = htmlFile.publicUrl();
-            console.log(`HTML uploaded to: ${htmlUrl}`);
-
-            const cssFileName = `generated-websites/${requestId}/style.css`;
-            const cssFile = bucket.file(cssFileName);
-            await cssFile.save(cssCode, {
-                contentType: 'text/css',
-                resumable: false
+        } catch (error) {
+            console.error(`Failed to send data to Pipedream for request ${requestId}:`, error);
+            // Update Firestore document status to indicate failure
+            await snapshot.ref.update({
+                status: 'pipedream_send_failed',
+                errorMessage: `Pipedream send failed: ${error.message}`
             });
-            await cssFile.makePublic();
-            cssUrl = cssFile.publicUrl();
-            console.log(`CSS uploaded to: ${cssUrl}`);
-
-            const jsFileName = `generated-websites/${requestId}/script.js`;
-            const jsFile = bucket.file(jsFileName);
-            await jsFile.save(jsCode, {
-                contentType: 'application/javascript',
-                resumable: false
-            });
-            await jsFile.makePublic();
-            jsUrl = jsFile.publicUrl();
-            console.log(`JS uploaded to: ${jsUrl}`);
-
-        } catch (storageError) {
-            console.error(`Error uploading code to Firebase Storage for request ${requestId}:`, storageError);
-            await snap.ref.update({
-                status: 'failed',
-                errorMessage: `Storage upload error: ${storageError.message || 'Unknown Storage Error.'}`
-            });
-            return null;
         }
 
-        // --- Update Firestore Document with Status and URLs ---
-        try {
-            await snap.ref.update({
-                status: 'code-generated',
+        return null;
+    });
+
+/**
+ * DISABLED: Firebase Cloud Function to create a Razorpay order.
+ * This function is commented out as Razorpay integration is temporarily removed.
+ */
+/*
+const Razorpay = require('razorpay'); // Re-introduce Razorpay import if needed
+const razorpay = new Razorpay({
+    key_id: functions.config().razorpay.key_id,
+    key_secret: functions.config().razorpay.key_secret,
+});
+
+exports.createRazorpayOrder = functions.https.onCall(async (data, context) => {
+    if (!data.amount || !data.currency || !data.receipt) {
+        throw new functions.https.HttpsError('invalid-argument', 'Missing amount, currency, or receipt.');
+    }
+
+    const amountInPaisa = Math.round(data.amount);
+
+    try {
+        const order = await razorpay.orders.create({
+            amount: amountInPaisa,
+            currency: data.currency,
+            receipt: data.receipt,
+            notes: data.notes || {},
+        });
+        console.log('Razorpay Order Created:', order.id);
+        return order;
+    } catch (error) {
+        console.error('Error creating Razorpay order:', error);
+        throw new functions.https.HttpsError('internal', 'Unable to create Razorpay order.', error.message);
+    }
+});
+*/
+
+/**
+ * DISABLED: Firebase Cloud Function to verify Razorpay payment signature.
+ * This function is commented out as Razorpay integration is temporarily removed.
+ */
+/*
+exports.verifyRazorpayPayment = functions.https.onCall(async (data, context) => {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, firestore_request_id } = data;
+
+    if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !firestore_request_id) {
+        throw new functions.https.HttpsError('invalid-argument', 'Missing payment verification data.');
+    }
+
+    try {
+        const crypto = require('crypto');
+        const hmac = crypto.createHmac('sha256', functions.config().razorpay.key_secret);
+        hmac.update(razorpay_order_id + "|" + razorpay_payment_id);
+        const generatedSignature = hmac.digest('hex');
+
+        if (generatedSignature === razorpay_signature) {
+            console.log(`Payment successfully verified for order ${razorpay_order_id}`);
+
+            const requestRef = db.collection('codeGenerationRequests').doc(firestore_request_id);
+            const docSnap = await requestRef.get();
+            if (!docSnap.exists) {
+                throw new functions.https.HttpsError('not-found', 'Request document not found for verification.');
+            }
+            const requestData = docSnap.data();
+
+            await requestRef.update({
+                status: 'payment_successful',
+                razorpayPaymentId: razorpay_payment_id,
+                razorpayOrderId: razorpay_order_id,
+                paymentVerificationTimestamp: admin.firestore.FieldValue.serverTimestamp(),
+            });
+
+            await sendToPipedream(firestore_request_id, {
+                customerInfo: requestData.customerInfo,
+                designChoices: requestData.designChoices,
+                estimatedPrice: requestData.estimatedPrice,
+                razorpayPaymentId: razorpay_payment_id,
+                razorpayOrderId: razorpay_order_id,
+                status: 'payment_successful_pipedream_sent',
+                timestamp: admin.firestore.FieldValue.serverTimestamp()
+            }).catch(e => console.error(`Failed to send data to Pipedream for verified payment ${firestore_request_id}:`, e));
+
+            return { verified: true, message: "Payment successful and verified!" };
+        } else {
+            console.warn(`Payment verification failed for order ${razorpay_order_id}: Signature mismatch.`);
+            const requestRef = db.collection('codeGenerationRequests').doc(firestore_request_id);
+            await requestRef.update({
+                status: 'payment_verification_failed',
+                razorpayPaymentId: razorpay_payment_id,
+                razorpayOrderId: razorpay_order_id,
+                paymentVerificationTimestamp: admin.firestore.FieldValue.serverTimestamp(),
+                verificationError: "Signature mismatch"
+            });
+            throw new functions.https.HttpsError('unauthenticated', 'Payment verification failed: Signature mismatch.');
+        }
+    } catch (error) {
+        console.error('Error during payment verification:', error);
+        throw new functions.https.HttpsError('internal', 'Error verifying payment.', error.message);
+    }
+});
+*/
+
+/**
+ * DISABLED: Cloud Function to trigger AI code generation.
+ * This function is commented out as AI generation will now be
+ * triggered by the Pipedream workflow, not directly by Firebase.
+ */
+/*
+exports.generateWebsiteCode = functions.firestore
+    .document('codeGenerationRequests/{requestId}')
+    .onUpdate(async (change, context) => {
+        const newRequestData = change.after.data();
+        const oldRequestData = change.before.data();
+        const requestId = context.params.requestId;
+
+        if (newRequestData.status === 'payment_successful' && oldRequestData.status !== 'payment_successful') {
+            console.log(`Processing AI generation for paid request: ${requestId}`);
+
+            const designChoices = newRequestData.designChoices;
+            if (!designChoices || !designChoices.selectedPlan) {
+                console.error(`Missing designChoices or selectedPlan for request ${requestId}.`);
+                await change.after.ref.update({
+                    status: 'failed',
+                    errorMessage: 'Missing design choices or selected plan for AI generation.'
+                });
+                return null;
+            }
+
+            // --- CODE GENERATION PROMPT (for OpenAI) ---
+            let openAIPrompt = `...`; // Content is large, omitted for brevity
+
+            let completion;
+            try {
+                completion = await openai.chat.completions.create({
+                    model: "gpt-4o",
+                    messages: [
+                        { "role": "system", "content": "You are an expert web developer and AI assistant specializing in generating production-ready website code. Generate only the code blocks as requested in the user prompt, without extra conversational text before or after the code." },
+                        { "role": "user", "content": openAIPrompt }
+                    ],
+                    temperature: 0.7,
+                    max_tokens: 4000,
+                });
+            } catch (apiError) {
+                console.error(`OpenAI API call failed for request ${requestId}:`, apiError);
+                await change.after.ref.update({
+                    status: 'failed',
+                    errorMessage: `OpenAI API error: ${apiError.message || 'Unknown Storage Error.'}`
+                });
+                return null;
+            }
+
+            const rawContent = completion.choices[0].message.content;
+            const htmlMatch = rawContent.match(/```html\s+([\s\S]*?)\s+```/);
+            const cssMatch = rawContent.match(/```css\s+([\s\S]*?)\s+```/);
+            const jsMatch = rawContent.match(/```javascript\s+([\s\S]*?)\s+```/);
+
+            let htmlCode = htmlMatch ? htmlMatch[1].trim() : '';
+            let cssCode = cssMatch ? cssCode[1].trim() : '';
+            let jsCode = jsMatch ? jsCode[1].trim() : '';
+
+            if (!htmlCode || !cssCode || !jsCode) {
+                console.error(`Failed to parse all code blocks for request ${requestId}.`);
+                await change.after.ref.update({
+                    status: 'failed',
+                    errorMessage: 'Failed to parse generated HTML, CSS, or JS code from AI response.'
+                });
+                return null;
+            }
+
+            let htmlUrl = '';
+            let cssUrl = '';
+            jsUrl = '';
+
+            try {
+                const htmlFileName = `generated-websites/${requestId}/index.html`;
+                const htmlFile = bucket.file(htmlFileName);
+                await htmlFile.save(htmlCode, { contentType: 'text/html', resumable: false });
+                await htmlFile.makePublic();
+                htmlUrl = htmlFile.publicUrl();
+
+                const cssFileName = `generated-websites/${requestId}/style.css`;
+                const cssFile = bucket.file(cssFileName);
+                await cssFile.save(cssCode, { contentType: 'text/css', resumable: false });
+                await cssFile.makePublic();
+                cssUrl = cssFile.publicUrl();
+
+                const jsFileName = `generated-websites/${requestId}/script.js`;
+                const jsFile = bucket.file(jsFileName);
+                await jsFile.save(jsCode, { contentType: 'application/javascript', resumable: false });
+                await jsFile.makePublic();
+                jsUrl = jsFile.publicUrl();
+
+            } catch (storageError) {
+                console.error(`Error uploading code to Firebase Storage for request ${requestId}:`, storageError);
+                await change.after.ref.update({
+                    status: 'failed',
+                    errorMessage: `Storage upload error: ${storageError.message || 'Unknown Storage Error.'}`
+                });
+                return null;
+            }
+
+            let pipedreamTrackingPrompt = `...`; // Content is large, omitted for brevity
+
+            sendToPipedream(requestId, {
+                customerInfo: newRequestData.customerInfo,
+                designChoices: newRequestData.designChoices,
+                estimatedPrice: newRequestData.estimatedPrice,
                 generatedHtmlUrl: htmlUrl,
                 generatedCssUrl: cssUrl,
                 generatedJsUrl: jsUrl,
-                generationTimestamp: admin.firestore.FieldValue.serverTimestamp(),
-                redoAttempts: requestData.redoAttempts !== undefined ? requestData.redoAttempts : 2
-            });
-            console.log(`Firestore document ${requestId} updated with generated code URLs.`);
-        } catch (firestoreError) {
-            console.error(`Error updating Firestore document for request ${requestId}:`, firestoreError);
-            return null;
+                creativeText: pipedreamTrackingPrompt,
+                status: 'code-generated-and-sent-to-pipedream',
+                timestamp: admin.firestore.FieldValue.serverTimestamp()
+            }).catch(e => console.error(`Failed to send data to Pipedream for ${requestId}:`, e));
+
+            try {
+                await change.after.ref.update({
+                    status: 'code-generated',
+                    generatedHtmlUrl: htmlUrl,
+                    generatedCssUrl: cssUrl,
+                    generatedJsUrl: jsUrl,
+                    generationTimestamp: admin.firestore.FieldValue.serverTimestamp(),
+                    redoAttempts: newRequestData.redoAttempts !== undefined ? newRequestData.redoAttempts : 2
+                });
+            } catch (firestoreError) {
+                console.error(`Error updating Firestore document for request ${requestId}:`, firestoreError);
+                return null;
+            }
         }
-
-        // --- NEW: Tracking Prompt for Pipedream (STATIC PROMPT TEXT TEMPLATE LITERALS) ---
-        let pipedreamTrackingPrompt = '';
-
-        if (designChoices.selectedPlan === 'basic') {
-            pipedreamTrackingPrompt = `
-Create a prompt that will instruct an AI developer to generate a complete, mobile-responsive, modern one-page website using only HTML, CSS, and JavaScript.
-
-The prompt should:
-- Ask for three files: index.html, style.css, and script.js
-- Instruct the AI to avoid any animations, loaders, or transitions
-- Focus on clean layout, responsiveness across devices, and semantic structure
-- Use user-provided inputs like business name: "${requestData.customerInfo.businessName || 'Undefined'}", contact info: "${requestData.customerInfo.contactNumber || 'N/A'}", "${requestData.customerInfo.contactEmail || 'N/A'}", website type: "${designChoices.websiteType}"${designChoices.customWebsiteTypeDescription ? ` (${designChoices.customWebsiteTypeDescription})` : ''}, color scheme: "${designChoices.colorScheme.type}" ("${designChoices.colorScheme.value}")${designChoices.customColorDescription ? ` (${designChoices.customColorDescription})` : ''}, selected sections: "${designChoices.websiteSections.join(', ')}", font pairing: "${designChoices.fontPairing}"${designChoices.customFontDescription ? ` (${designChoices.customFontDescription})` : ''}, and button style: "${designChoices.buttonShape}" with "${designChoices.buttonEffect}" effect${designChoices.customButtonShapeDescription ? ` (${designChoices.customButtonShapeDescription})` : ''}${designChoices.customButtonEffectDescription ? ` (${designChoices.customButtonEffectDescription})` : ''}.
-- Generate placeholder content that feels relevant to the business type — avoid lorem ipsum
-- Ensure accessibility and modern styling with a nice UI but no heavy effects
-- Avoid any external frameworks or libraries (pure vanilla code)
-
-The prompt should be output in a clear, complete format, ready to be used for code generation.
-`;
-        } else if (designChoices.selectedPlan === 'growth') {
-            // --- MODIFIED PROMPT FOR GROWTH PLAN TO INCLUDE CUSTOMER DATA ---
-            pipedreamTrackingPrompt = `
-Create a prompt that will instruct an AI developer to generate a premium, production-ready website using HTML, CSS, and JavaScript.
-It must say to AI and must include this line that = "consider that you are a web developer and designer for past 20 years, a veteran and understands the Indian market very well, i want you to generate a website which matches the level of agencies"
-The prompt should:
-- Ask for three files: index.html, style.css, and script.js
-- Instruct the AI to create a modern, agency-level, multi-section website (single-page or multipage structure based on input)
-- Ensure full mobile responsiveness using grid/flex layouts and proper spacing
-- Include advanced styling features like:
-  - Preloader (minimal and elegant)
-  - Smooth scroll animations (fade-ins, slide-ins)
-  - Hover effects on buttons, cards, and links
-  - Glassmorphism-style containers where appropriate
-  - Responsive hero section with bold CTA
-- Use placeholder content that fits the user's business type (avoid lorem ipsum)
-- Apply a consistent, professional color scheme and font pairing based on user input
-- Include semantic HTML5 structure, accessibility considerations, and clean code
-- Avoid using any external libraries or frameworks unless explicitly mentioned
-- Include the following customer and design details in the generated website and these details should also be present in the generated prompt:
-    - Business Name: "${requestData.customerInfo.businessName || 'Undefined Business'}"
-    - Contact Number: "${requestData.customerInfo.contactNumber || 'N/A'}"
-    - Contact Email: "${requestData.customerInfo.contactEmail || 'N/A'}"
-    - Website Type: "${designChoices.websiteType}" ${designChoices.customWebsiteTypeDescription ? `(${designChoices.customWebsiteTypeDescription})` : ''}
-    - Preferred Color Scheme: "${designChoices.colorScheme.type}" ("${designChoices.colorScheme.value}")${designChoices.customColorDescription ? ` (${designChoices.customColorDescription})` : ''}
-    - Font Pairing Style: "${designChoices.fontPairing}"${designChoices.customFontDescription ? ` (${designChoices.customFontDescription})` : ''}
-    - Button Style Preference: "${designChoices.buttonShape}" with "${designChoices.buttonEffect}" effect${designChoices.customButtonShapeDescription ? ` (${designChoices.customButtonShapeDescription})` : ''}${designChoices.customButtonEffectDescription ? ` (${designChoices.customButtonEffectDescription})` : ''}
-    ${designChoices.customSectionDescription ? `- Custom Section/Animation Details: ${designChoices.customSectionDescription}` : ''}
-
-The generated prompt should be clear, structured, and optimized to help an AI developer produce visually stunning, functional frontend code. Output the prompt in a format ready to be used directly for code generation.
-`;
-        } else {
-            // Fallback for unknown plan, interpolating key details for traceability
-            pipedreamTrackingPrompt = `Request Summary: User selected an unknown plan (${designChoices.selectedPlan || 'N/A'}). Request ID: ${requestId}.
-Business Name: ${requestData.customerInfo.businessName || 'Undefined Business'}
-Contact Email: ${requestData.customerInfo.contactEmail || 'N/A'}
-Website Type: ${designChoices.websiteType || 'N/A'}
-`;
-        }
-
-        sendToPipedream(requestId, {
-            customerInfo: requestData.customerInfo,
-            designChoices: requestData.designChoices,
-            estimatedPrice: requestData.estimatedPrice,
-            generatedHtmlUrl: htmlUrl,
-            generatedCssUrl: cssUrl,
-            generatedJsUrl: jsUrl,
-            creativeText: pipedreamTrackingPrompt, // Send the NEW tracking prompt here (interpolated text)
-            status: 'code-generated-and-sent-to-pipedream',
-            timestamp: admin.firestore.FieldValue.serverTimestamp()
-        }).catch(e => console.error(`Failed to send data to Pipedream for ${requestId}:`, e));
-
         return null;
     }, { timeoutSeconds: 420 });
+*/
 
 /**
- * Cloud Function to handle re-generation requests.
- * Triggers when `status` changes to 'pending-code-generation-redo' and re-runs generation logic.
+ * DISABLED: Cloud Function for handling re-generation requests.
+ * This function is commented out as AI generation will now be
+ * triggered by the Pipedream workflow, not directly by Firebase.
  */
+/*
 exports.regenerateWebsiteCode = functions.firestore
     .document('codeGenerationRequests/{requestId}')
     .onUpdate(async (change, context) => {
@@ -415,134 +539,16 @@ exports.regenerateWebsiteCode = functions.firestore
                 return null;
             }
 
-            // --- CODE GENERATION PROMPT (for OpenAI) ---
             const designChoices = newRequestData.designChoices;
-            let openAIPrompt = `
-You are an expert web developer with 20 plus years of experience, known for his master work in web development and AI assistant specializing in generating production-ready, agency-level website code (HTML, CSS, JavaScript) based on user specifications. Your goal is to generate clean, modern, responsive, and highly professional code.
+            let openAIPrompt = `...`; // Content is large, omitted for brevity
 
---- USER REQUIREMENTS ---
-
-BUSINESS_INFO:
-- Business Name: ${newRequestData.customerInfo.businessName || 'Undefined Business'}
-- Contact Number: ${newRequestData.customerInfo.contactNumber || 'N/A'}
-- Contact Email: ${newRequestData.customerInfo.contactEmail || 'N/A'}
-
-DESIGN_CHOICES:
-- Selected Plan: ${designChoices.selectedPlan}
-- Website Type: ${designChoices.websiteType} ${designChoices.customWebsiteTypeDescription ? `(${designChoices.customWebsiteTypeDescription})` : ''}
-- Page Count: ${designChoices.websitePageCount} pages
-- Color Scheme: ${designChoices.colorScheme.type} (${designChoices.colorScheme.value})${designChoices.customColorDescription ? ` (${designChoices.customColorDescription})` : ''}
-- Button Shape: ${designChoices.buttonShape}${designChoices.customButtonShapeDescription ? ` (${designChoices.customButtonShapeDescription})` : ''}
-- Button Effect: ${designChoices.buttonEffect}${designChoices.customButtonEffectDescription ? ` (${designChoices.customButtonEffectDescription})` : ''}
-- Website Sections: ${designChoices.websiteSections.join(', ')}
-${designChoices.customSectionDescription ? `- Custom Section/Animation Details: ${designChoices.customSectionDescription}` : ''}
-- Image Display Style: ${designChoices.imageDisplay}${designChoices.customImageStyleDescription ? ` (${designChoices.customImageStyleDescription})` : ''}
-- Font Pairing: ${designChoices.fontPairing}${designChoices.customFontDescription ? ` (${designChoices.customFontDescription})` : ''}
-`;
-
-            if (designChoices.selectedPlan === 'growth') {
-                openAIPrompt += `
---- REQUIRED QUALITY LEVEL ---
-- Output must meet professional agency standards (used for paid client websites).
-- Must include a subtle, elegant **preloader animation** (fade-in, pulse, minimal spinner, or similar).
-- Must include **modern UI/UX** features like glassmorphism containers, hover effects, smooth transitions, scroll animations, and if not provided, infer the best based on industry type and design choices.
-
---- KEY INSTRUCTIONS ---
-
-1.  **Deliver Complete Code:**
-    - Provide full HTML for \`index.html\`, a modern \`style.css\`, and functional \`script.js\`.
-    - For multiple pages, generate them as \`page1.html\`, \`about.html\`, etc. or use single-page layout with internal navigation.
-2.  **Modern, Responsive, Polished Design:**
-    - Site must be pixel-perfect on mobile, tablet, and desktop.
-    - Use flexbox/grid, mobile-first CSS, and elegant spacing.
-    - Apply global font/color styles from user choices.
-3.  **Functionality & Interactivity:**
-    - Implement all user-selected effects or smartly assign effects based on design logic.
-    - Add preloader to show before page load (only on first load).
-    - Functional scroll transitions, hover animations, contact forms, and carousels.
-    - Avoid third-party libraries (unless requested) — use vanilla JavaScript.
-4.  **Glassmorphism & Hover Effects:**
-    - If glassmorphism is requested or inferred, apply it to major containers (hero cards, CTA boxes, section blocks).
-    - Include elegant hover effects for buttons, images, and cards.
-    - Use backdrop-filter, rgba, blur, and smooth transitions.
-5.  **Accessibility & SEO Readiness:**
-    - Use semantic tags.
-    - Alt tags on all images (relevant).
-    - Ensure keyboard accessibility and good contrast.
-6.  **Placeholder Content:**
-    - Use realistic placeholder content based on the business type.
-    - No generic “lorem ipsum”. Use industry-appropriate titles, CTAs, and service blurbs.
-7.  **No Frameworks Unless Explicitly Requested:**
-    - Only vanilla HTML, CSS, JS unless user asks for React, Vue, or other.
-    - For animations: use keyframes, CSS transitions, JS scroll triggers.
-8.  **Output Format:**
-    - Wrap each file in proper markdown code blocks and label:
-        \`\`\`html index.html \`\`\`
-        \`\`\`css style.css \`\`\`
-        \`\`\`javascript script.js \`\`\`
-9.  **Performance & Clean Code:**
-    - Avoid bloat, keep JS minimal but powerful.
-    - Responsive images, optimized layout.
-10. **Fallback Effect Logic:**
-    - If user doesn’t select button effect, font, or image style:
-      → Smartly infer best option using color scheme, website type, and section layout.
-`;
-            } else if (designChoices.selectedPlan === 'basic') {
-                openAIPrompt += `
---- REQUIRED QUALITY LEVEL ---
-- Output must be clean, responsive, and functional.
-- Prioritize simplicity and fast loading. Avoid complex animations unless specifically requested and essential for a basic site.
-
---- KEY INSTRUCTIONS ---
-
-1.  **Deliver Complete Code:**
-    - Provide full HTML for \`index.html\`, a clean \`style.css\`, and functional \`script.js\`.
-    - For a 1-page site, ensure all content is on \`index.html\`.
-2.  **Modern & Responsive Design:**
-    - Site must be responsive across devices.
-    - Use clean, efficient CSS for layout and basic styling.
-    - Apply global font/color styles from user choices.
-3.  **Functionality:**
-    - Implement basic interactive elements (e.g., simple contact form, basic image display).
-    - Avoid complex animations or effects.
-4.  **Accessibility & SEO Readiness:**
-    - Use semantic tags.
-    - Alt tags on all images (relevant).
-    - Ensure basic readability and navigation.
-5.  **Placeholder Content:**
-    - Use relevant placeholder content based on the business type. No generic “lorem ipsum.”
-6.  **No Frameworks/Libraries:**
-    - Use only vanilla HTML, CSS, and JavaScript.
-7.  **Output Format:**
-    - Wrap each file in proper markdown code blocks and label:
-        \`\`\`html index.html \`\`\`
-        \`\`\`css style.css \`\`\`
-        \`\`\`javascript script.js \`\`\`
-8.  **Performance & Clean Code:**
-    - Optimize for very fast loading. Keep code concise.
-`;
-            }
-
-            openAIPrompt += `
---- CONTEXTUAL BEHAVIOR ---
-- If Plan is 'basic' → prioritize clarity, fast loading, fewer animations
-- If Plan is 'growth' → more creative transitions, hover cards, glassmorphism
-- If Plan is 'e-commerce-store' (regardless of main plan, this is a specific type) → product grid, pricing emphasis, clean CTA, mini cart simulation (non-functional)
-
---- FINAL NOTE ---
-Always aim to impress. These websites are used to build real businesses. Keep aesthetics, speed, clarity, and interactivity in perfect balance.
-
---- GENERATE CODE BELOW ---
-`;
-
-            // Call GPT-4o API (same logic as in onCreate trigger)
             let completion;
             try {
                 completion = await openai.chat.completions.create({
                     model: "gpt-4o",
                     messages: [
                         { "role": "system", "content": "You are an expert web developer and AI assistant specializing in generating production-ready website code. Generate only the code blocks as requested in the user prompt, without extra conversational text before or after the code." },
-                        { "role": "user", "content": openAIPrompt } // Use openAIPrompt here
+                        { "role": "user", "content": openAIPrompt }
                     ],
                     temperature: 0.7,
                     max_tokens: 4000,
@@ -557,16 +563,13 @@ Always aim to impress. These websites are used to build real businesses. Keep ae
             }
 
             const rawContent = completion.choices[0].message.content;
-            console.log(`Raw GPT-4o re-generation response for ${requestId}:`, rawContent);
-
-            // --- Parse Generated Code ---
             const htmlMatch = rawContent.match(/```html\s+([\s\S]*?)\s+```/);
             const cssMatch = rawContent.match(/```css\s+([\s\S]*?)\s+```/);
             const jsMatch = rawContent.match(/```javascript\s+([\s\S]*?)\s+```/);
 
             let htmlCode = htmlMatch ? htmlMatch[1].trim() : '';
-            let cssCode = cssMatch ? cssMatch[1].trim() : '';
-            let jsCode = jsMatch ? jsMatch[1].trim() : '';
+            let cssCode = cssMatch ? cssCode[1].trim() : '';
+            let jsCode = jsMatch ? jsCode[1].trim() : '';
 
             if (!htmlCode || !cssCode || !jsCode) {
                 console.error(`Failed to parse all code blocks for re-generation request ${requestId}.`);
@@ -577,7 +580,6 @@ Always aim to impress. These websites are used to build real businesses. Keep ae
                 return null;
             }
 
-            // --- Store Generated Code in Firebase Storage ---
             let htmlUrl = '';
             let cssUrl = '';
             jsUrl = '';
@@ -588,21 +590,18 @@ Always aim to impress. These websites are used to build real businesses. Keep ae
                 await htmlFile.save(htmlCode, { contentType: 'text/html', resumable: false });
                 await htmlFile.makePublic();
                 htmlUrl = htmlFile.publicUrl();
-                console.log(`HTML uploaded to: ${htmlUrl}`);
 
                 const cssFileName = `generated-websites/${requestId}/style.css`;
                 const cssFile = bucket.file(cssFileName);
                 await cssFile.save(cssCode, { contentType: 'text/css', resumable: false });
                 await cssFile.makePublic();
                 cssUrl = cssFile.publicUrl();
-                console.log(`CSS uploaded to: ${cssUrl}`);
 
                 const jsFileName = `generated-websites/${requestId}/script.js`;
                 const jsFile = bucket.file(jsFileName);
                 await jsFile.save(jsCode, { contentType: 'application/javascript', resumable: false });
                 await jsFile.makePublic();
                 jsUrl = jsFile.publicUrl();
-                console.log(`JS uploaded to: ${jsUrl}`);
 
             } catch (storageError) {
                 console.error(`Error uploading re-generated code to Firebase Storage for request ${requestId}:`, storageError);
@@ -613,78 +612,7 @@ Always aim to impress. These websites are used to build real businesses. Keep ae
                 return null;
             }
 
-            // --- Update Firestore Document with Status and URLs ---
-            try {
-                await change.after.ref.update({
-                    status: 'code-generated',
-                    generatedHtmlUrl: htmlUrl,
-                    generatedCssUrl: cssUrl,
-                    generatedJsUrl: jsUrl,
-                    generationTimestamp: admin.firestore.FieldValue.serverTimestamp()
-                });
-                console.log(`Firestore document ${requestId} updated with re-generated code URLs.`);
-            } catch (firestoreError) {
-                console.error(`Error updating Firestore document after re-generation for request ${requestId}:`, firestoreError);
-                return null;
-            }
-
-            // --- NEW: Tracking Prompt for Pipedream (STATIC PROMPT TEXT TEMPLATE LITERALS) ---
-            let pipedreamTrackingPrompt = '';
-            if (designChoices.selectedPlan === 'basic') {
-                pipedreamTrackingPrompt = `
-Create a prompt that will instruct an AI developer to generate a complete, mobile-responsive, modern one-page website using only HTML, CSS, and JavaScript.
-
-The prompt should:
-- Ask for three files: index.html, style.css, and script.js
-- Instruct the AI to avoid any animations, loaders, or transitions
-- Focus on clean layout, responsiveness across devices, and semantic structure
-- Use user-provided inputs like business name: "${newRequestData.customerInfo.businessName || 'Undefined'}", contact info: "${newRequestData.customerInfo.contactNumber || 'N/A'}", "${newRequestData.customerInfo.contactEmail || 'N/A'}", website type: "${designChoices.websiteType}"${designChoices.customWebsiteTypeDescription ? ` (${designChoices.customWebsiteTypeDescription})` : ''}, color scheme: "${designChoices.colorScheme.type}" ("${designChoices.colorScheme.value}")${designChoices.customColorDescription ? ` (${designChoices.customColorDescription})` : ''}, selected sections: "${designChoices.websiteSections.join(', ')}", font pairing: "${designChoices.fontPairing}"${designChoices.customFontDescription ? ` (${designChoices.customFontDescription})` : ''}, and button style: "${designChoices.buttonShape}" with "${designChoices.buttonEffect}" effect${designChoices.customButtonShapeDescription ? ` (${designChoices.customButtonShapeDescription})` : ''}${designChoices.customButtonEffectDescription ? ` (${designChoices.customButtonEffectDescription})` : ''}.
-- Generate placeholder content that feels relevant to the business type — avoid lorem ipsum
-- Ensure accessibility and modern styling with a nice UI but no heavy effects
-- Avoid any external frameworks or libraries (pure vanilla code)
-
-The prompt should be output in a clear, complete format, ready to be used for code generation.
-`;
-            } else if (designChoices.selectedPlan === 'growth') {
-                // --- MODIFIED PROMPT FOR GROWTH PLAN TO INCLUDE CUSTOMER DATA ---
-                pipedreamTrackingPrompt = `
-Create a prompt that will instruct an AI developer to generate a premium, production-ready website using HTML, CSS, and JavaScript.
-It must say to AI and must include this line that = "consider that you are a web developer and designer for past 20 years, a veteran and understands the Indian market very well, i want you to generate a website which matches the level of agencies"
-The prompt should:
-- Ask for three files: index.html, style.css, and script.js
-- In prompt all the customer details should be included which are sent 
-- Instruct the AI to create a modern, agency-level, multi-section website (single-page or multipage structure based on input)
-- Ensure full mobile responsiveness using grid/flex layouts and proper spacing
-- Include advanced styling features like:
-  - Preloader (minimal and elegant)
-  - Smooth scroll animations (fade-ins, slide-ins)
-  - Hover effects on buttons, cards, and links
-  - Glassmorphism-style containers where appropriate
-  - Responsive hero section with bold CTA
-- Use placeholder content that fits the user's business type (avoid lorem ipsum)
-- Apply a consistent, professional color scheme and font pairing based on user input
-- Include semantic HTML5 structure, accessibility considerations, and clean code
-- Avoid using any external libraries or frameworks unless explicitly mentioned
-- Include the following customer and design details in the generated website:
-    - Business Name: "${newRequestData.customerInfo.businessName || 'Undefined Business'}"
-    - Contact Number: "${newRequestData.customerInfo.contactNumber || 'N/A'}"
-    - Contact Email: "${newRequestData.customerInfo.contactEmail || 'N/A'}"
-    - Website Type: "${designChoices.websiteType}" ${designChoices.customWebsiteTypeDescription ? `(${designChoices.customWebsiteTypeDescription})` : ''}
-    - Preferred Color Scheme: "${designChoices.colorScheme.type}" ("${designChoices.colorScheme.value}")${designChoices.customColorDescription ? ` (${designChoices.customColorDescription})` : ''}
-    - Font Pairing Style: "${designChoices.fontPairing}"${designChoices.customFontDescription ? ` (${designChoices.customFontDescription})` : ''}
-    - Button Style Preference: "${designChoices.buttonShape}" with "${designChoices.buttonEffect}" effect${designChoices.customButtonShapeDescription ? ` (${designChoices.customButtonShapeDescription})` : ''}${designChoices.customButtonEffectDescription ? ` (${designChoices.customButtonEffectDescription})` : ''}
-    ${designChoices.customSectionDescription ? `- Custom Section/Animation Details: ${designChoices.customSectionDescription}` : ''}
-
-The generated prompt should be clear, structured, and optimized to help an AI developer produce visually stunning, functional frontend code. Output the prompt in a format ready to be used directly for code generation.
-`;
-            } else {
-                // Fallback for unknown plan, interpolating key details for traceability
-                pipedreamTrackingPrompt = `Request Summary: User selected an unknown plan (${newRequestData.designChoices.selectedPlan || 'N/A'}). Request ID: ${requestId}.
-Business Name: ${newRequestData.customerInfo.businessName || 'Undefined Business'}
-Contact Email: ${newRequestData.customerInfo.contactEmail || 'N/A'}
-Website Type: ${newRequestData.designChoices.websiteType || 'N/A'}
-`;
-            }
+            let pipedreamTrackingPrompt = `...`; // Content is large, omitted for brevity
 
             sendToPipedream(requestId, {
                 customerInfo: newRequestData.customerInfo,
@@ -693,11 +621,25 @@ Website Type: ${newRequestData.designChoices.websiteType || 'N/A'}
                 generatedHtmlUrl: htmlUrl,
                 generatedCssUrl: cssUrl,
                 generatedJsUrl: jsUrl,
-                creativeText: pipedreamTrackingPrompt, // Send the NEW tracking prompt here (interpolated text)
+                creativeText: pipedreamTrackingPrompt,
                 status: 'code-generated-and-sent-to-pipedream',
                 timestamp: admin.firestore.FieldValue.serverTimestamp()
             }).catch(e => console.error(`Failed to send data to Pipedream for re-gen ${requestId}:`, e));
 
+            try {
+                await change.after.ref.update({
+                    status: 'code-generated',
+                    generatedHtmlUrl: htmlUrl,
+                    generatedCssUrl: cssUrl,
+                    generatedJsUrl: jsUrl,
+                    generationTimestamp: admin.firestore.FieldValue.serverTimestamp(),
+                    redoAttempts: newRequestData.redoAttempts !== undefined ? newRequestData.redoAttempts : 2
+                });
+            } catch (firestoreError) {
+                console.error(`Error updating Firestore document after re-generation for request ${requestId}:`, firestoreError);
+                return null;
+            }
         }
         return null;
     }, { timeoutSeconds: 420 });
+*/

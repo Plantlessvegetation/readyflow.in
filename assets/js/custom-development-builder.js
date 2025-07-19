@@ -1,8 +1,7 @@
 // assets/js/custom-development-builder.js
 
-import { db } from './login.js'; // Import Firestore database instance
+import { db, auth } from './login.js'; // Import Firestore database instance and auth
 import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-import { auth } from './login.js'; // Import auth for getting current user ID
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('custom-development-builder.js loaded and DOMContentLoaded fired.');
@@ -19,10 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToSelectionBtns = document.querySelectorAll('.back-to-selection-btn');
 
     // Contact Info Step
+    const userNameInput = document.getElementById('user-name');
     const businessNameInput = document.getElementById('business-name');
     const businessTypeInput = document.getElementById('business-type');
+    const cityLocationInput = document.getElementById('city-location');
     const contactNumberInput = document.getElementById('contact-number');
     const contactEmailInput = document.getElementById('contact-email');
+    const servicesOfferedInput = document.getElementById('services-offered');
+    const targetAudienceInput = document.getElementById('target-audience');
 
     // Plan Selection Step elements
     const planCards = document.querySelectorAll('.plan-card');
@@ -30,13 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Website Type Selection (Step 3)
     const websiteTypeOptions = document.querySelectorAll('.website-type-grid .option-box');
-    // REMOVED: const pageCountSelection = document.getElementById('page-count-selection');
-    // REMOVED: const pageCountOptions = document.querySelectorAll('.page-count-grid .option-box');
     const customWebsiteTypeInputGroup = document.getElementById('custom-website-type-input-group');
     const customWebsiteTypeDescription = document.getElementById('custom-website-type-description');
 
-    // Color Selection Step (Step 4)
-    const colorSwatches = document.querySelectorAll('.color-swatch');
+    // Theme Selection Step (Step 4) (UPDATED SELECTOR)
+    const themeOptions = document.querySelectorAll('.theme-option'); // <--- CHANGED SELECTOR
     const customColorInputGroup = document.getElementById('custom-color-input-group');
     const customColorDescription = document.getElementById('custom-color-description');
 
@@ -65,17 +66,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const customFontDescription = document.getElementById('custom-font-description');
 
     // Review & Payment Step (Step 9)
+    const reviewUserName = document.getElementById('review-user-name');
     const reviewBusinessName = document.getElementById('review-business-name');
     const reviewBusinessType = document.getElementById('review-business-type');
+    const reviewCityLocation = document.getElementById('review-city-location');
     const reviewContactNumber = document.getElementById('review-contact-number');
     const reviewContactEmail = document.getElementById('review-contact-email');
+    const reviewServicesOffered = document.getElementById('review-services-offered');
+    const reviewTargetAudience = document.getElementById('review-target-audience');
     const reviewSelectedPlan = document.getElementById('review-selected-plan');
     const reviewWebsiteType = document.getElementById('review-website-type');
-    const reviewColorScheme = document.getElementById('review-color-scheme');
+    const reviewThemePreference = document.getElementById('review-theme-preference'); // Updated ID
     const reviewButtonShape = document.getElementById('review-button-shape');
     const reviewButtonEffect = document.getElementById('review-button-effect');
     const reviewWebsiteSections = document.getElementById('review-website-sections');
-    const reviewExtraPages = document.getElementById('review-extra-pages');
     const reviewCustomDomain = document.getElementById('review-custom-domain');
     const reviewImageDisplay = document.getElementById('review-image-display');
     const reviewFonts = document.getElementById('review-fonts');
@@ -97,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const recommendedPlanTaglineEl = document.getElementById('recommended-plan-tagline');
     const recommendedPlanFeaturesList = document.querySelector('.recommended-plan-box .plan-features-list');
 
-   // Plan Warning Modal elements
+    // Plan Warning Modal elements
     const planWarningModal = document.getElementById('plan-warning-modal');
     const planWarningModalMessage = document.getElementById('plan-warning-modal-message');
     const modalBasicPlanLimit = document.getElementById('modal-basic-plan-limit');
@@ -118,19 +122,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Object to store all user selections
     let customSelections = {
+        userName: '',
         businessName: '',
         businessType: '',
+        cityLocation: '',
         contactNumber: '',
         contactEmail: '',
+        servicesOffered: '',
+        targetAudience: '',
         selectedPlan: '',
         websiteType: '',
-        websitePageCount: '1', // Fixed to 1 page
+        websitePageCount: '1', // Fixed to 1 page for all plans
         customWebsiteTypeDescription: '',
-        colorScheme: {
-            type: '',
-            value: ''
+        colorScheme: { // This object will now store theme data (type, value)
+            type: '', // e.g., 'predefined', 'custom', 'our-choice'
+            value: '' // e.g., 'dark', 'light', 'custom-input'
         },
-        customColorDescription: '',
+        customColorDescription: '', // For custom theme description
         buttonShape: '',
         customButtonShapeDescription: '',
         buttonEffect: '',
@@ -152,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- PRICING CONFIGURATIONS ---
     const BASIC_PLAN_PRICE = 499;
     const GROWTH_PLAN_PRICE = 1299;
-    // REMOVED: PAGE_COUNT_PRICING
     const CUSTOM_DOMAIN_PRICE = 149;
     const BLOG_UPSELL_PRICING = {
         'daily-uploads': 299,
@@ -170,7 +177,9 @@ document.addEventListener('DOMContentLoaded', () => {
             allowComplexButtonEffects: false,
             allowAdvancedImageStyles: false,
             restrictedSections: ['portfolio', 'team', 'blog'],
-            restrictedWebsiteTypes: ['full-website', 'ecommerce-store', 'portfolio'],
+            restrictedWebsiteTypes: [],
+            // ADDED: restrictedColorOptions (for basic plan)
+            restrictedColorOptions: ['custom-input'], // 'custom-input' means the "Custom Preference" option
             restrictedImageStyles: ['masonry', 'custom-image-style', 'carousel'],
             restrictedButtonEffects: ['grow', 'shadow', 'slide-fill', 'custom-effect'],
             restrictedButtonShapes: ['pill', 'custom-shape'],
@@ -189,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             allowAdvancedImageStyles: true,
             restrictedSections: [],
             restrictedWebsiteTypes: [],
+            restrictedColorOptions: [], // All themes allowed for growth plan
             restrictedImageStyles: [],
             restrictedButtonEffects: [],
             restrictedButtonShapes: [],
@@ -219,15 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // const currentPlanLimits = planFeatureLimits[customSelections.selectedPlan]; // Not strictly needed for pricing here
-
-        // Page count add-on cost is now removed, as it's fixed to 1 page for all plans.
-        // if (customSelections.websitePageCount && PAGE_COUNT_PRICING[customSelections.websitePageCount] !== undefined) {
-        //     if (PAGE_COUNT_PRICING[customSelections.websitePageCount] > 0 || customSelections.selectedPlan === 'growth') {
-        //         total += PAGE_COUNT_PRICING[customSelections.websitePageCount];
-        //     }
-        // }
-
         const selectedVisibleSections = customSelections.websiteSections.filter(s => {
             const el = document.querySelector(`.option-box[data-section="${s}"]`);
             return el && !el.classList.contains('disabled');
@@ -255,9 +256,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modalCurrentSectionsCount) modalCurrentSectionsCount.textContent = sectionsCount;
 
         if (planWarningModalMessage) {
-            planWarningModalMessage.innerHTML = `
+            modalWarningMessage.innerHTML = `
                 It looks like you've selected more features than your current plan allows.
-                The Basic Plan is perfect for launching simple websites with up to <strong>${planFeatureLimits.basic.maxIncludedSections} sections</strong>.
+                The Launch Plan is perfect for launching simple websites with up to <strong>${planFeatureLimits.basic.maxIncludedSections} sections</strong>.
                 You've chosen <strong>${sectionsCount} sections</strong>.
                 To fully realize your vision, we recommend upgrading to the Growth Plan for comprehensive features and more flexibility.
             `;
@@ -284,41 +285,50 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function setOptionBoxState(optionsList, restrictedItems, currentSelectedItem = null, defaultItem = null) {
+    // UPDATED: setOptionBoxState function to handle different data-keys more robustly
+    function setOptionBoxState(optionsList, restrictedItems, currentSelectedItem = null, dataKeyPrefix = '') {
         optionsList.forEach(option => {
-            const dataValue = option.dataset.type || option.dataset.pages || option.dataset.colorType || option.dataset.colorValue || option.dataset.shape || option.dataset.effect || option.dataset.section || option.dataset.imageStyle || option.dataset.font;
+            // Determine the data value based on the prefix and common patterns
+            let dataValue;
+            if (dataKeyPrefix === 'theme') { // Special handling for data-theme-type / data-theme-value
+                dataValue = option.dataset.themeValue; // Use value for restriction check
+            } else if (dataKeyPrefix === 'color') { // For old color swatches, if needed, though replaced
+                dataValue = option.dataset.colorValue;
+            } else if (dataKeyPrefix === 'font') {
+                dataValue = option.dataset.font;
+            } else if (dataKeyPrefix === 'imageStyle') {
+                dataValue = option.dataset.imageStyle;
+            } else if (dataKeyPrefix === 'shape') {
+                dataValue = option.dataset.shape;
+            } else if (dataKeyPrefix === 'effect') {
+                dataValue = option.dataset.effect;
+            } else if (dataKeyPrefix === 'section') {
+                dataValue = option.dataset.section;
+            } else if (dataKeyPrefix === 'type') { // Website type
+                dataValue = option.dataset.type;
+            }
+
 
             if (restrictedItems.includes(dataValue)) {
                 option.classList.add('disabled');
                 if (option.classList.contains('selected')) {
                     option.classList.remove('selected');
-                    if (defaultItem) {
-                        const defaultOptionElement = document.querySelector(`[data-${Object.keys(defaultItem)[0]}="${Object.values(defaultItem)[0]}"]`);
-                        if (defaultOptionElement && !defaultOptionElement.classList.contains('disabled')) {
-                            defaultOptionElement.click();
-                        } else {
-                            if (currentSelectedItem === dataValue) {
-                                if (dataValue === customSelections.websiteType) customSelections.websiteType = '';
-                                // Removed other page count specific logic here
-                                else if (dataValue === customSelections.colorScheme.value) { customSelections.colorScheme.type = ''; customSelections.colorScheme.value = ''; }
-                                else if (dataValue === customSelections.buttonShape) customSelections.buttonShape = '';
-                                else if (dataValue === customSelections.buttonEffect) customSelections.buttonEffect = '';
-                                else if (customSelections.websiteSections.includes(dataValue)) customSelections.websiteSections = customSelections.websiteSections.filter(s => s !== dataValue);
-                                else if (dataValue === customSelections.imageDisplay) customSelections.imageDisplay = '';
-                                else if (dataValue === customSelections.fontPairing) customSelections.fontPairing = '';
-                            }
-                        }
-                    } else {
-                        if (currentSelectedItem === dataValue) {
-                            if (dataValue === customSelections.websiteType) customSelections.websiteType = '';
-                            // Removed other page count specific logic here
-                            else if (dataValue === customSelections.colorScheme.value) { customSelections.colorScheme.type = ''; customSelections.colorScheme.value = ''; }
-                            else if (dataValue === customSelections.buttonShape) customSelections.buttonShape = '';
-                            else if (dataValue === customSelections.buttonEffect) customSelections.buttonEffect = '';
-                            else if (customSelections.websiteSections.includes(dataValue)) customSelections.websiteSections = customSelections.websiteSections.filter(s => s !== dataValue);
-                            else if (dataValue === customSelections.imageDisplay) customSelections.imageDisplay = '';
-                            else if (dataValue === customSelections.fontPairing) customSelections.fontPairing = '';
-                        }
+                    // Clear the selection in customSelections if a selected item gets disabled
+                    if (dataKeyPrefix === 'theme') {
+                        customSelections.colorScheme.type = '';
+                        customSelections.colorScheme.value = '';
+                    } else if (dataKeyPrefix === 'type') {
+                        customSelections.websiteType = '';
+                    } else if (dataKeyPrefix === 'shape') {
+                        customSelections.buttonShape = '';
+                    } else if (dataKeyPrefix === 'effect') {
+                        customSelections.buttonEffect = '';
+                    } else if (dataKeyPrefix === 'section') {
+                        customSelections.websiteSections = customSelections.websiteSections.filter(s => s !== dataValue);
+                    } else if (dataKeyPrefix === 'imageStyle') {
+                        customSelections.imageDisplay = '';
+                    } else if (dataKeyPrefix === 'font') {
+                        customSelections.fontPairing = '';
                     }
                 }
             } else {
@@ -327,82 +337,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
     function applyPlanRestrictions() {
         const currentPlan = customSelections.selectedPlan;
         if (!currentPlan) {
-            setOptionBoxState(websiteTypeOptions, planFeatureLimits['growth'].restrictedWebsiteTypes, customSelections.websiteType);
-            // Removed pageCountOptions restriction here
+            // Default to basic restrictions if no plan is selected initially
+            setOptionBoxState(websiteTypeOptions, planFeatureLimits.basic.restrictedWebsiteTypes, customSelections.websiteType, 'type');
+            setOptionBoxState(themeOptions, planFeatureLimits.basic.restrictedColorOptions, customSelections.colorScheme.value, 'theme'); // Use 'theme' prefix
+            setOptionBoxState(buttonEffectOptions, planFeatureLimits.basic.restrictedButtonEffects, customSelections.buttonEffect, 'effect');
+            setOptionBoxState(buttonShapeOptions, planFeatureLimits.basic.restrictedButtonShapes, customSelections.buttonShape, 'shape');
+            setOptionBoxState(sectionOptions, planFeatureLimits.basic.restrictedSections, null, 'section');
+            setOptionBoxState(advancedEffectOptions, planFeatureLimits.basic.restrictedAdvancedEffects, null, 'section'); // <-- FIX: advanced effects restriction
+            setOptionBoxState(imageDisplayOptions, planFeatureLimits.basic.restrictedImageStyles, customSelections.imageDisplay, 'imageStyle');
+            setOptionBoxState(fontOptions, planFeatureLimits.basic.restrictedFontOptions, customSelections.fontPairing, 'font');
             return;
         }
 
         const limits = planFeatureLimits[currentPlan];
 
-        setOptionBoxState(websiteTypeOptions, limits.restrictedWebsiteTypes, customSelections.websiteType);
-        if (customSelections.websiteType === 'custom-type' && !limits.restrictedWebsiteTypes.includes('custom-type')) {
-            if (customWebsiteTypeInputGroup) customWebsiteTypeInputGroup.classList.remove('hidden');
-            if (customWebsiteTypeDescription) customWebsiteTypeDescription.setAttribute('required', 'true');
-        } else {
-            if (customWebsiteTypeInputGroup) customWebsiteTypeInputGroup.classList.add('hidden');
-            if (customWebsiteTypeDescription) {
-                customWebsiteTypeDescription.removeAttribute('required');
-                customWebsiteTypeDescription.value = '';
-            }
-            if (customSelections.websiteType === 'custom-type' && limits.restrictedWebsiteTypes.includes('custom-type')) {
-                customSelections.websiteType = '';
-            }
-        }
+        setOptionBoxState(websiteTypeOptions, limits.restrictedWebsiteTypes, customSelections.websiteType, 'type');
 
-        // Removed setOptionBoxState for pageCountOptions here
+        // Theme options (Step 4) - Pass 'theme' as dataKeyPrefix
+        setOptionBoxState(themeOptions, limits.restrictedColorOptions, customSelections.colorScheme.value, 'theme');
 
-        colorSwatches.forEach(swatch => swatch.classList.remove('disabled'));
+        // Button options (Step 5)
+        setOptionBoxState(buttonEffectOptions, limits.restrictedButtonEffects, customSelections.buttonEffect, 'effect');
+        setOptionBoxState(buttonShapeOptions, limits.restrictedButtonShapes, customSelections.buttonShape, 'shape');
 
-        setOptionBoxState(buttonEffectOptions, limits.restrictedButtonEffects, customSelections.buttonEffect, {effect: 'none'});
-        if (customSelections.buttonEffect === 'custom-effect' && !limits.restrictedButtonEffects.includes('custom-effect')) {
-            if (customButtonEffectInputGroup) customButtonEffectInputGroup.classList.remove('hidden');
-            if (customButtonEffectDescription) customButtonEffectDescription.setAttribute('required', 'true');
-        } else {
-            if (customButtonEffectInputGroup) customButtonEffectInputGroup.classList.add('hidden');
-            if (customButtonEffectDescription) {
-                customButtonEffectDescription.removeAttribute('required');
-                customButtonEffectDescription.value = '';
-            }
-            customSelections.customButtonEffectDescription = '';
-        }
+        // General sections (Step 6)
+        setOptionBoxState(sectionOptions, limits.restrictedSections, null, 'section');
+        // Advanced effects (Step 6)
+        setOptionBoxState(advancedEffectOptions, limits.restrictedAdvancedEffects, null, 'section');
 
-        setOptionBoxState(buttonShapeOptions, limits.restrictedButtonShapes, customSelections.buttonShape, {shape: 'rounded'});
-        if (customSelections.buttonShape === 'custom-shape' && !limits.restrictedButtonShapes.includes('custom-shape')) {
-            if (customButtonShapeInputGroup) customButtonShapeInputGroup.classList.remove('hidden');
-            if (customButtonShapeDescription) customButtonShapeDescription.setAttribute('required', 'true');
-        } else {
-            if (customButtonShapeInputGroup) customButtonShapeInputGroup.classList.add('hidden');
-            if (customButtonShapeDescription) {
-                customButtonShapeDescription.removeAttribute('required');
-                customButtonShapeDescription.value = '';
-            }
-            customSelections.customButtonShapeDescription = '';
-        }
-
-        setOptionBoxState(sectionOptions, limits.restrictedSections, null);
-        setOptionBoxState(advancedEffectOptions, limits.restrictedAdvancedEffects, null);
 
         const isCustomSectionSelected = customSelections.websiteSections.includes('custom-section');
         const isCustomAnimationSelected = customSelections.websiteSections.includes('effect-custom-animation');
 
-        if ((isCustomSectionSelected && !limits.restrictedSections.includes('custom-section')) ||
-            (isCustomAnimationSelected && !limits.restrictedAdvancedEffects.includes('effect-animation-custom'))) {
-            if (customSectionInputGroup) customSectionInputGroup.classList.remove('hidden');
-            if (customSectionDescription) customSectionDescription.setAttribute('required', 'true');
-        } else {
-            if (customSectionInputGroup) customSectionInputGroup.classList.add('hidden');
-            if (customSectionDescription) {
-                customSectionDescription.removeAttribute('required');
-                customSectionDescription.value = '';
+        if (customSectionInputGroup) {
+            if ((isCustomSectionSelected && !limits.restrictedSections.includes('custom-section')) ||
+                (isCustomAnimationSelected && !limits.restrictedAdvancedEffects.includes('effect-custom-animation'))) {
+                customSectionInputGroup.classList.remove('hidden');
+                if (customSectionDescription) customSectionDescription.setAttribute('required', 'true');
+            } else {
+                customSectionInputGroup.classList.add('hidden');
+                if (customSectionDescription) {
+                    customSectionDescription.removeAttribute('required');
+                    customSectionDescription.value = '';
+                }
+                customSelections.customSectionDescription = '';
             }
-            customSelections.customSectionDescription = '';
         }
 
-
-        setOptionBoxState(imageDisplayOptions, limits.restrictedImageStyles, customSelections.imageDisplay, {imageStyle: 'grid'});
+        setOptionBoxState(imageDisplayOptions, limits.restrictedImageStyles, customSelections.imageDisplay, 'imageStyle');
         if (customSelections.imageDisplay === 'custom-image-style' && !limits.restrictedImageStyles.includes('custom-image-style')) {
             if (customImageStyleInputGroup) customImageStyleInputGroup.classList.remove('hidden');
             if (customImageStyleDescription) customImageStyleDescription.setAttribute('required', 'true');
@@ -416,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-        setOptionBoxState(fontOptions, limits.restrictedFontOptions, customSelections.fontPairing, {font: 'poppins-inter'});
+        setOptionBoxState(fontOptions, limits.restrictedFontOptions, customSelections.fontPairing, 'font');
         if (customSelections.fontPairing === 'custom-font' && !limits.restrictedFontOptions.includes('custom-font')) {
             if (customFontInputGroup) customFontInputGroup.classList.remove('hidden');
             if (customFontDescription) customFontDescription.setAttribute('required', 'true');
@@ -469,18 +455,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         applyPlanRestrictions();
 
-        // Removed page count selection visibility toggle here, as it's no longer present
-        // if (stepNumber === 3) {
-        //     const selectedWebsiteType = customSelections.websiteType;
-        //     if (selectedWebsiteType && selectedWebsiteType !== '') {
-        //         if (pageCountSelection) pageCountSelection.classList.remove('hidden');
-        //     } else {
-        //         if (pageCountSelection) pageCountSelection.classList.add('hidden');
-        //     }
-        // } else {
-        //     if (pageCountSelection) pageCountSelection.classList.add('hidden');
-        // }
-
         calculateTotalPrice();
     }
 
@@ -490,7 +464,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         switch (step) {
             case 1:
-                if (!businessNameInput.value.trim()) {
+                if (!userNameInput.value.trim()) {
+                    userNameInput.focus();
+                    alert('Please enter Your Name.');
+                    isValid = false;
+                } else if (!businessNameInput.value.trim()) {
                     businessNameInput.focus();
                     alert('Please enter your Business Name.');
                     isValid = false;
@@ -505,6 +483,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (!contactEmailInput.value.trim() || !/\S+@\S+\.\S+/.test(contactEmailInput.value)) {
                     contactEmailInput.focus();
                     alert('Please enter a valid Email Address.');
+                    isValid = false;
+                } else if (!servicesOfferedInput.value.trim()) {
+                    servicesOfferedInput.focus();
+                    alert('Please describe your Services/Products Offered.');
+                    isValid = false;
+                } else if (!targetAudienceInput.value.trim()) {
+                    targetAudienceInput.focus();
+                    alert('Please describe your Target Audience.');
                     isValid = false;
                 }
                 break;
@@ -525,32 +511,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     isValid = false;
                 }
 
-                // REMOVED: Page count validation as it's now fixed to 1.
-                // const selectedPageCountOption = document.querySelector('.page-count-grid .option-box.selected');
-                // if (!selectedPageCountOption) {
-                //     alert('Please select the approximate number of pages for your website.');
-                //     isValid = false;
-                // }
                 if (selectedWebsiteTypeOption && currentPlanLimits.restrictedWebsiteTypes.includes(customSelections.websiteType)) {
-                     alert(`The selected website type "${selectedWebsiteTypeOption.querySelector('h4').textContent}" is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
+                     alert(`The selected website type "${selectedWebsiteTypeOption.querySelector('h4').textContent}" is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`);
                      isValid = false;
                 }
-                // REMOVED: Page count limit check for basic plan
-                // if (selectedPageCountOption && customSelections.selectedPlan === 'basic') {
-                //     const pagesValue = parseInt(selectedPageCountOption.dataset.pages.split('-')[0]);
-                //     if (pagesValue > currentPlanLimits.maxIncludedPages) {
-                //         alert(`The selected page count is not available in the Basic plan. Please select 1 page or upgrade to Growth.`);
-                //         isValid = false;
-                //     }
-                // }
                 break;
             case 4:
-                const selectedColorSwatch = document.querySelector('.color-swatch.selected');
-                if (!selectedColorSwatch) {
-                    alert(`Please select a Color Scheme.`);
+                // UPDATED: Theme selection validation
+                const selectedThemeOption = document.querySelector('.theme-option.selected');
+                if (!selectedThemeOption) {
+                    alert(`Please select a Theme.`);
                     isValid = false;
                 } else if (customSelections.colorScheme.type === 'custom' && customColorDescription && !customColorDescription.value.trim()) {
-                    alert('Please describe your Custom Colors.');
+                    alert('Please describe your Custom Theme/Colors.');
                     customColorDescription.focus();
                     isValid = false;
                 }
@@ -567,7 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     customButtonShapeDescription.focus();
                     isValid = false;
                 } else if (currentPlanLimits.restrictedButtonShapes.includes(customSelections.buttonShape)) {
-                    alert(`The selected button shape is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
+                    alert(`This button shape is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`);
                     isValid = false;
                 }
 
@@ -579,7 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     customButtonEffectDescription.focus();
                     isValid = false;
                 } else if (currentPlanLimits.restrictedButtonEffects.includes(customSelections.buttonEffect)) {
-                    alert(`The selected button effect is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
+                    alert(`This button effect is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`);
                     isValid = false;
                 }
                 break;
@@ -605,12 +578,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 for (const section of customSelections.websiteSections) {
                     if (currentPlanLimits.restrictedSections.includes(section)) {
-                        alert(`The "${document.querySelector(`.option-box[data-section="${section}"] h4`)?.textContent}" section is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
+                        alert(`The "${document.querySelector(`.section-options-grid .option-box[data-section="${section}"] h4`)?.textContent || section}" section is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`);
                         isValid = false;
                         break;
                     }
                     if (currentPlanLimits.restrictedAdvancedEffects.includes(section)) {
-                        alert(`The "${document.querySelector(`.option-box[data-section="${section}"] h4`)?.textContent}" effect is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
+                        alert(`The "${document.querySelector(`.advanced-effects-grid .option-box[data-section="${section}"] h4`)?.textContent || section}" effect is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`);
                         isValid = false;
                         break;
                     }
@@ -634,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     customImageStyleDescription.focus();
                     isValid = false;
                 } else if (currentPlanLimits.restrictedImageStyles.includes(customSelections.imageDisplay)) {
-                     alert(`The selected image display style is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
+                     alert(`The selected image display style is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`);
                      isValid = false;
                 }
                 break;
@@ -647,36 +620,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Please describe your Custom Font Choices.');
                     customFontDescription.focus();
                     isValid = false;
-                } else if (currentPlanLimits.restrictedFontOptions.includes(customSelections.fontPairing)) {
-                     alert(`The selected font option is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
-                     isValid = false;
                 }
                 break;
             case 9:
-                if (!customSelections.businessName || !customSelections.businessType || !customSelections.contactNumber || !customSelections.contactEmail) {
-                    alert('Please ensure your contact information and business type are complete.');
+                if (!userNameInput.value.trim() || !businessNameInput.value.trim() || !businessTypeInput.value.trim() || !contactNumberInput.value.trim() || !contactEmailInput.value.trim() || !servicesOfferedInput.value.trim() || !targetAudienceInput.value.trim()) {
+                    alert('Please ensure all required contact and business information fields are complete.');
                     isValid = false;
                     showStep(1);
-                }
-                if (!customSelections.selectedPlan) {
+                } else if (!customSelections.selectedPlan) {
                     alert('A plan must be selected.');
                     isValid = false;
                     showStep(2);
-                }
-                // Removed page count validation for step 9, as it's now fixed.
-                // if (!customSelections.websiteType || !customSelections.websitePageCount) {
-                //      alert('Please ensure your website type and page count are selected.');
-                //      isValid = false;
-                //      showStep(3);
-                // }
-                if (customSelections.selectedPlan === 'basic') {
+                } else {
                     const selectedSectionsCount = customSelections.websiteSections.filter(s => {
                         const el = document.querySelector(`.option-box[data-section="${s}"]`) ||
                                    document.querySelector(`.advanced-effects-grid .option-box[data-section="${s}"]`);
                         return el && !el.classList.contains('disabled');
                     }).length;
-                    if (selectedSectionsCount > currentPlanLimits.maxIncludedSections) {
-                        alert('You have selected too many sections for the Basic plan. Please deselect some or upgrade.');
+                    if (customSelections.selectedPlan === 'basic' && selectedSectionsCount > currentPlanLimits.maxIncludedSections) {
+                        alert('You have selected too many sections for the Launch Plan. Please deselect some or upgrade.');
                         isValid = false;
                         showStep(6);
                     }
@@ -687,41 +649,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function populateReviewSummary() {
+        if (reviewUserName) reviewUserName.textContent = customSelections.userName || 'N/A';
         if (reviewBusinessName) reviewBusinessName.textContent = customSelections.businessName || 'N/A';
         if (reviewBusinessType) reviewBusinessType.textContent = customSelections.businessType || 'N/A';
+        if (reviewCityLocation) reviewCityLocation.textContent = customSelections.cityLocation || 'N/A';
         if (reviewContactNumber) reviewContactNumber.textContent = customSelections.contactNumber || 'N/A';
         if (reviewContactEmail) reviewContactEmail.textContent = customSelections.contactEmail || 'N/A';
+        if (reviewServicesOffered) reviewServicesOffered.textContent = customSelections.servicesOffered || 'N/A';
+        if (reviewTargetAudience) reviewTargetAudience.textContent = customSelections.targetAudience || 'N/A';
 
         if (reviewSelectedPlan) reviewSelectedPlan.textContent = customSelections.selectedPlan ?
                                             (customSelections.selectedPlan === 'basic' ? 'Launch Plan (Basic)' : 'Growth Plan (Advanced)') : 'N/A';
 
-        if (reviewWebsiteType) reviewWebsiteType.textContent = customSelections.websiteType === 'custom-type' ?
-            `Custom: ${customSelections.customWebsiteTypeDescription || 'N/A'}` :
-            (document.querySelector(`.website-type-grid .option-box[data-type="${customSelections.websiteType}"] h4`)?.textContent || 'N/A');
-
-        // Removed reviewExtraPages as page count is now fixed.
-        // if (reviewExtraPages) reviewExtraPages.textContent = customSelections.websitePageCount ?
-        //     `${customSelections.websitePageCount} Pages` : 'N/A';
-
-        let colorText = 'N/A';
-        if (customSelections.colorScheme.type === 'simple') {
-            colorText = `Simple: ${customSelections.colorScheme.value}`;
-        } else if (customSelections.colorScheme.type === 'gradient') {
-            colorText = `Gradient: ${customSelections.colorScheme.value.replace('gradient-', '').replace(/-/g, ' ')}`;
-        } else if (customSelections.colorScheme.type === 'combination') {
-            const comboSwatch = document.querySelector(`.color-swatch[data-color-type="combination"][data-color-value="${customSelections.colorScheme.value}"]`);
-            if (comboSwatch) {
-                const parts = comboSwatch.dataset.colorValue.split('-');
-                colorText = `Combination: ${parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(' ')}`;
-            } else {
-                colorText = `Combination: ${customSelections.customColorDescription || 'N/A'}`;
+        if (reviewWebsiteType) {
+            let websiteTypeText = customSelections.websiteType || 'N/A';
+            switch(customSelections.websiteType) {
+                case 'landing-page': websiteTypeText = 'Landing Page'; break;
+                case 'ecommerce-store': websiteTypeText = 'E-commerce Store (Single Page)'; break;
+                case 'portfolio': websiteTypeText = 'Portfolio Website'; break;
+                case 'blog': websiteTypeText = 'Blog/Content Hub (Single Page)'; break;
+                case 'business-listing': websiteTypeText = 'Business Listing'; break;
+                case 'custom-type': websiteTypeText = `Custom: ${customSelections.customWebsiteTypeDescription || 'N/A'}`; break;
+                default: websiteTypeText = (document.querySelector(`.website-type-grid .option-box[data-type="${customSelections.websiteType}"] h4`)?.textContent || customSelections.websiteType || 'N/A');
             }
-        } else if (customSelections.colorScheme.type === 'custom') {
-            colorText = `Custom: ${customSelections.customColorDescription || 'N/A'}`;
-        } else if (customSelections.colorScheme.type === 'our-choice') {
-            colorText = `Left to ReadyFlow (Our Choice)`;
+            reviewWebsiteType.textContent = websiteTypeText;
         }
-        if (reviewColorScheme) reviewColorScheme.textContent = colorText;
+
+        // UPDATED: Theme Preference Summary (Step 4)
+        if (reviewThemePreference) {
+            let themeText = 'N/A';
+            if (customSelections.colorScheme.type === 'predefined') {
+                themeText = `${customSelections.colorScheme.value.charAt(0).toUpperCase() + customSelections.colorScheme.value.slice(1)} Theme`;
+            } else if (customSelections.colorScheme.type === 'custom') {
+                themeText = `Custom Preference: ${customSelections.customColorDescription || 'N/A'}`;
+            } else if (customSelections.colorScheme.type === 'our-choice') {
+                themeText = `Left to ReadyFlow (AI Decided)`;
+            }
+            reviewThemePreference.textContent = themeText;
+        }
 
         if (reviewButtonShape) reviewButtonShape.textContent = customSelections.buttonShape === 'custom-shape' ?
             `Custom: ${customSelections.customButtonShapeDescription || 'N/A'}` :
@@ -733,7 +698,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const displayedSections = customSelections.websiteSections.filter(s => {
             const el = document.querySelector(`.section-options-grid .option-box[data-section="${s}"]`) ||
-                       document.querySelector(`.advanced-effects-grid .option-box[data-section="${s}"]`);
+                                 document.querySelector(`.advanced-effects-grid .option-box[data-section="${s}"]`);
             return el && !el.classList.contains('disabled');
         });
 
@@ -952,10 +917,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Step-specific event listeners and data capture ---
 
     // Step 1: Contact Info
+    if (userNameInput) userNameInput.addEventListener('input', (e) => customSelections.userName = e.target.value);
     if (businessNameInput) businessNameInput.addEventListener('input', (e) => customSelections.businessName = e.target.value);
     if (businessTypeInput) businessTypeInput.addEventListener('input', (e) => customSelections.businessType = e.target.value);
+    if (cityLocationInput) cityLocationInput.addEventListener('input', (e) => customSelections.cityLocation = e.target.value);
     if (contactNumberInput) contactNumberInput.addEventListener('input', (e) => customSelections.contactNumber = e.target.value);
     if (contactEmailInput) contactEmailInput.addEventListener('input', (e) => customSelections.contactEmail = e.target.value);
+    if (servicesOfferedInput) servicesOfferedInput.addEventListener('input', (e) => customSelections.servicesOffered = e.target.value);
+    if (targetAudienceInput) targetAudienceInput.addEventListener('input', (e) => customSelections.targetAudience = e.target.value);
 
     // Step 2: Plan Selection
     planCards.forEach(card => {
@@ -975,7 +944,7 @@ document.addEventListener('DOMContentLoaded', () => {
     websiteTypeOptions.forEach(option => {
         option.addEventListener('click', () => {
             if (option.classList.contains('disabled')) {
-                alert(`This website type is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
+                alert(`This website type is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`);
                 return;
             }
             websiteTypeOptions.forEach(o => o.classList.remove('selected'));
@@ -996,11 +965,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     customSelections.customWebsiteTypeDescription = '';
                 }
             }
-
-            // Removed `pageCountSelection` related visibility toggle here
-            // if (pageCountSelection) pageCountSelection.classList.remove('hidden');
-            // pageCountOptions.forEach(pc => pc.classList.remove('selected'));
-            // customSelections.websitePageCount = ''; // No longer a choice
             applyPlanRestrictions();
             calculateTotalPrice();
         });
@@ -1011,24 +975,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // REMOVED: Step 3: Page Count Selection event listener.
-    // pageCountOptions.forEach(option => { ... });
-
-
-    // Step 4: Color Selection
-    colorSwatches.forEach(swatch => {
-        swatch.addEventListener('click', () => {
-            if (swatch.classList.contains('disabled')) {
-                alert(`This color option is not available.`);
+    // Step 4: Theme Selection (UPDATED LOGIC)
+    themeOptions.forEach(option => { // <--- CHANGED: Use themeOptions
+        option.addEventListener('click', () => {
+            if (option.classList.contains('disabled')) {
+                alert(`This theme option is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`); // Changed alert text
                 return;
             }
-            colorSwatches.forEach(s => s.classList.remove('selected'));
-            swatch.classList.add('selected');
-            customSelections.colorScheme.type = swatch.dataset.colorType;
-            customSelections.colorScheme.value = swatch.dataset.colorValue;
+            themeOptions.forEach(o => o.classList.remove('selected')); // <--- CHANGED: Use themeOptions
+            option.classList.add('selected');
+            customSelections.colorScheme.type = option.dataset.themeType; // <--- CHANGED: Use data-theme-type
+            customSelections.colorScheme.value = option.dataset.themeValue; // <--- CHANGED: Use data-theme-value
 
             if (customColorInputGroup) {
-                if (swatch.dataset.colorType === 'custom') {
+                if (option.dataset.themeType === 'custom') { // <--- CHANGED: Use data-theme-type
                     customColorInputGroup.classList.remove('hidden');
                     if (customColorDescription) customColorDescription.setAttribute('required', 'true');
                 } else {
@@ -1053,7 +1013,7 @@ document.addEventListener('DOMContentLoaded', () => {
     buttonShapeOptions.forEach(option => {
         option.addEventListener('click', () => {
             if (option.classList.contains('disabled')) {
-                alert(`This button shape is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
+                alert(`This button shape is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`);
                 return;
             }
             buttonShapeOptions.forEach(o => o.classList.remove('selected'));
@@ -1085,7 +1045,7 @@ document.addEventListener('DOMContentLoaded', () => {
     buttonEffectOptions.forEach(option => {
         option.addEventListener('click', () => {
             if (option.classList.contains('disabled')) {
-                alert(`This button effect is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
+                alert(`This button effect is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`);
                 return;
             }
             buttonEffectOptions.forEach(o => o.classList.remove('selected'));
@@ -1120,7 +1080,7 @@ document.addEventListener('DOMContentLoaded', () => {
     allSectionAndEffectOptions.forEach(option => {
         option.addEventListener('click', () => {
             if (option.classList.contains('disabled')) {
-                alert(`This section/effect is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
+                alert(`This section/effect is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`);
                 return;
             }
             const sectionValue = option.dataset.section;
@@ -1166,7 +1126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     imageDisplayOptions.forEach(option => {
         option.addEventListener('click', () => {
             if (option.classList.contains('disabled')) {
-                alert(`This image display style is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
+                alert(`This image display style is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`);
                 return;
             }
             imageDisplayOptions.forEach(o => o.classList.remove('selected'));
@@ -1199,7 +1159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fontOptions.forEach(option => {
         option.addEventListener('click', () => {
             if (option.classList.contains('disabled')) {
-                alert(`This font option is not available in the ${customSelections.selectedPlan === 'basic' ? 'Basic' : 'Growth'} plan.`);
+                alert(`This font option is not available in the ${customSelections.selectedPlan === 'basic' ? 'Launch' : 'Growth'} Plan.`);
                 return;
             }
             fontOptions.forEach(o => o.classList.remove('selected'));
@@ -1256,7 +1216,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (proceedToPaymentBtn) {
                 proceedToPaymentBtn.disabled = true;
-                proceedToPaymentBtn.textContent = 'Requesting Code Generation...';
+                proceedToPaymentBtn.textContent = 'Submitting Request...';
                 proceedToPaymentBtn.classList.add('loading');
             }
 
@@ -1267,19 +1227,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 const requestData = {
                     userId: userId,
                     timestamp: serverTimestamp(),
+                    status: 'request_submitted_for_testing',
                     customerInfo: {
+                        userName: userNameInput ? userNameInput.value : '',
                         businessName: businessNameInput ? businessNameInput.value : '',
                         businessType: businessTypeInput ? businessTypeInput.value : '',
+                        cityLocation: cityLocationInput ? cityLocationInput.value : '',
                         contactNumber: contactNumberInput ? contactNumberInput.value : '',
-                        contactEmail: contactEmailInput ? contactEmailInput.value : ''
+                        contactEmail: contactEmailInput ? contactEmailInput.value : '',
+                        servicesOffered: servicesOfferedInput ? servicesOfferedInput.value : '',
+                        targetAudience: targetAudienceInput ? targetAudienceInput.value : '',
                     },
                     designChoices: {
                         selectedPlan: customSelections.selectedPlan,
                         websiteType: customSelections.websiteType,
-                        websitePageCount: customSelections.websitePageCount, // Will be '1'
+                        websitePageCount: customSelections.websitePageCount,
                         ...(customSelections.websiteType === 'custom-type' && customSelections.customWebsiteTypeDescription ? { customWebsiteTypeDescription: customSelections.customWebsiteTypeDescription } : {}),
 
-                        colorScheme: customSelections.colorScheme,
+                        colorScheme: customSelections.colorScheme, // Now stores theme type/value
                         ...(customSelections.colorScheme.type === 'custom' && customSelections.customColorDescription ? { customColorDescription: customSelections.customColorDescription } : {}),
 
                         buttonShape: customSelections.buttonShape,
@@ -1301,21 +1266,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         blogContentUpsell: customSelections.blogContentUpsell
                     },
                     estimatedPrice: customSelections.estimatedPrice,
-                    status: 'pending-code-generation',
-                    generatedHtmlUrl: null,
-                    generatedCssUrl: null,
-                    generatedJsUrl: null,
                     redoAttempts: 2
                 };
 
                 const docRef = await addDoc(codeGenerationCollection, requestData);
                 const requestId = docRef.id;
+
                 console.log('Request submitted to Firestore with ID:', requestId);
 
-                window.location.href = `/pages/generated-code-preview.html?id=${requestId}`;
+                // Store all selections in sessionStorage before redirecting
+                sessionStorage.setItem('currentCustomSelections', JSON.stringify(customSelections));
+
+                // Redirect to the confirmation page
+                window.location.href = `/pages/generated-code-preview.html?status=submitted&id=${requestId}`;
 
             } catch (error) {
-                console.error("Error submitting custom request for code generation: ", error);
+                console.error("Error submitting custom request: ", error);
                 alert("There was an error submitting your request. Please try again. " + error.message);
                 if (proceedToPaymentBtn) {
                     proceedToPaymentBtn.disabled = false;
@@ -1331,15 +1297,19 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('resetCustomBuilderState called.');
         currentStep = 1;
         customSelections = {
+            userName: '',
             businessName: '',
             businessType: '',
+            cityLocation: '',
             contactNumber: '',
             contactEmail: '',
+            servicesOffered: '',
+            targetAudience: '',
             selectedPlan: '',
             websiteType: '',
-            websitePageCount: '1', // Fixed to 1 page
+            websitePageCount: '1',
             customWebsiteTypeDescription: '',
-            colorScheme: { type: '', value: '' },
+            colorScheme: { type: '', value: '' }, // Reset to empty for theme
             customColorDescription: '',
             buttonShape: '',
             customButtonShapeDescription: '',
@@ -1357,22 +1327,22 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Reset all input fields and selections
+        if (userNameInput) userNameInput.value = '';
         if (businessNameInput) businessNameInput.value = '';
         if (businessTypeInput) businessTypeInput.value = '';
+        if (cityLocationInput) cityLocationInput.value = '';
         if (contactNumberInput) contactNumberInput.value = '';
         if (contactEmailInput) contactEmailInput.value = '';
+        if (servicesOfferedInput) servicesOfferedInput.value = '';
+        if (targetAudienceInput) targetAudienceInput.value = '';
         if (customDomainSetupCheckbox) customDomainSetupCheckbox.checked = false;
 
         planCards.forEach(card => card.classList.remove('selected'));
         if (selectPlanNextBtn) selectPlanNextBtn.classList.add('hidden');
 
-        // Reset website type options
         websiteTypeOptions.forEach(option => option.classList.remove('selected', 'disabled'));
-        // REMOVED: Reset page count options and hide section
-        // pageCountOptions.forEach(option => option.classList.remove('selected', 'disabled'));
-        // if (pageCountSelection) pageCountSelection.classList.add('hidden');
 
-        colorSwatches.forEach(swatch => swatch.classList.remove('selected', 'disabled'));
+        themeOptions.forEach(option => option.classList.remove('selected', 'disabled')); // <--- CHANGED: Use themeOptions
 
         buttonShapeOptions.forEach(option => option.classList.remove('selected', 'disabled'));
         buttonEffectOptions.forEach(option => option.classList.remove('selected', 'disabled'));
@@ -1414,13 +1384,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalDowngradeSectionsBtn) {
         modalDowngradeSectionsBtn.addEventListener('click', () => {
             hidePlanWarningModal();
-            alert(`Please deselect sections to fit the Basic Plan limit of ${planFeatureLimits.basic.maxIncludedSections} sections.`);
+            alert(`Please deselect sections to fit the Launch Plan limit of ${planFeatureLimits.basic.maxIncludedSections} sections.`);
             showStep(6);
         });
     }
 
     if (modalUpgradePlanBtn) {
-        modalUpgradePlan.addEventListener('click', () => {
+        modalUpgradePlanBtn.addEventListener('click', () => {
             hidePlanWarningModal();
             const growthPlanCard = document.querySelector('.plan-card[data-plan="growth"]');
             if (growthPlanCard) {
